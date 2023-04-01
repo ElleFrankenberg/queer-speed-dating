@@ -1,9 +1,10 @@
 import Head from "next/head";
 import Image from "next/image";
+import Button from "@/components/ui/Button";
 
 import styles from "@/styles/Home.module.css";
 
-import ParticipantRegistration from "../components/inputs/ParticipantRegistration";
+import ParticipantForm from "../components/inputs/ParticipantForm";
 
 export default function Home() {
   return (
@@ -15,13 +16,23 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main className={styles.main}>
-        {/* <Image
+        <Image
           className={styles.heroImage}
           src="/assets/images/pride_flags.jpg"
           width={1200}
           height={1200}
-        /> */}
-        <ParticipantRegistration />
+        />
+        <div className={styles.btnContainer}>
+          <Button link="/participants">
+            <span>All Participants</span>
+          </Button>
+        </div>
+        <div className={styles.welcomeContainer}>
+          <h1>Welcome to Queer speed dating</h1>
+          <h2>Register to get your seat!</h2>
+        </div>
+
+        <ParticipantForm />
       </main>
     </>
   );

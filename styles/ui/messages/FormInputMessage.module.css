@@ -1,0 +1,20 @@
+.hide {
+  opacity: 0;
+  font-size: 14px;
+  visibility: hidden;
+}
+
+.show {
+  opacity: 1;
+  font-size: 14px;
+  visibility: visible;
+  color: #023c38;
+  /* text-transform: uppercase; */
+}
+
+.marginTop {
+  margin-top: 0.5rem;
+}
+.marginLeft {
+  margin-left: 1rem;
+}

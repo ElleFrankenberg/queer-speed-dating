@@ -5,6 +5,35 @@
   background-color: aquamarine;
 }
 
+.heroImage {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: 1;
+}
+
+.welcomeContainer {
+  position: absolute;
+  top: 1rem;
+  left: 2rem;
+  z-index: 2;
+}
+.welcomeContainer h1,
+.welcomeContainer h2 {
+  color: #023c38;
+  text-transform: uppercase;
+}
+
+.btnContainer {
+  position: absolute;
+  right: 2rem;
+  top: 2rem;
+  z-index: 2;
+}
+
 /* Enable hover only on non-touch devices */
 @media (hover: hover) and (pointer: fine) {
   .card:hover {

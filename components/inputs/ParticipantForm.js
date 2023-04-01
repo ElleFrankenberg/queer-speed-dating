@@ -1,16 +1,22 @@
 import { useRef, useState } from "react";
 import Input from "../ui/Input";
 import Button from "../ui/Button";
-import InvalidInputMessage from "../ui/error/InvalidInputMessage";
+import {
+  containsOnlyLetters,
+  phoneNumberIsCorrect,
+} from "../../helpers/formUtil";
+import FormInputMessage from "../ui/messages/FormInputMessage";
 import styles from "@/styles/inputs/ParticipantRegistration.module.css";
-import inputStyles from "@/styles/ui/error/InvalidInputMessage.module.css";
+import inputStyles from "@/styles/ui/messages/FormInputMessage.module.css";
 
-const ParticipantRegistration = () => {
+const ParticipantForm = () => {
   const [firstNameIsInvalid, setfirstNameIsInvalid] = useState(false);
   const [lastNameIsInvalid, setlastNameIsInvalid] = useState(false);
   const [emailIsInvalid, setEmailIsInvalid] = useState(false);
   const [numberIsInvalid, setNumberIsInvalid] = useState(false);
+  const [registrationIsSent, setRegistrationIsSent] = useState(false);
 
+  const formRef = useRef();
   const honeyPotRef = useRef();
   const firstNameInputRef = useRef();
   const lastNameInputRef = useRef();
@@ -25,16 +31,12 @@ const ParticipantRegistration = () => {
     const enteredEmail = emailInputRef.current.value;
     const enteredNumber = numberInputRef.current.value;
 
-    const letterRegex = /^[A-Za-z]+$/;
-    const numberRegex =
-      /^((\\+[1-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2,4})[ \\-]*)*?[0-9]{3,4}?[ \\-]*[0-9]{3,4}?$/;
-
     if (enteredHoneyPotValue) {
       return;
     }
     if (
       !enteredFirstName ||
-      !letterRegex.test(enteredFirstName) ||
+      containsOnlyLetters(enteredFirstName) === false ||
       enteredFirstName.trim() === ""
     ) {
       setfirstNameIsInvalid(true);
@@ -42,7 +44,7 @@ const ParticipantRegistration = () => {
     }
     if (
       !enteredLastName ||
-      !letterRegex.test(enteredLastName) ||
+      containsOnlyLetters(enteredLastName) === false ||
       enteredLastName.trim() === ""
     ) {
       setlastNameIsInvalid(true);
@@ -58,7 +60,7 @@ const ParticipantRegistration = () => {
     }
     if (
       !enteredNumber ||
-      !numberRegex.test(enteredNumber) ||
+      phoneNumberIsCorrect(enteredNumber) === false ||
       enteredNumber.trim() === ""
     ) {
       setNumberIsInvalid(true);
@@ -80,11 +82,15 @@ const ParticipantRegistration = () => {
       },
     })
       .then((response) => response.json())
-      .then((data) => console.log(data));
+      .then((data) => {
+        console.log(data);
+        setRegistrationIsSent(true);
+        formRef.current.reset();
+      });
   };
 
   return (
-    <form className={styles.form} onSubmit={registrationHandler}>
+    <form className={styles.form} onSubmit={registrationHandler} ref={formRef}>
       <div className={styles.row}>
         <div className={styles.control}>
           <input className={styles.honeyPot} type="text" ref={honeyPotRef} />
@@ -94,12 +100,12 @@ const ParticipantRegistration = () => {
             text="First name"
             ref={firstNameInputRef}
           />
-          <InvalidInputMessage
+          <FormInputMessage
             text="Invalid Input"
             className={
               !firstNameIsInvalid
-                ? inputStyles.invalidText
-                : inputStyles.invalidTextShow
+                ? `${inputStyles.hide} ${inputStyles.marginTop}`
+                : `${inputStyles.show} ${inputStyles.marginTop}`
             }
           />
         </div>
@@ -110,12 +116,12 @@ const ParticipantRegistration = () => {
             text="Last name"
             ref={lastNameInputRef}
           />
-          <InvalidInputMessage
+          <FormInputMessage
             text="Invalid Input"
             className={
               !lastNameIsInvalid
-                ? inputStyles.invalidText
-                : inputStyles.invalidTextShow
+                ? `${inputStyles.hide} ${inputStyles.marginTop}`
+                : `${inputStyles.show} ${inputStyles.marginTop}`
             }
           />
         </div>
@@ -123,12 +129,12 @@ const ParticipantRegistration = () => {
       <div className={styles.row}>
         <div className={styles.control}>
           <Input id="email" type="email" text="Email" ref={emailInputRef} />
-          <InvalidInputMessage
+          <FormInputMessage
             text="Email is invalid"
             className={
               !emailIsInvalid
-                ? inputStyles.invalidText
-                : inputStyles.invalidTextShow
+                ? `${inputStyles.hide} ${inputStyles.marginTop}`
+                : `${inputStyles.show} ${inputStyles.marginTop}`
             }
           />
         </div>
@@ -139,12 +145,12 @@ const ParticipantRegistration = () => {
             text="Phone number"
             ref={numberInputRef}
           />
-          <InvalidInputMessage
+          <FormInputMessage
             text="Number is invalid"
             className={
               !numberIsInvalid
-                ? inputStyles.invalidText
-                : inputStyles.invalidTextShow
+                ? `${inputStyles.hide} ${inputStyles.marginTop}`
+                : `${inputStyles.show} ${inputStyles.marginTop}`
             }
           />
         </div>
@@ -153,9 +159,17 @@ const ParticipantRegistration = () => {
         <Button>
           <span>Register</span>
         </Button>
+        <FormInputMessage
+          text="YEEEY! You are registered!"
+          className={
+            !registrationIsSent
+              ? `${inputStyles.hide} ${inputStyles.marginLeft}`
+              : `${inputStyles.show} ${inputStyles.marginLeft}`
+          }
+        />
       </div>
     </form>
   );
 };
 
-export default ParticipantRegistration;
+export default ParticipantForm;
