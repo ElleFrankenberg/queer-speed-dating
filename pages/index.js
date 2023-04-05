@@ -21,6 +21,7 @@ export default function Home() {
           src="/assets/images/pride_flags.jpg"
           width={1200}
           height={1200}
+          alt="pride flag"
         />
         <div className={styles.btnContainer}>
           <Button link="/participants">

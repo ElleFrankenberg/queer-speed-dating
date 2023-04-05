@@ -16,6 +16,12 @@ export const insertDocument = async (client, collection, document) => {
   return result;
 };
 
+export const getAllDocuments = async (client, collection) => {
+  const db = client.db();
+  const documents = await db.collection(collection).find().toArray();
+  return documents;
+};
+
 export const errorMessageHandeling = (res, code, message) => {
   const errorMessage = res.status(code).json(message);
   return errorMessage;
@@ -62,11 +68,7 @@ const handler = async (req, res) => {
     let result;
 
     try {
-      result = await insertDocument(
-        client,
-        "participantRegistration",
-        newParticipant
-      );
+      result = await insertDocument(client, "participants", newParticipant);
       newParticipant.id = result.insertedId.toString();
       res
         .status(201)
@@ -74,6 +76,17 @@ const handler = async (req, res) => {
     } catch (error) {
       errorMessageHandeling(res, 500, {
         message: "Inserting participant faild",
+      });
+    }
+  }
+
+  if (req.method === "GET") {
+    try {
+      const documents = await getAllDocuments(client, "participants");
+      res.status(200).json({ participants: documents });
+    } catch (error) {
+      errorMessageHandeling(res, 500, {
+        message: "Getting participants faild",
       });
     }
   }

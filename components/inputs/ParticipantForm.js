@@ -1,4 +1,4 @@
-import { useRef, useState } from "react";
+import { useRef, useState, useEffect } from "react";
 import Input from "../ui/Input";
 import Button from "../ui/Button";
 import {
@@ -7,14 +7,26 @@ import {
 } from "../../helpers/formUtil";
 import FormInputMessage from "../ui/messages/FormInputMessage";
 import styles from "@/styles/inputs/ParticipantRegistration.module.css";
-import inputStyles from "@/styles/ui/messages/FormInputMessage.module.css";
 
 const ParticipantForm = () => {
   const [firstNameIsInvalid, setfirstNameIsInvalid] = useState(false);
   const [lastNameIsInvalid, setlastNameIsInvalid] = useState(false);
   const [emailIsInvalid, setEmailIsInvalid] = useState(false);
   const [numberIsInvalid, setNumberIsInvalid] = useState(false);
-  const [registrationIsSent, setRegistrationIsSent] = useState(false);
+  const [isInvalid, setIsInvalid] = useState(false);
+
+  useEffect(() => {
+    if (isInvalid) {
+      const timer = setTimeout(() => {
+        resetStates();
+        setIsInvalid(false);
+      }, 3000);
+
+      return () => {
+        clearTimeout(timer);
+      };
+    }
+  }, [isInvalid]);
 
   const formRef = useRef();
   const honeyPotRef = useRef();
@@ -22,6 +34,13 @@ const ParticipantForm = () => {
   const lastNameInputRef = useRef();
   const emailInputRef = useRef();
   const numberInputRef = useRef();
+
+  const resetStates = () => {
+    setfirstNameIsInvalid(false);
+    setlastNameIsInvalid(false);
+    setEmailIsInvalid(false);
+    setNumberIsInvalid(false);
+  };
 
   const registrationHandler = (event) => {
     event.preventDefault();
@@ -39,6 +58,7 @@ const ParticipantForm = () => {
       containsOnlyLetters(enteredFirstName) === false ||
       enteredFirstName.trim() === ""
     ) {
+      setIsInvalid(true);
       setfirstNameIsInvalid(true);
       return;
     }
@@ -47,6 +67,7 @@ const ParticipantForm = () => {
       containsOnlyLetters(enteredLastName) === false ||
       enteredLastName.trim() === ""
     ) {
+      setIsInvalid(true);
       setlastNameIsInvalid(true);
       return;
     }
@@ -55,6 +76,7 @@ const ParticipantForm = () => {
       !enteredEmail.includes("@") ||
       enteredEmail.trim() === ""
     ) {
+      setIsInvalid(true);
       setEmailIsInvalid(true);
       return;
     }
@@ -63,6 +85,7 @@ const ParticipantForm = () => {
       phoneNumberIsCorrect(enteredNumber) === false ||
       enteredNumber.trim() === ""
     ) {
+      setIsInvalid(true);
       setNumberIsInvalid(true);
       return;
     }
@@ -74,7 +97,7 @@ const ParticipantForm = () => {
       number: enteredNumber,
     };
 
-    fetch("/api/participantRegister", {
+    fetch("/api/participants", {
       method: "POST",
       body: JSON.stringify(participantData),
       headers: {
@@ -83,8 +106,6 @@ const ParticipantForm = () => {
     })
       .then((response) => response.json())
       .then((data) => {
-        console.log(data);
-        setRegistrationIsSent(true);
         formRef.current.reset();
       });
   };
@@ -100,14 +121,6 @@ const ParticipantForm = () => {
             text="First name"
             ref={firstNameInputRef}
           />
-          <FormInputMessage
-            text="Invalid Input"
-            className={
-              !firstNameIsInvalid
-                ? `${inputStyles.hide} ${inputStyles.marginTop}`
-                : `${inputStyles.show} ${inputStyles.marginTop}`
-            }
-          />
         </div>
         <div className={styles.control}>
           <Input
@@ -116,27 +129,11 @@ const ParticipantForm = () => {
             text="Last name"
             ref={lastNameInputRef}
           />
-          <FormInputMessage
-            text="Invalid Input"
-            className={
-              !lastNameIsInvalid
-                ? `${inputStyles.hide} ${inputStyles.marginTop}`
-                : `${inputStyles.show} ${inputStyles.marginTop}`
-            }
-          />
         </div>
       </div>
       <div className={styles.row}>
         <div className={styles.control}>
           <Input id="email" type="email" text="Email" ref={emailInputRef} />
-          <FormInputMessage
-            text="Email is invalid"
-            className={
-              !emailIsInvalid
-                ? `${inputStyles.hide} ${inputStyles.marginTop}`
-                : `${inputStyles.show} ${inputStyles.marginTop}`
-            }
-          />
         </div>
         <div className={styles.control}>
           <Input
@@ -145,28 +142,24 @@ const ParticipantForm = () => {
             text="Phone number"
             ref={numberInputRef}
           />
-          <FormInputMessage
-            text="Number is invalid"
-            className={
-              !numberIsInvalid
-                ? `${inputStyles.hide} ${inputStyles.marginTop}`
-                : `${inputStyles.show} ${inputStyles.marginTop}`
-            }
-          />
         </div>
       </div>
       <div className={styles.controlBtn}>
         <Button>
           <span>Register</span>
         </Button>
-        <FormInputMessage
-          text="YEEEY! You are registered!"
-          className={
-            !registrationIsSent
-              ? `${inputStyles.hide} ${inputStyles.marginLeft}`
-              : `${inputStyles.show} ${inputStyles.marginLeft}`
-          }
-        />
+        {isInvalid && firstNameIsInvalid && (
+          <FormInputMessage text="First name is invalid " />
+        )}
+        {isInvalid && lastNameIsInvalid && (
+          <FormInputMessage text="Last name is invalid" />
+        )}
+        {isInvalid && emailIsInvalid && (
+          <FormInputMessage text="Email is invalid" />
+        )}
+        {isInvalid && numberIsInvalid && (
+          <FormInputMessage text="Number is invalid" />
+        )}
       </div>
     </form>
   );

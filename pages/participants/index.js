@@ -1,16 +1,12 @@
+import ParticipantsList from "@/components/participants/participantsList";
+
 const participantsPage = () => {
-  return <h1>participants</h1>;
+  return (
+    <>
+      <h1>hej</h1>
+      <ParticipantsList />
+    </>
+  );
 };
-
-export async function getStaticProps() {
-  const events = await getAllEvents();
-
-  return {
-    props: {
-      events: events,
-    },
-    revalidate: 60,
-  };
-}
 
 export default participantsPage;
