@@ -1,25 +1,26 @@
-import { useState, useEffect } from "react";
+import Link from "next/link";
 
-const ParticipantsList = () => {
-  const [participants, setParticipants] = useState();
-
-  useEffect(() => {
-    fetch(`/api/participants`)
-      .then((response) => response.json())
-      .then((data) => {
-        console.log("participants data", data.participants);
-        setParticipants(data.participants);
-      });
-  }, []);
-
-  // console.log("hej", participants);
+const ParticipantsList = (props) => {
+  const { participants } = props;
 
   return (
     <ul>
-      <li>participant</li>
-      {/* {participants.map((participant) => (
-        <li key={participant._id}>{participant.firstName}</li>
-      ))} */}
+      {participants.map((participant) => (
+        <li key={participant.id}>
+          <Link
+            href={`/participants/${participant.firstName + participant.id}`}
+          >
+            <span>{`${
+              participant.firstName.charAt(0).toUpperCase() +
+              participant.firstName.slice(1)
+            } ${
+              participant.lastName.charAt(0).toUpperCase() +
+              participant.lastName.slice(1)
+            }`}</span>
+            <span>{participant.email}</span>
+          </Link>
+        </li>
+      ))}
     </ul>
   );
 };
