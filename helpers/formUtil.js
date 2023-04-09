@@ -1,5 +1,5 @@
 export const containsOnlyLetters = (textToCheck) => {
-  const letterRegex = /^[A-Za-z]+$/;
+  const letterRegex = /^[a-zA-ZäöåÄÖÅ]+$/;
   const checkedText = letterRegex.test(textToCheck);
   return checkedText;
 };

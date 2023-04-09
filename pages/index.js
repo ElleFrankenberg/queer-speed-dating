@@ -15,26 +15,24 @@ export default function Home() {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <main className={styles.main}>
-        <Image
-          className={styles.heroImage}
-          src="/assets/images/pride_flags.jpg"
-          width={1200}
-          height={1200}
-          alt="pride flag"
-        />
-        <div className={styles.btnContainer}>
-          <Button link="/participants">
-            <span>All Participants</span>
-          </Button>
-        </div>
-        <div className={styles.welcomeContainer}>
-          <h1>Welcome to Queer speed dating</h1>
-          <h2>Register to get your seat!</h2>
-        </div>
+      <Image
+        className={styles.heroImage}
+        src="/assets/images/pride_flags.jpg"
+        width={1200}
+        height={1200}
+        alt="pride flag"
+      />
+      <div className={styles.btnContainer}>
+        <Button link="/participants">
+          <span>All Participants</span>
+        </Button>
+      </div>
+      <div className={styles.welcomeContainer}>
+        <h1>Welcome to Queer speed dating</h1>
+        <h2>Register to get your seat!</h2>
+      </div>
 
-        <ParticipantForm />
-      </main>
+      <ParticipantForm />
     </>
   );
 }

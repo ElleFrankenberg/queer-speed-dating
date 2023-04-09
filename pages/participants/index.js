@@ -4,9 +4,9 @@ import ParticipantsList from "@/components/participants/participantsList";
 const participantsPage = (props) => {
   const { participants } = props;
   return (
-    <main>
+    <>
       <ParticipantsList participants={participants} />
-    </main>
+    </>
   );
 };
 

@@ -1,4 +1,4 @@
-import { useRef, useState, useEffect } from "react";
+import { useRef, useState, useEffect, useContext } from "react";
 import Input from "../ui/Input";
 import Button from "../ui/Button";
 import {
@@ -7,6 +7,7 @@ import {
 } from "../../helpers/formUtil";
 import FormInputMessage from "../ui/messages/FormInputMessage";
 import styles from "@/styles/inputs/ParticipantRegistration.module.css";
+import NotificationContext from "@/store/notificationContext";
 
 const ParticipantForm = () => {
   const [firstNameIsInvalid, setfirstNameIsInvalid] = useState(false);
@@ -14,6 +15,15 @@ const ParticipantForm = () => {
   const [emailIsInvalid, setEmailIsInvalid] = useState(false);
   const [numberIsInvalid, setNumberIsInvalid] = useState(false);
   const [isInvalid, setIsInvalid] = useState(false);
+
+  const formRef = useRef();
+  const honeyPotRef = useRef();
+  const firstNameInputRef = useRef();
+  const lastNameInputRef = useRef();
+  const emailInputRef = useRef();
+  const numberInputRef = useRef();
+
+  const notificationCxt = useContext(NotificationContext);
 
   useEffect(() => {
     if (isInvalid) {
@@ -27,13 +37,6 @@ const ParticipantForm = () => {
       };
     }
   }, [isInvalid]);
-
-  const formRef = useRef();
-  const honeyPotRef = useRef();
-  const firstNameInputRef = useRef();
-  const lastNameInputRef = useRef();
-  const emailInputRef = useRef();
-  const numberInputRef = useRef();
 
   const resetStates = () => {
     setfirstNameIsInvalid(false);
@@ -97,6 +100,12 @@ const ParticipantForm = () => {
       number: enteredNumber,
     };
 
+    notificationCxt.showNotification({
+      title: "sending",
+      message: "registering",
+      status: "pending",
+    });
+
     fetch("/api/participants", {
       method: "POST",
       body: JSON.stringify(participantData),
@@ -104,9 +113,29 @@ const ParticipantForm = () => {
         "Content-Type": "application/json",
       },
     })
-      .then((response) => response.json())
+      .then((response) => {
+        if (response.ok) {
+          return response.json();
+        }
+
+        return response.json().then((data) => {
+          throw new Error(data.message || "something went wrong");
+        });
+      })
       .then((data) => {
+        notificationCxt.showNotification({
+          title: "success!",
+          message: "you are registered",
+          status: "success",
+        });
         formRef.current.reset();
+      })
+      .catch((error) => {
+        notificationCxt.showNotification({
+          title: "error!",
+          message: error.message || "something went wrong",
+          status: "error",
+        });
       });
   };
 

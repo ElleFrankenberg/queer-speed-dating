@@ -4,7 +4,7 @@
   background-color: #03be9f;
   box-shadow: 0 1px 4px rgba(0, 0, 0, 0.2);
   padding: 3rem;
-  position: relative;
+  position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
