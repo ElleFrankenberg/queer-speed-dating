@@ -1,0 +1,27 @@
+.participants {
+  width: 100%;
+  min-height: 100vh;
+  background-color: #03be9f;
+}
+
+.participantListContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding-top: 3rem;
+}
+
+.participantList {
+  margin: 0 auto;
+  width: 50%;
+  margin-bottom: 1rem;
+  margin-top: 1rem;
+}
+
+.participantListItem {
+  display: flex;
+  justify-content: space-between;
+  padding-bottom: 1rem;
+  padding-top: 1rem;
+}
