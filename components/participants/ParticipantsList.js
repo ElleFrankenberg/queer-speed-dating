@@ -1,18 +1,69 @@
-import { useState } from "react";
+import { useState, useContext } from "react";
 import Link from "next/link";
 import Button from "../ui/Button";
+import BeforeDeletePopup from "../ui/messages/BeforeDeletePopup";
 import styles from "../../styles/participants/ParticipantsList.module.css";
+import NotificationContext from "@/store/notificationContext";
 
 const ParticipantsList = (props) => {
   const { participants } = props;
   const [showParticipantList, setShowParticipantList] = useState(true);
+  const [showDeleteAllPopup, setShowDeleteAllPopup] = useState(false);
+  const [showDeleteOnePopup, setShowDeleteOnePopup] = useState(false);
 
-  const toggleDeletePopup = () => {
+  const notificationCxt = useContext(NotificationContext);
+
+  const toggleDeleteAllPopup = () => {
     setShowParticipantList(!showParticipantList);
+    setShowDeleteAllPopup(!showDeleteAllPopup);
+  };
+  const toggleDeleteOnePopup = () => {
+    setShowParticipantList(!showParticipantList);
+    setShowDeleteOnePopup(!showDeleteOnePopup);
   };
 
   const deleteAllParticipants = () => {
-    console.log("delete");
+    notificationCxt.showNotification({
+      title: "sending",
+      message: "deleting",
+      status: "pending",
+    });
+
+    fetch("/api/participants", {
+      method: "DELETE",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    })
+      .then((response) => {
+        if (response.ok) {
+          return response.json();
+        }
+
+        return response.json().then((data) => {
+          throw new Error(data.message || "something went wrong");
+        });
+      })
+      .then((data) => {
+        notificationCxt.showNotification({
+          title: "success!",
+          message: "All participants are deleted",
+          status: "success",
+        });
+        setShowParticipantList(!showParticipantList);
+        setShowDeleteAllPopup(!showDeleteAllPopup);
+      })
+      .catch((error) => {
+        notificationCxt.showNotification({
+          title: "error!",
+          message: error.message || "something went wrong",
+          status: "error",
+        });
+      });
+  };
+
+  const deleteOneParticipants = () => {
+    console.log("delete one");
   };
 
   return (
@@ -20,7 +71,12 @@ const ParticipantsList = (props) => {
       <div className={styles.participantListContainer}>
         {showParticipantList && (
           <>
-            <h1>All Participants</h1>
+            {participants.length > 0 ? (
+              <h1>All Participants</h1>
+            ) : (
+              <h1>No Participants yet</h1>
+            )}
+
             <ul className={styles.participantList}>
               {participants.map((participant) => (
                 <li key={participant.id} className={styles.participantListItem}>
@@ -38,24 +94,31 @@ const ParticipantsList = (props) => {
                     }`}</span>
                   </Link>
                   <Button>
-                    <span>Delete</span>
+                    <span onClick={toggleDeleteOnePopup}>Delete</span>
                   </Button>
                 </li>
               ))}
             </ul>
             <Button>
-              <span onClick={toggleDeletePopup}>delete all participants</span>
+              <span onClick={toggleDeleteAllPopup}>
+                delete all participants
+              </span>
             </Button>
           </>
         )}
-        {!showParticipantList && (
-          <div className={styles.deletePopup}>
-            <h3>Delete all participants?</h3>
-            <div className={styles.buttonContainer}>
-              <Button onClick={deleteAllParticipants}>yes</Button>
-              <Button onClick={toggleDeletePopup}>no</Button>
-            </div>
-          </div>
+        {!showParticipantList && showDeleteAllPopup && (
+          <BeforeDeletePopup
+            text="delete all?"
+            handleDelete={deleteAllParticipants}
+            handleToggle={toggleDeleteAllPopup}
+          />
+        )}
+        {!showParticipantList && showDeleteOnePopup && (
+          <BeforeDeletePopup
+            text="delete one?"
+            handleDelete={deleteOneParticipants}
+            handleToggle={toggleDeleteOnePopup}
+          />
         )}
       </div>
     </div>

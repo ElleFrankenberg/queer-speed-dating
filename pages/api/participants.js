@@ -4,12 +4,12 @@ import {
 } from "../../helpers/formUtil";
 import { MongoClient } from "mongodb";
 
-export const connectDatabase = async () => {
+const connectDatabase = async () => {
   const client = await MongoClient.connect(process.env.DB_URL);
   return client;
 };
 
-export const insertDocument = async (client, collection, email, document) => {
+const insertDocument = async (client, collection, email, document) => {
   const db = client.db();
 
   const existingParticipant = await db
@@ -26,6 +26,13 @@ export const insertDocument = async (client, collection, email, document) => {
     const result = await db.collection(collection).insertOne(document);
     return result;
   }
+};
+
+const deleteAllDocuments = async (client, collection) => {
+  const db = client.db();
+  await db.collection(collection).deleteMany({});
+  // client.close();
+  return;
 };
 
 // export const getAllDocuments = async (client, collection) => {
@@ -97,13 +104,24 @@ const handler = async (req, res) => {
     }
   }
 
-  if (req.method === "GET") {
+  // if (req.method === "GET") {
+  //   try {
+  //     const documents = await getAllDocuments(client, "participants");
+  //     res.status(200).json({ participants: documents });
+  //   } catch (error) {
+  //     errorMessageHandeling(res, 500, {
+  //       message: "Getting participants faild",
+  //     });
+  //   }
+  // }
+
+  if (req.method === "DELETE") {
     try {
-      const documents = await getAllDocuments(client, "participants");
+      const documents = await deleteAllDocuments(client, "participants");
       res.status(200).json({ participants: documents });
     } catch (error) {
       errorMessageHandeling(res, 500, {
-        message: "Getting participants faild",
+        message: "Deleting all participants faild",
       });
     }
   }
