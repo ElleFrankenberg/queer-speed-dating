@@ -8,29 +8,43 @@ import NotificationContext from "@/store/notificationContext";
 const ParticipantsList = (props) => {
   const { participants } = props;
   const [showParticipantList, setShowParticipantList] = useState(true);
-  const [showDeleteAllPopup, setShowDeleteAllPopup] = useState(false);
-  const [showDeleteOnePopup, setShowDeleteOnePopup] = useState(false);
+  const [popup, setPopup] = useState({
+    show: false,
+    id: null,
+    message: "",
+  });
 
   const notificationCxt = useContext(NotificationContext);
 
-  const toggleDeleteAllPopup = () => {
-    setShowParticipantList(!showParticipantList);
-    setShowDeleteAllPopup(!showDeleteAllPopup);
-  };
-  const toggleDeleteOnePopup = () => {
-    setShowParticipantList(!showParticipantList);
-    setShowDeleteOnePopup(!showDeleteOnePopup);
+  const handleDelete = (id, message) => {
+    setPopup({
+      show: true,
+      id: id !== "" ? id : null,
+      message,
+    });
   };
 
-  const deleteAllParticipants = () => {
+  const handleDeleteFalse = () => {
+    setPopup({
+      show: false,
+      id: null,
+    });
+  };
+
+  const handleDeleteTrue = () => {
     notificationCxt.showNotification({
       title: "sending",
       message: "deleting",
       status: "pending",
     });
 
+    const bodyData = {
+      participantId: popup.show && popup.id ? popup.id : null,
+    };
+
     fetch("/api/participants", {
       method: "DELETE",
+      body: JSON.stringify(bodyData),
       headers: {
         "Content-Type": "application/json",
       },
@@ -47,11 +61,15 @@ const ParticipantsList = (props) => {
       .then((data) => {
         notificationCxt.showNotification({
           title: "success!",
-          message: "All participants are deleted",
+          message: popup.id
+            ? "The participant is deleted"
+            : "All participants are",
           status: "success",
         });
-        setShowParticipantList(!showParticipantList);
-        setShowDeleteAllPopup(!showDeleteAllPopup);
+        setPopup({
+          show: false,
+          id: null,
+        });
       })
       .catch((error) => {
         notificationCxt.showNotification({
@@ -60,10 +78,6 @@ const ParticipantsList = (props) => {
           status: "error",
         });
       });
-  };
-
-  const deleteOneParticipants = () => {
-    console.log("delete one");
   };
 
   return (
@@ -94,30 +108,31 @@ const ParticipantsList = (props) => {
                     }`}</span>
                   </Link>
                   <Button>
-                    <span onClick={toggleDeleteOnePopup}>Delete</span>
+                    <span
+                      onClick={() =>
+                        handleDelete(participant.id, "Delete this participant?")
+                      }
+                    >
+                      Delete
+                    </span>
                   </Button>
                 </li>
               ))}
             </ul>
             <Button>
-              <span onClick={toggleDeleteAllPopup}>
+              <span
+                onClick={() => handleDelete("", "Delete all participants?")}
+              >
                 delete all participants
               </span>
             </Button>
           </>
         )}
-        {!showParticipantList && showDeleteAllPopup && (
+        {popup.show && (
           <BeforeDeletePopup
-            text="delete all?"
-            handleDelete={deleteAllParticipants}
-            handleToggle={toggleDeleteAllPopup}
-          />
-        )}
-        {!showParticipantList && showDeleteOnePopup && (
-          <BeforeDeletePopup
-            text="delete one?"
-            handleDelete={deleteOneParticipants}
-            handleToggle={toggleDeleteOnePopup}
+            handleDeleteTrue={handleDeleteTrue}
+            handleDeleteFalse={handleDeleteFalse}
+            message={popup.message}
           />
         )}
       </div>

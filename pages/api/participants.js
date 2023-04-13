@@ -2,7 +2,7 @@ import {
   containsOnlyLetters,
   phoneNumberIsCorrect,
 } from "../../helpers/formUtil";
-import { MongoClient } from "mongodb";
+import { MongoClient, ObjectId } from "mongodb";
 
 const connectDatabase = async () => {
   const client = await MongoClient.connect(process.env.DB_URL);
@@ -31,7 +31,13 @@ const insertDocument = async (client, collection, email, document) => {
 const deleteAllDocuments = async (client, collection) => {
   const db = client.db();
   await db.collection(collection).deleteMany({});
-  // client.close();
+  return;
+};
+
+const deleteOneDocument = async (client, collection, participantId) => {
+  const db = client.db();
+  const id = new ObjectId(participantId);
+  await db.collection(collection).deleteOne({ _id: id });
   return;
 };
 
@@ -116,13 +122,26 @@ const handler = async (req, res) => {
   // }
 
   if (req.method === "DELETE") {
-    try {
-      const documents = await deleteAllDocuments(client, "participants");
-      res.status(200).json({ participants: documents });
-    } catch (error) {
-      errorMessageHandeling(res, 500, {
-        message: "Deleting all participants faild",
-      });
+    const { participantId } = req.body;
+
+    if (participantId) {
+      try {
+        await deleteOneDocument(client, "participants", participantId);
+        res.status(200).json({ message: "The participant is deleted" });
+      } catch (error) {
+        errorMessageHandeling(res, 500, {
+          message: "Deleting the participant faild",
+        });
+      }
+    } else {
+      try {
+        await deleteAllDocuments(client, "participants");
+        res.status(200).json({ message: "all participants are deleted" });
+      } catch (error) {
+        errorMessageHandeling(res, 500, {
+          message: "Deleting all participants faild",
+        });
+      }
     }
   }
 
