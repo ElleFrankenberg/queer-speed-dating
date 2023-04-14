@@ -1,0 +1,14 @@
+.ParticipantDetailsList {
+  background-color: var(--yellow);
+  padding: 2rem;
+}
+
+.ParticipantDetailsList h1,
+.ParticipantDetailsList p {
+  margin-bottom: 0.5rem;
+  color: var(--dark-gray);
+}
+
+.ParticipantDetailsList p:last-child {
+  margin-bottom: 0;
+}

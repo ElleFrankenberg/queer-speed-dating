@@ -1,12 +1,20 @@
 import { MongoClient } from "mongodb";
-import ParticipantDetails from "@/components/participant/ParticipantDetails";
+import ParticipantDetailsList from "@/components/participant/ParticipantDetailsList";
 
 const participantPage = (props) => {
   const { participant, participants } = props;
 
+  if (!participant) {
+    return (
+      <div className="center">
+        <p>Loading...</p>
+      </div>
+    );
+  }
+
   return (
     <>
-      <ParticipantDetails />
+      <ParticipantDetailsList participantDetails={participant} />
     </>
   );
 };
@@ -17,22 +25,37 @@ export async function getStaticProps(context) {
     const client = await MongoClient.connect(process.env.DB_URL);
     const db = client.db();
     const documents = await db.collection("participants").find().toArray();
-    const allParticipants = documents.map((document) => {
-      return {
-        id: document._id.toString(),
-        firstName: document.firstName,
-        lastName: document.lastName,
-        email: document.email,
-        number: document.number,
-      };
-    });
+    const participant = documents
+      .filter((document) => document._id.toString() === participantId)
+      .map((participant) => {
+        return {
+          id: participant._id.toString(),
+          firstName: participant.firstName,
+          lastName: participant.lastName,
+          email: participant.email,
+          number: participant.number,
+        };
+      });
+
+    const filteredParticipants = documents
+      .filter((document) => document._id.toString() !== participantId)
+      .map((document) => {
+        return {
+          id: document._id.toString(),
+          firstName: document.firstName,
+          lastName: document.lastName,
+          email: document.email,
+          number: document.number,
+        };
+      });
+
     client.close();
     return {
       props: {
-        participant: "",
-        participants: allParticipants,
+        participant: participant,
+        participants: filteredParticipants,
       },
-      revalidate: 60,
+      revalidate: 30,
     };
   } catch (error) {
     console.log(error);

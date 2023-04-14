@@ -32,7 +32,7 @@ export async function getStaticProps() {
       props: {
         participants: allParticipants,
       },
-      revalidate: 60,
+      revalidate: 30,
     };
   } catch (error) {
     console.log(error);

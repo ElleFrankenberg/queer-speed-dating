@@ -116,7 +116,7 @@ const ParticipantsList = (props) => {
                           participant.firstName.charAt(0).toUpperCase() +
                             participant.firstName.slice(1),
                           participant.lastName.charAt(0).toUpperCase() +
-                            participant.firstName.slice(1)
+                            participant.lastName.slice(1)
                         )
                       }
                     >

@@ -24,23 +24,29 @@
 }
 
 .question {
-  background-color: #c937b3;
+  background-color: var(--purple);
 }
 
 .pending {
-  background-color: #177cbe;
+  background-color: var(--blue);
 }
 
 .success {
-  background-color: #70f9a9;
+  background-color: var(--green);
 }
 
 .error {
-  background-color: #f5826e;
+  background-color: var(--red);
+}
+
+.messageContainer {
+  margin-top: 1rem;
+  margin-bottom: 1rem;
 }
 
 .buttonContainer {
-  margin-top: 2rem;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
   display: flex;
 }
 

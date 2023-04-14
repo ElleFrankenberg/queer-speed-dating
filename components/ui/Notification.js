@@ -46,7 +46,7 @@ function Notification(props) {
           </Button>
         </div>
       )}
-      <div>
+      <div className={styles.messageContainer}>
         <h2>{message}</h2>
       </div>
       {status === "question" && (
