@@ -40,7 +40,7 @@ export async function getStaticProps() {
       props: {
         participants: [],
       },
-      revalidate: 60,
+      revalidate: 30,
     };
   }
 }

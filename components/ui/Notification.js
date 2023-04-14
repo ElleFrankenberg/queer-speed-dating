@@ -2,25 +2,26 @@ import { useContext, useEffect } from "react";
 
 import styles from "../../styles/ui/Notification.module.css";
 import NotificationContext from "../../store/notificationContext";
+import Button from "./Button";
 
 function Notification(props) {
   const notificationCtx = useContext(NotificationContext);
 
-  useEffect(() => {
-    if (notificationCtx.notification) {
-      const timer = setTimeout(() => {
-        notificationCtx.hideNotification();
-      }, 3000);
-
-      return () => {
-        clearTimeout(timer);
-      };
-    }
-  }, [notificationCtx.notification]);
-
-  const { title, message, status } = props;
+  const {
+    message,
+    status,
+    id,
+    handleDeleteTrue,
+    handleDeleteFalse,
+    firstName,
+    lastName,
+  } = props;
 
   let statusClasses = "";
+
+  if (status === "question") {
+    statusClasses = styles.question;
+  }
 
   if (status === "success") {
     statusClasses = styles.success;
@@ -37,9 +38,29 @@ function Notification(props) {
   const activeClasses = `${styles.notification} ${statusClasses}`;
 
   return (
-    <div className={activeClasses} onClick={notificationCtx.hideNotification}>
-      <h2>{title}</h2>
-      <p>{message}</p>
+    <div className={activeClasses}>
+      {status !== "pending" && (
+        <div className={styles.closeBtn}>
+          <Button onClick={notificationCtx.hideNotification}>
+            <span>close</span>
+          </Button>
+        </div>
+      )}
+      <div>
+        <h2>{message}</h2>
+      </div>
+      {status === "question" && (
+        <div className={styles.buttonContainer}>
+          <div className={styles.yesBtn}>
+            <Button onClick={() => handleDeleteTrue(id, firstName, lastName)}>
+              <span>yes</span>
+            </Button>
+          </div>
+          <Button onClick={handleDeleteFalse}>
+            <span>no</span>
+          </Button>
+        </div>
+      )}
     </div>
   );
 }

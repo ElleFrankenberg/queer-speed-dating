@@ -10,6 +10,7 @@ import styles from "@/styles/inputs/ParticipantRegistration.module.css";
 import NotificationContext from "@/store/notificationContext";
 
 const ParticipantForm = () => {
+  const [showForm, setShowForm] = useState(true);
   const [firstNameIsInvalid, setfirstNameIsInvalid] = useState(false);
   const [lastNameIsInvalid, setlastNameIsInvalid] = useState(false);
   const [emailIsInvalid, setEmailIsInvalid] = useState(false);
@@ -37,6 +38,12 @@ const ParticipantForm = () => {
       };
     }
   }, [isInvalid]);
+
+  useEffect(() => {
+    if (!notificationCxt.notification) {
+      setShowForm(true);
+    }
+  }, [notificationCxt.notification]);
 
   const resetStates = () => {
     setfirstNameIsInvalid(false);
@@ -100,9 +107,10 @@ const ParticipantForm = () => {
       number: enteredNumber,
     };
 
+    setShowForm(false);
+
     notificationCxt.showNotification({
-      title: "sending",
-      message: "registering",
+      message: "Sending registration",
       status: "pending",
     });
 
@@ -124,73 +132,83 @@ const ParticipantForm = () => {
       })
       .then((data) => {
         notificationCxt.showNotification({
-          title: "success!",
-          message: "you are registered",
+          message: "You are registered!",
           status: "success",
         });
-        formRef.current.reset();
       })
       .catch((error) => {
         notificationCxt.showNotification({
-          title: "error!",
-          message: error.message || "something went wrong",
+          message: error.message || "Sorry... Something went wrong",
           status: "error",
         });
       });
+    formRef.current.reset();
   };
 
   return (
-    <form className={styles.form} onSubmit={registrationHandler} ref={formRef}>
-      <div className={styles.row}>
-        <div className={styles.control}>
-          <input className={styles.honeyPot} type="text" ref={honeyPotRef} />
-          <Input
-            id="first-name"
-            type="text"
-            text="First name"
-            ref={firstNameInputRef}
-          />
-        </div>
-        <div className={styles.control}>
-          <Input
-            id="last-name"
-            type="text"
-            text="Last name"
-            ref={lastNameInputRef}
-          />
-        </div>
-      </div>
-      <div className={styles.row}>
-        <div className={styles.control}>
-          <Input id="email" type="email" text="Email" ref={emailInputRef} />
-        </div>
-        <div className={styles.control}>
-          <Input
-            id="number"
-            type="text"
-            text="Phone number"
-            ref={numberInputRef}
-          />
-        </div>
-      </div>
-      <div className={styles.controlBtn}>
-        <Button>
-          <span>Register</span>
-        </Button>
-        {isInvalid && firstNameIsInvalid && (
-          <FormInputMessage text="First name is invalid " />
-        )}
-        {isInvalid && lastNameIsInvalid && (
-          <FormInputMessage text="Last name is invalid" />
-        )}
-        {isInvalid && emailIsInvalid && (
-          <FormInputMessage text="Email is invalid" />
-        )}
-        {isInvalid && numberIsInvalid && (
-          <FormInputMessage text="Number is invalid" />
-        )}
-      </div>
-    </form>
+    <>
+      {showForm && !notificationCxt.notification && (
+        <form
+          className={styles.form}
+          onSubmit={registrationHandler}
+          ref={formRef}
+        >
+          <div className={styles.row}>
+            <div className={styles.control}>
+              <input
+                className={styles.honeyPot}
+                type="text"
+                ref={honeyPotRef}
+              />
+              <Input
+                id="first-name"
+                type="text"
+                text="First name"
+                ref={firstNameInputRef}
+              />
+            </div>
+            <div className={styles.control}>
+              <Input
+                id="last-name"
+                type="text"
+                text="Last name"
+                ref={lastNameInputRef}
+              />
+            </div>
+          </div>
+          <div className={styles.row}>
+            <div className={styles.control}>
+              <Input id="email" type="email" text="Email" ref={emailInputRef} />
+            </div>
+            <div className={styles.control}>
+              <Input
+                id="number"
+                type="text"
+                text="Phone number"
+                ref={numberInputRef}
+              />
+            </div>
+          </div>
+          <div className={styles.controlBtn}>
+            <Button>
+              <span>Register</span>
+            </Button>
+            {isInvalid && firstNameIsInvalid && (
+              <FormInputMessage text="First name is invalid " />
+            )}
+            {isInvalid && lastNameIsInvalid && (
+              <FormInputMessage text="Last name is invalid" />
+            )}
+            {isInvalid && emailIsInvalid && (
+              <FormInputMessage text="Email is invalid" />
+            )}
+            {isInvalid && numberIsInvalid && (
+              <FormInputMessage text="Number is invalid" />
+            )}
+          </div>
+        </form>
+      )}
+    </>
   );
 };
 

@@ -9,12 +9,18 @@ function Layout(props) {
 
   return (
     <Fragment>
-      <main>{props.children}</main>
+      <main onClick={activeNotification && notificationCtx.hideNotification}>
+        {props.children}
+      </main>
       {activeNotification && (
         <Notification
-          title={activeNotification.title}
           message={activeNotification.message}
           status={activeNotification.status}
+          id={activeNotification.id}
+          firstName={activeNotification.firstName}
+          lastName={activeNotification.lastName}
+          handleDeleteTrue={activeNotification.handleDeleteTrue}
+          handleDeleteFalse={activeNotification.handleDeleteFalse}
         />
       )}
     </Fragment>
