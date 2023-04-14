@@ -1,5 +1,6 @@
 import { MongoClient } from "mongodb";
 import ParticipantDetailsList from "@/components/participant/ParticipantDetailsList";
+import ParticipantLikesForm from "@/components/inputs/ParticipantLikesForm";
 
 const participantPage = (props) => {
   const { participant, participants } = props;
@@ -15,6 +16,7 @@ const participantPage = (props) => {
   return (
     <>
       <ParticipantDetailsList participantDetails={participant} />
+      <ParticipantLikesForm participants={participants} />
     </>
   );
 };

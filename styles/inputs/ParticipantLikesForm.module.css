@@ -1,0 +1,34 @@
+.formContainer {
+  background-color: var(--pink);
+  padding: 2rem;
+}
+
+.form {
+  margin-top: 2rem;
+}
+
+.formHeader,
+.participantItem {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+}
+
+.love,
+.checkboxLove {
+  grid-column: 2/3;
+  text-align: center;
+}
+
+.friend,
+.checkboxFriend {
+  grid-column: 3/-1;
+  text-align: center;
+}
+
+.participantItem {
+  margin-bottom: 1rem;
+}
+
+.btnContainer {
+  margin-top: 2rem;
+}
