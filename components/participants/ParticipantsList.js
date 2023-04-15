@@ -101,38 +101,36 @@ const ParticipantsList = (props) => {
                       participant.lastName.slice(1)
                     }`}</span>
                   </Link>
-                  <Button>
-                    <span
-                      onClick={() =>
-                        handleDelete(
-                          participant.id,
-                          `Delete ${
-                            participant.firstName.charAt(0).toUpperCase() +
-                            participant.firstName.slice(1)
-                          } ${
-                            participant.lastName.charAt(0).toUpperCase() +
-                            participant.lastName.slice(1)
-                          }?`,
+                  <Button
+                    onClick={() =>
+                      handleDelete(
+                        participant.id,
+                        `Delete ${
                           participant.firstName.charAt(0).toUpperCase() +
-                            participant.firstName.slice(1),
+                          participant.firstName.slice(1)
+                        } ${
                           participant.lastName.charAt(0).toUpperCase() +
-                            participant.lastName.slice(1)
-                        )
-                      }
-                    >
-                      Delete
-                    </span>
+                          participant.lastName.slice(1)
+                        }?`,
+                        participant.firstName.charAt(0).toUpperCase() +
+                          participant.firstName.slice(1),
+                        participant.lastName.charAt(0).toUpperCase() +
+                          participant.lastName.slice(1)
+                      )
+                    }
+                    type="button"
+                  >
+                    <span>Delete</span>
                   </Button>
                 </li>
               ))}
             </ul>
             {participants.length > 0 && (
-              <Button>
-                <span
-                  onClick={() => handleDelete("", "Delete all participants?")}
-                >
-                  delete all participants
-                </span>
+              <Button
+                onClick={() => handleDelete("", "Delete all participants?")}
+                type="button"
+              >
+                <span>delete all participants</span>
               </Button>
             )}
           </>

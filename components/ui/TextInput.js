@@ -2,7 +2,7 @@ import styles from "@/styles/ui/Input.module.css";
 
 import { forwardRef } from "react";
 
-const Input = forwardRef(function Input(props, ref) {
+const TextInput = forwardRef(function Input(props, ref) {
   const { id, type, text } = props;
   return (
     <>
@@ -14,4 +14,4 @@ const Input = forwardRef(function Input(props, ref) {
   );
 });
 
-export default Input;
+export default TextInput;

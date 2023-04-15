@@ -2,17 +2,17 @@ import Link from "next/link";
 import styles from "@/styles/ui/Button.module.css";
 
 const Button = (props) => {
-  const { link } = props;
+  const { link, type, onClick } = props;
   if (props.link) {
     return (
-      <Link href={props.link} className={styles.btn}>
+      <Link href={link} className={styles.btn}>
         {props.children}
       </Link>
     );
   }
 
   return (
-    <button className={styles.btn} onClick={props.onClick}>
+    <button type={type} className={styles.btn} onClick={onClick}>
       {props.children}
     </button>
   );

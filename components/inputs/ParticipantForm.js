@@ -1,5 +1,5 @@
 import { useRef, useState, useEffect, useContext } from "react";
-import Input from "../ui/Input";
+import TextInput from "../ui/TextInput";
 import Button from "../ui/Button";
 import {
   containsOnlyLetters,
@@ -160,7 +160,7 @@ const ParticipantForm = () => {
                 type="text"
                 ref={honeyPotRef}
               />
-              <Input
+              <TextInput
                 id="first-name"
                 type="text"
                 text="First name"
@@ -168,7 +168,7 @@ const ParticipantForm = () => {
               />
             </div>
             <div className={styles.control}>
-              <Input
+              <TextInput
                 id="last-name"
                 type="text"
                 text="Last name"
@@ -178,10 +178,15 @@ const ParticipantForm = () => {
           </div>
           <div className={styles.row}>
             <div className={styles.control}>
-              <Input id="email" type="email" text="Email" ref={emailInputRef} />
+              <TextInput
+                id="email"
+                type="email"
+                text="Email"
+                ref={emailInputRef}
+              />
             </div>
             <div className={styles.control}>
-              <Input
+              <TextInput
                 id="number"
                 type="text"
                 text="Phone number"
