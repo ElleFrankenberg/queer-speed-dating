@@ -1,9 +1,7 @@
-import { useState, forwardRef } from "react";
-
 import styles from "../../styles/ui/Checkbox.module.css";
 
 const Checkbox = (props) => {
-  const { id, label, checked, onChange } = props;
+  const { id, checked, onChange } = props;
 
   return (
     <>

@@ -24,6 +24,7 @@ export async function getStaticProps() {
         lastName: document.lastName,
         email: document.email,
         number: document.number,
+        likesData: document.likesData ? document.likesData : null,
       };
     });
     client.close();

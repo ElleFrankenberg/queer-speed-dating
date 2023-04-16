@@ -2,7 +2,6 @@ import styles from "../../styles/participant/ParticipantDetailsList.module.css";
 
 const ParticipantDetailsList = (props) => {
   const { participantDetails } = props;
-  console.log(participantDetails);
   return (
     <ul className={styles.ParticipantDetailsList}>
       {participantDetails.map((participantDetail) => (

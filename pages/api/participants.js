@@ -41,6 +41,24 @@ const deleteOneDocument = async (client, collection, participantId) => {
   return;
 };
 
+const addOrUpdateOneDocument = async (
+  client,
+  collection,
+  participantId,
+  likesData
+) => {
+  const db = client.db();
+  const id = new ObjectId(participantId);
+  console.log(id);
+  const filter = { _id: id };
+  const update = { $set: { likesData: likesData } };
+  const options = { returnOriginal: false };
+  const result = await db
+    .collection(collection)
+    .findOneAndUpdate(filter, update, options);
+  return result;
+};
+
 // export const getAllDocuments = async (client, collection) => {
 //   const db = client.db();
 //   const documents = await db.collection(collection).find().toArray();
@@ -106,6 +124,27 @@ const handler = async (req, res) => {
     } catch (error) {
       errorMessageHandeling(res, 500, {
         message: "Inserting participant faild",
+      });
+    }
+  }
+
+  if (req.method === "PATCH") {
+    const { participantId, likesData } = req.body;
+    let result;
+    try {
+      result = await addOrUpdateOneDocument(
+        client,
+        "participants",
+        participantId,
+        likesData
+      );
+      res.status(200).json({
+        message: "Data to the document is added or updated",
+        likesData: likesData,
+      });
+    } catch (error) {
+      errorMessageHandeling(res, 500, {
+        message: "Adding or inserting data faild",
       });
     }
   }

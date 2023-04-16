@@ -16,7 +16,10 @@ const participantPage = (props) => {
   return (
     <>
       <ParticipantDetailsList participantDetails={participant} />
-      <ParticipantLikesForm participants={participants} />
+      <ParticipantLikesForm
+        participants={participants}
+        participant={participant}
+      />
     </>
   );
 };
@@ -36,18 +39,20 @@ export async function getStaticProps(context) {
           lastName: participant.lastName,
           email: participant.email,
           number: participant.number,
+          likesData: participant.likesData ? participant.likesData : null,
         };
       });
 
     const filteredParticipants = documents
       .filter((document) => document._id.toString() !== participantId)
-      .map((document) => {
+      .map((participant) => {
         return {
-          id: document._id.toString(),
-          firstName: document.firstName,
-          lastName: document.lastName,
-          email: document.email,
-          number: document.number,
+          id: participant._id.toString(),
+          firstName: participant.firstName,
+          lastName: participant.lastName,
+          email: participant.email,
+          number: participant.number,
+          likesData: participant.likesData ? participant.likesData : null,
         };
       });
 

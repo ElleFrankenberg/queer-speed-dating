@@ -10,6 +10,12 @@ const ParticipantsList = (props) => {
 
   const notificationCxt = useContext(NotificationContext);
 
+  const test = participants.map((p) => {
+    return p;
+  });
+
+  console.log("test", test);
+
   useEffect(() => {
     if (!notificationCxt.notification) {
       setShowParticipantList(true);
