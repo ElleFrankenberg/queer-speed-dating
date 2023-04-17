@@ -42,6 +42,10 @@ const ParticipantLikesForm = (props) => {
     });
   };
 
+  const handleUpdateLikes = () => {
+    setShowForm(true);
+  };
+
   const handleSubmitLikes = (event) => {
     event.preventDefault();
 
@@ -95,18 +99,19 @@ const ParticipantLikesForm = (props) => {
     return (
       <div className={styles.formContainer}>
         <div className={styles.formHeader}>
-          <p className={styles.love}>Love</p>
-          <p className={styles.friends}>Friends</p>
+          <h2 className={styles.participants}>Participants</h2>
+          <h2 className={styles.love}>Love</h2>
+          <h2 className={styles.friends}>Friends</h2>
         </div>
         <form className={styles.form} onSubmit={handleSubmitLikes}>
           {participants.map((participant) => (
             <div className={styles.participantItem} key={participant.id}>
-              <h2 className={styles.participantName}>
+              <h3 className={styles.participantName}>
                 {participant.firstName.charAt(0).toUpperCase() +
                   participant.firstName.slice(1)}{" "}
                 {participant.lastName.charAt(0).toUpperCase() +
                   participant.lastName.slice(1)}
-              </h2>
+              </h3>
               <div className={styles.checkboxLove}>
                 <Checkbox
                   id={`love-${participant.id}`}
@@ -137,10 +142,10 @@ const ParticipantLikesForm = (props) => {
 
   if (!showForm && !notificationCxt.notification) {
     return (
-      <div>
-        <p>Form is already filled in</p>
+      <div className={styles.formIsFilledIn}>
+        <p>Likes are sent..</p>
         <div className={styles.btnContainer}>
-          <Button type="button">
+          <Button type="button" onClick={handleUpdateLikes}>
             <span>Update Likes</span>
           </Button>
         </div>

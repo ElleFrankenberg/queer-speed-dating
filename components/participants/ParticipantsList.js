@@ -99,13 +99,13 @@ const ParticipantsList = (props) => {
               {participants.map((participant) => (
                 <li key={participant.id} className={styles.participantListItem}>
                   <Link href={`/participants/${participant.id}`}>
-                    <span>{`${
+                    <h3>{`${
                       participant.firstName.charAt(0).toUpperCase() +
                       participant.firstName.slice(1)
                     } ${
                       participant.lastName.charAt(0).toUpperCase() +
                       participant.lastName.slice(1)
-                    }`}</span>
+                    }`}</h3>
                   </Link>
                   <Button
                     onClick={() =>
@@ -131,15 +131,15 @@ const ParticipantsList = (props) => {
                 </li>
               ))}
             </ul>
-            {participants.length > 0 && (
-              <Button
-                onClick={() => handleDelete("", "Delete all participants?")}
-                type="button"
-              >
-                <span>delete all participants</span>
-              </Button>
-            )}
           </>
+        )}
+        {participants.length > 0 && (
+          <Button
+            onClick={() => handleDelete("", "Delete all participants?")}
+            type="button"
+          >
+            <span>delete all</span>
+          </Button>
         )}
       </div>
     </div>

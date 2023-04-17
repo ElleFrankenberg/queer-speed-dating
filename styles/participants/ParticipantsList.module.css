@@ -7,21 +7,21 @@
 .participantListContainer {
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  align-items: center;
+  align-items: flex-start;
   padding-top: 3rem;
+  padding-left: 2rem;
 }
 
 .participantList {
-  margin: 0 auto;
-  width: 50%;
-  margin-bottom: 1rem;
-  margin-top: 1rem;
+  width: 100%;
+  padding: 1rem 2rem 2rem 0;
 }
 
 .participantListItem {
   display: flex;
   justify-content: space-between;
+  align-items: center;
   padding-bottom: 1rem;
   padding-top: 1rem;
+  border-bottom: 2px solid var(--dark-gray);
 }
