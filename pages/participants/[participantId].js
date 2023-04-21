@@ -1,6 +1,7 @@
 import { MongoClient } from "mongodb";
 import ParticipantDetailsList from "@/components/participant/ParticipantDetailsList";
 import ParticipantLikesForm from "@/components/inputs/ParticipantLikesForm";
+import ParticipantMatchList from "@/components/participant/ParticipantMatchList";
 
 const participantPage = (props) => {
   const { participant, participants } = props;
@@ -17,6 +18,10 @@ const participantPage = (props) => {
     <>
       <ParticipantDetailsList participantDetails={participant} />
       <ParticipantLikesForm
+        participants={participants}
+        participant={participant}
+      />
+      <ParticipantMatchList
         participants={participants}
         participant={participant}
       />

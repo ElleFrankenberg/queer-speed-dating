@@ -12,8 +12,6 @@ const ParticipantLikesForm = (props) => {
 
   const participantId = participant[0].id;
 
-  console.log(participant);
-
   useState(() => {
     const checkboxesData = participants.reduce((result, participant) => {
       result[participant.id] = {

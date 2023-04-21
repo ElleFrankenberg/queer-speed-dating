@@ -1,0 +1,49 @@
+.matchListContainer {
+  background-color: var(--pink);
+  color: var(--dark-gray);
+  padding: 2rem;
+}
+
+.list {
+  margin-top: 2rem;
+}
+
+.matchListHeader,
+.participantItem {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+}
+
+.participantName {
+  font-size: 1rem;
+}
+
+.love,
+.checkboxLove {
+  grid-column: 2/3;
+  text-align: center;
+}
+
+.friends,
+.checkboxFriends {
+  grid-column: 3/-1;
+  text-align: center;
+}
+
+.participantItem {
+  margin-bottom: 1rem;
+}
+
+.btnContainer {
+  margin-top: 2rem;
+}
+
+.formIsFilledIn {
+  padding-top: 2rem;
+  padding-bottom: 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: var(--light-blue);
+  color: var(--dark-gray);
+}
