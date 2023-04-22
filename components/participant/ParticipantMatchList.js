@@ -4,61 +4,95 @@ import styles from "../../styles/participant/ParticipantMatchList.module.css";
 const ParticipantMatchList = (props) => {
   const { participant, participants } = props;
 
-  const potentialFriends = [];
-  participant.forEach((participantData) => {
-    participantData.likesData.forEach((likeData) => {
-      const likeDataKey = Object.keys(likeData)[0];
-      participants.forEach((participantItem) => {
-        if (
-          participantItem.id === likeDataKey &&
-          likeData[likeDataKey].friends
-        ) {
-          const friendPair = [
-            participantData.firstName,
-            participantItem.firstName,
-          ];
-          potentialFriends.push(friendPair);
-        }
-      });
-    });
-  });
-  console.log(potentialFriends); // Output: [["ylva", "eva"], ["elle", "ylva"]]
+  const friendMatches = [];
+  const loveMatches = [];
 
-  // participant.forEach((participantData) => {
-  //   participantData.likesData.forEach((likeData) => {
-  //     const likeDataKey = Object.keys(likeData)[0];
-  //     participants.forEach((participantItem) => {
-  //       if (participantItem.id === likeDataKey) {
-  //         console.log(participantData);
-  //         console.log(
-  //           `${participantData.firstName} likes ${participantItem.firstName}`
-  //         );
-  //         // Do something else with the matching data here
-  //       }
-  //     });
-  //   });
-  // });
+  participant.forEach((currentParticipant) => {
+    if (currentParticipant.likesData !== null) {
+      currentParticipant.likesData.forEach((currentParticipantLikeData) => {
+        const currentParticipantlikeDataKey = Object.keys(
+          currentParticipantLikeData
+        )[0];
+        participants.forEach((potentialMatch) => {
+          if (potentialMatch.likesData !== null) {
+            potentialMatch.likesData.forEach((potentialMatchLikeData) => {
+              const potentialMatchLikeDataKey = Object.keys(
+                potentialMatchLikeData
+              )[0];
+
+              console.log(
+                currentParticipantLikeData[currentParticipantlikeDataKey]
+                  .friends,
+                "first",
+                potentialMatchLikeData[potentialMatchLikeDataKey].friends,
+                "second"
+              );
+              if (
+                currentParticipantlikeDataKey === potentialMatch.id &&
+                potentialMatchLikeDataKey === currentParticipant.id &&
+                currentParticipantLikeData[currentParticipantlikeDataKey]
+                  .friends &&
+                potentialMatchLikeData[potentialMatchLikeDataKey].friends
+              ) {
+                const friendMatch = `${
+                  potentialMatch.firstName.charAt(0).toUpperCase() +
+                  potentialMatch.firstName.slice(1)
+                } ${
+                  potentialMatch.lastName.charAt(0).toUpperCase() +
+                  potentialMatch.lastName.slice(1)
+                }`;
+                friendMatches.push(friendMatch);
+              } else {
+                console.log("no match");
+              }
+              if (
+                currentParticipantlikeDataKey === potentialMatch.id &&
+                potentialMatchLikeDataKey === currentParticipant.id &&
+                currentParticipantLikeData[currentParticipantlikeDataKey]
+                  .love &&
+                potentialMatchLikeData[potentialMatchLikeDataKey].love
+              ) {
+                const loveMatch = `${
+                  potentialMatch.firstName.charAt(0).toUpperCase() +
+                  potentialMatch.firstName.slice(1)
+                } ${
+                  potentialMatch.lastName.charAt(0).toUpperCase() +
+                  potentialMatch.lastName.slice(1)
+                }`;
+
+                loveMatches.push(loveMatch);
+              } else {
+                console.log("no match");
+              }
+            });
+          }
+        });
+      });
+    }
+  });
+  console.log(friendMatches, "friend matches");
 
   return (
     <div className={styles.matchListContainer}>
       <div className={styles.matchListHeader}>
-        <h2 className={styles.headline}>Participants</h2>
         <h2 className={styles.love}>Love</h2>
         <h2 className={styles.friends}>Friends</h2>
       </div>
       <div className={styles.list}>
-        {participants.map((participant) => (
-          <div className={styles.participantItem} key={participant.id}>
-            <h3 className={styles.participantName}>
-              {participant.firstName.charAt(0).toUpperCase() +
-                participant.firstName.slice(1)}{" "}
-              {participant.lastName.charAt(0).toUpperCase() +
-                participant.lastName.slice(1)}
+        <div className={styles.loveMatchList}>
+          {loveMatches.map((loveMatch, i) => (
+            <h3 className={styles.matchName} key={i}>
+              {loveMatch}
             </h3>
-            <div className={styles.checkboxLove}>name</div>
-            <div className={styles.checkboxFriends}>name</div>
-          </div>
-        ))}
+          ))}
+        </div>
+        <div className={styles.friendMatchList}>
+          {friendMatches.map((friendMatch, i) => (
+            <h3 className={styles.matchName} key={i}>
+              {friendMatch}
+            </h3>
+          ))}
+        </div>
       </div>
     </div>
   );
