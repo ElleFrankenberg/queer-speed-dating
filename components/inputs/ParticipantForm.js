@@ -153,6 +153,9 @@ const ParticipantForm = () => {
           onSubmit={registrationHandler}
           ref={formRef}
         >
+          <div className={styles.headline}>
+            <h2>Register to get your seat!</h2>
+          </div>
           <div className={styles.row}>
             <div className={styles.control}>
               <input

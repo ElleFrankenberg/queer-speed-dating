@@ -28,11 +28,15 @@ export default function Home() {
         </Button>
       </div>
       <div className={styles.welcomeContainer}>
-        <h1>Welcome to Queer speed dating</h1>
-        <h2>Register to get your seat!</h2>
+        <div className={styles.welcomeTextContainer}>
+          <h1 className={styles.welcomeText}>
+            <span>Welcome to</span>
+            <span>Queer</span>
+            <span>speed dating</span>
+          </h1>
+        </div>
+        <ParticipantForm />
       </div>
-
-      <ParticipantForm />
     </>
   );
 }
