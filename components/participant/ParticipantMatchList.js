@@ -1,5 +1,4 @@
-import { useEffect } from "react";
-import styles from "../../styles/participant/ParticipantMatchList.module.css";
+import MatchResultLayout from "../layout/MatchResultLayout";
 
 const ParticipantMatchList = (props) => {
   const { participant, participants } = props;
@@ -20,13 +19,13 @@ const ParticipantMatchList = (props) => {
                 potentialMatchLikeData
               )[0];
 
-              console.log(
-                currentParticipantLikeData[currentParticipantlikeDataKey]
-                  .friends,
-                "first",
-                potentialMatchLikeData[potentialMatchLikeDataKey].friends,
-                "second"
-              );
+              // console.log(
+              //   currentParticipantLikeData[currentParticipantlikeDataKey]
+              //     .friends,
+              //   "first",
+              //   potentialMatchLikeData[potentialMatchLikeDataKey].friends,
+              //   "second"
+              // );
               if (
                 currentParticipantlikeDataKey === potentialMatch.id &&
                 potentialMatchLikeDataKey === currentParticipant.id &&
@@ -42,9 +41,8 @@ const ParticipantMatchList = (props) => {
                   potentialMatch.lastName.slice(1)
                 }`;
                 friendMatches.push(friendMatch);
-              } else {
-                console.log("no match");
               }
+
               if (
                 currentParticipantlikeDataKey === potentialMatch.id &&
                 potentialMatchLikeDataKey === currentParticipant.id &&
@@ -61,8 +59,6 @@ const ParticipantMatchList = (props) => {
                 }`;
 
                 loveMatches.push(loveMatch);
-              } else {
-                console.log("no match");
               }
             });
           }
@@ -70,31 +66,15 @@ const ParticipantMatchList = (props) => {
       });
     }
   });
-  console.log(friendMatches, "friend matches");
+  // console.log(friendMatches, "friend matches");
 
   return (
-    <div className={styles.matchListContainer}>
-      <div className={styles.matchListHeader}>
-        <h2 className={styles.love}>Love</h2>
-        <h2 className={styles.friends}>Friends</h2>
-      </div>
-      <div className={styles.list}>
-        <div className={styles.loveMatchList}>
-          {loveMatches.map((loveMatch, i) => (
-            <h3 className={styles.matchName} key={i}>
-              {loveMatch}
-            </h3>
-          ))}
-        </div>
-        <div className={styles.friendMatchList}>
-          {friendMatches.map((friendMatch, i) => (
-            <h3 className={styles.matchName} key={i}>
-              {friendMatch}
-            </h3>
-          ))}
-        </div>
-      </div>
-    </div>
+    <>
+      <MatchResultLayout
+        loveMatches={loveMatches}
+        friendMatches={friendMatches}
+      />
+    </>
   );
 };
 

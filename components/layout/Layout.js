@@ -1,5 +1,5 @@
-import { Fragment, useContext } from "react";
-import Notification from "../ui/notification";
+import { useContext } from "react";
+import Notification from "../ui/Notification";
 import NotificationContext from "../../store/notificationContext";
 
 function Layout(props) {
@@ -8,7 +8,7 @@ function Layout(props) {
   const activeNotification = notificationCtx.notification;
 
   return (
-    <Fragment>
+    <>
       <main onClick={activeNotification && notificationCtx.hideNotification}>
         {props.children}
       </main>
@@ -23,7 +23,7 @@ function Layout(props) {
           handleDeleteFalse={activeNotification.handleDeleteFalse}
         />
       )}
-    </Fragment>
+    </>
   );
 }
 
