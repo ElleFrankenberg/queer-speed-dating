@@ -4,79 +4,82 @@ import MatchResultLayout from "../layout/MatchResultLayout";
 const AllMatches = (props) => {
   const { participants } = props;
 
-  const [showResults, setShowResults] = useState(false);
+  const [showResults, setShowResults] = useState(true);
 
-  console.log(participants);
-
-  const friendMatches = [];
-  const loveMatches = [];
+  const [friendMatches, setFriendMatches] = useState([]);
+  const [loveMatches, setLoveMatches] = useState([]);
 
   useEffect(() => {
     results();
-  }, []);
+  }, [friendMatches, loveMatches]);
 
   const results = () => {
     participants.forEach((participantOne, index1) => {
       if (participantOne.likesData !== null) {
-        participantOne.likesData.forEach((participantOneLikesData, i) => {
+        participantOne.likesData.forEach((participantOneLikesData) => {
           const participantOnelikeDataKey = Object.keys(
             participantOneLikesData
           )[0];
-          console.log(
-            "participant 1",
-            participantOne.firstName,
-            participantOnelikeDataKey
-          );
 
           participants.forEach((participantTwo, index2) => {
-            participantTwo.likesData.forEach((participantTwoLikesData) => {
-              const participantTwolikeDataKey = Object.keys(
-                participantTwoLikesData
-              )[0];
+            if (participantTwo.likesData !== null) {
+              participantTwo.likesData.forEach((participantTwoLikesData) => {
+                const participantTwolikeDataKey = Object.keys(
+                  participantTwoLikesData
+                )[0];
 
-              if (
-                index1 !== index2 &&
-                participantOnelikeDataKey === participantTwo.id &&
-                participantTwolikeDataKey === participantOne.id &&
-                participantOneLikesData[participantOnelikeDataKey].friends &&
-                participantTwoLikesData[participantTwolikeDataKey].friends
-              ) {
-                console.log(
-                  "participant 2",
-                  participantTwo.firstName,
-                  participantTwolikeDataKey
-                );
-                const friendMatch = `${
-                  participantOne.firstName.charAt(0).toUpperCase() +
-                  participantOne.firstName.slice(1)
-                } ${
-                  participantOne.lastName.charAt(0).toUpperCase() +
-                  participantOne.lastName.slice(1)
-                } / ${
-                  participantTwo.firstName.charAt(0).toUpperCase() +
-                  participantTwo.firstName.slice(1)
-                } ${
-                  participantTwo.lastName.charAt(0).toUpperCase() +
-                  participantTwo.lastName.slice(1)
-                }`;
-                friendMatches.push(friendMatch);
-                // console.log(
-                //   `${participantOne.firstName} ${participantOne.lastName} has a likeData key that matches ${participant2.firstName} ${participant2.lastName}'s id.`
-                // );
-              }
-            });
+                if (
+                  index1 !== index2 &&
+                  participantOnelikeDataKey === participantTwo.id &&
+                  participantTwolikeDataKey === participantOne.id &&
+                  participantOneLikesData[participantOnelikeDataKey].friends &&
+                  participantTwoLikesData[participantTwolikeDataKey].friends
+                ) {
+                  const matchOne = `${participantOne.firstName} ${participantOne.lastName}`;
+                  const matchTwo = `${participantTwo.firstName} ${participantTwo.lastName}`;
+                  const match = [matchOne, matchTwo].sort().join(" / ");
+
+                  // Check if the match already exists in the array
+                  const existingIndex = friendMatches.findIndex(
+                    (friendMatch) => friendMatch === match
+                  );
+                  if (existingIndex === -1) {
+                    setFriendMatches([...friendMatches, match]);
+                  }
+                }
+
+                if (
+                  index1 !== index2 &&
+                  participantOnelikeDataKey === participantTwo.id &&
+                  participantTwolikeDataKey === participantOne.id &&
+                  participantOneLikesData[participantOnelikeDataKey].love &&
+                  participantTwoLikesData[participantTwolikeDataKey].love
+                ) {
+                  const matchOne = `${participantOne.firstName} ${participantOne.lastName}`;
+                  const matchTwo = `${participantTwo.firstName} ${participantTwo.lastName}`;
+                  const match = [matchOne, matchTwo].sort().join(" / ");
+
+                  // Check if the match already exists in the array
+                  const existingIndex = loveMatches.findIndex(
+                    (loveMatch) => loveMatch === match
+                  );
+                  if (existingIndex === -1) {
+                    setLoveMatches([...loveMatches, match]);
+                  }
+                }
+              });
+            } else {
+              console.log("one or more forms are not filled in");
+            }
           });
         });
-
-        console.log(friendMatches);
-
-        setShowResults(true);
       } else {
-        console.log("one or more formes are not filled in");
-        setShowResults(false);
+        console.log("one or more forms are not filled in");
       }
     });
   };
+  console.log("Friend Matches:", friendMatches);
+  console.log("Love Matches:", loveMatches);
 
   return (
     <>
