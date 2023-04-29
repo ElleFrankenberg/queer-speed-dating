@@ -4,32 +4,44 @@ import MatchResultLayout from "../layout/MatchResultLayout";
 const AllMatches = (props) => {
   const { participants } = props;
 
-  const [showResults, setShowResults] = useState(true);
-
   const [friendMatches, setFriendMatches] = useState([]);
   const [loveMatches, setLoveMatches] = useState([]);
+  const [showResults, setShowResults] = useState(false);
 
   useEffect(() => {
-    results();
-  }, [friendMatches, loveMatches]);
+    const fetchData = async () => {
+      const matches = await calculateMatches();
+      setFriendMatches(matches.friendMatches);
+      setLoveMatches(matches.loveMatches);
+      setShowResults(true);
+    };
+    fetchData();
+  }, [participants]);
 
-  const results = () => {
-    participants.forEach((participantOne, index1) => {
+  const calculateMatches = async () => {
+    let newFriendMatches = new Set();
+    let newLoveMatches = new Set();
+
+    for (let i = 0; i < participants.length; i++) {
+      const participantOne = participants[i];
       if (participantOne.likesData !== null) {
-        participantOne.likesData.forEach((participantOneLikesData) => {
+        for (let j = 0; j < participantOne.likesData.length; j++) {
+          const participantOneLikesData = participantOne.likesData[j];
           const participantOnelikeDataKey = Object.keys(
             participantOneLikesData
           )[0];
 
-          participants.forEach((participantTwo, index2) => {
+          for (let k = 0; k < participants.length; k++) {
+            const participantTwo = participants[k];
             if (participantTwo.likesData !== null) {
-              participantTwo.likesData.forEach((participantTwoLikesData) => {
+              for (let l = 0; l < participantTwo.likesData.length; l++) {
+                const participantTwoLikesData = participantTwo.likesData[l];
                 const participantTwolikeDataKey = Object.keys(
                   participantTwoLikesData
                 )[0];
 
                 if (
-                  index1 !== index2 &&
+                  i !== k &&
                   participantOnelikeDataKey === participantTwo.id &&
                   participantTwolikeDataKey === participantOne.id &&
                   participantOneLikesData[participantOnelikeDataKey].friends &&
@@ -39,17 +51,14 @@ const AllMatches = (props) => {
                   const matchTwo = `${participantTwo.firstName} ${participantTwo.lastName}`;
                   const match = [matchOne, matchTwo].sort().join(" / ");
 
-                  // Check if the match already exists in the array
-                  const existingIndex = friendMatches.findIndex(
-                    (friendMatch) => friendMatch === match
-                  );
-                  if (existingIndex === -1) {
-                    setFriendMatches([...friendMatches, match]);
+                  // Check if the match already exists in the set
+                  if (!newFriendMatches.has(match)) {
+                    newFriendMatches.add(match);
                   }
                 }
 
                 if (
-                  index1 !== index2 &&
+                  i !== k &&
                   participantOnelikeDataKey === participantTwo.id &&
                   participantTwolikeDataKey === participantOne.id &&
                   participantOneLikesData[participantOnelikeDataKey].love &&
@@ -59,27 +68,27 @@ const AllMatches = (props) => {
                   const matchTwo = `${participantTwo.firstName} ${participantTwo.lastName}`;
                   const match = [matchOne, matchTwo].sort().join(" / ");
 
-                  // Check if the match already exists in the array
-                  const existingIndex = loveMatches.findIndex(
-                    (loveMatch) => loveMatch === match
-                  );
-                  if (existingIndex === -1) {
-                    setLoveMatches([...loveMatches, match]);
+                  // Check if the match already exists in the set
+                  if (!newLoveMatches.has(match)) {
+                    newLoveMatches.add(match);
                   }
                 }
-              });
+              }
             } else {
               console.log("one or more forms are not filled in");
             }
-          });
-        });
+          }
+        }
       } else {
         console.log("one or more forms are not filled in");
       }
-    });
+    }
+
+    return {
+      friendMatches: Array.from(newFriendMatches),
+      loveMatches: Array.from(newLoveMatches),
+    };
   };
-  console.log("Friend Matches:", friendMatches);
-  console.log("Love Matches:", loveMatches);
 
   return (
     <>
