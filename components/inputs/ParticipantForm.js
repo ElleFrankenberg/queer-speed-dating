@@ -148,73 +148,82 @@ const ParticipantForm = () => {
   return (
     <>
       {showForm && !notificationCxt.notification && (
-        <form
-          className={styles.form}
-          onSubmit={registrationHandler}
-          ref={formRef}
-        >
-          <div className={styles.headline}>
-            <h2>Register to get your seat!</h2>
+        <div className={styles.welcomeContainer}>
+          <div className={styles.welcomeTextContainer}>
+            <h1 className={styles.welcomeText}>
+              <span>Welcome to</span>
+              <span>Queer</span>
+              <span>speed dating</span>
+            </h1>
           </div>
-          <div className={styles.row}>
-            <div className={styles.control}>
-              <input
-                className={styles.honeyPot}
-                type="text"
-                ref={honeyPotRef}
-              />
-              <TextInput
-                id="first-name"
-                type="text"
-                text="First name"
-                ref={firstNameInputRef}
-              />
+          <form
+            className={styles.form}
+            onSubmit={registrationHandler}
+            ref={formRef}
+          >
+            <div className={styles.headline}>
+              <h2>Register to get your seat!</h2>
             </div>
-            <div className={styles.control}>
-              <TextInput
-                id="last-name"
-                type="text"
-                text="Last name"
-                ref={lastNameInputRef}
-              />
+            <div className={styles.row}>
+              <div className={styles.control}>
+                <input
+                  className={styles.honeyPot}
+                  type="text"
+                  ref={honeyPotRef}
+                />
+                <TextInput
+                  id="first-name"
+                  type="text"
+                  text="First name"
+                  ref={firstNameInputRef}
+                />
+              </div>
+              <div className={styles.control}>
+                <TextInput
+                  id="last-name"
+                  type="text"
+                  text="Last name"
+                  ref={lastNameInputRef}
+                />
+              </div>
             </div>
-          </div>
-          <div className={styles.row}>
-            <div className={styles.control}>
-              <TextInput
-                id="email"
-                type="email"
-                text="Email"
-                ref={emailInputRef}
-              />
+            <div className={styles.row}>
+              <div className={styles.control}>
+                <TextInput
+                  id="email"
+                  type="email"
+                  text="Email"
+                  ref={emailInputRef}
+                />
+              </div>
+              <div className={styles.control}>
+                <TextInput
+                  id="number"
+                  type="text"
+                  text="Phone number"
+                  ref={numberInputRef}
+                />
+              </div>
             </div>
-            <div className={styles.control}>
-              <TextInput
-                id="number"
-                type="text"
-                text="Phone number"
-                ref={numberInputRef}
-              />
+            <div className={styles.controlBtn}>
+              <Button>
+                <span>Register</span>
+              </Button>
+              {isInvalid && firstNameIsInvalid && (
+                <FormInputMessage text="First name is invalid " />
+              )}
+              {isInvalid && lastNameIsInvalid && (
+                <FormInputMessage text="Last name is invalid" />
+              )}
+              {isInvalid && emailIsInvalid && (
+                <FormInputMessage text="Email is invalid" />
+              )}
+              {isInvalid && numberIsInvalid && (
+                <FormInputMessage text="Number is invalid" />
+              )}
             </div>
-          </div>
-          <div className={styles.controlBtn}>
-            <Button>
-              <span>Register</span>
-            </Button>
-            {isInvalid && firstNameIsInvalid && (
-              <FormInputMessage text="First name is invalid " />
-            )}
-            {isInvalid && lastNameIsInvalid && (
-              <FormInputMessage text="Last name is invalid" />
-            )}
-            {isInvalid && emailIsInvalid && (
-              <FormInputMessage text="Email is invalid" />
-            )}
-            {isInvalid && numberIsInvalid && (
-              <FormInputMessage text="Number is invalid" />
-            )}
-          </div>
-        </form>
+          </form>
+        </div>
       )}
     </>
   );

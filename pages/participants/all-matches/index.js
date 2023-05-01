@@ -1,5 +1,6 @@
 import { MongoClient } from "mongodb";
 import AllMatches from "@/components/matches/AllMatches";
+import Header from "@/components/layout/Header";
 
 const matchesPage = (props) => {
   const { participants } = props;
@@ -7,6 +8,7 @@ const matchesPage = (props) => {
   if (participants.length > 0) {
     return (
       <>
+        <Header matches={true} />
         <AllMatches participants={participants} />
       </>
     );

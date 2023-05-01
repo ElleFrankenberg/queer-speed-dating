@@ -5,6 +5,7 @@ import Button from "@/components/ui/Button";
 import styles from "@/styles/Home.module.css";
 
 import ParticipantForm from "../components/inputs/ParticipantForm";
+import Header from "../components/layout/Header";
 
 export default function Home() {
   return (
@@ -15,14 +16,15 @@ export default function Home() {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <Image
+      <Header home={true} />
+      {/* <Image
         className={styles.heroImage}
         src="/assets/images/pride_flags.jpg"
         width={1200}
         height={1200}
         alt="pride flag"
-      />
-      <div className={styles.btnContainer}>
+      /> */}
+      {/* <div className={styles.btnContainer}>
         <Button link="/participants">
           <span>All Participants</span>
         </Button>
@@ -36,7 +38,7 @@ export default function Home() {
           </h1>
         </div>
         <ParticipantForm />
-      </div>
+      </div> */}
     </>
   );
 }

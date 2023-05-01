@@ -1,17 +1,12 @@
 import { MongoClient } from "mongodb";
 import ParticipantsList from "../../components/participants/ParticipantsList";
-import Button from "@/components/ui/Button";
-import styles from "@/styles/Home.module.css";
+import Header from "@/components/layout/Header";
 
 const participantsPage = (props) => {
   const { participants } = props;
   return (
     <>
-      <div className={styles.btnContainer}>
-        <Button link="/matches">
-          <span>Matches</span>
-        </Button>
-      </div>
+      <Header participants={true} />
       <ParticipantsList participants={participants} />
     </>
   );
