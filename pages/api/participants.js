@@ -3,11 +3,12 @@ import {
   phoneNumberIsCorrect,
 } from "../../helpers/formUtil";
 import { MongoClient, ObjectId } from "mongodb";
+import { connectDatabase } from "../../helpers/db";
 
-const connectDatabase = async () => {
-  const client = await MongoClient.connect(process.env.DB_URL);
-  return client;
-};
+// const connectDatabase = async () => {
+//   const client = await MongoClient.connect(process.env.DB_URL);
+//   return client;
+// };
 
 const insertDocument = async (client, collection, email, document) => {
   const db = client.db();
@@ -65,7 +66,7 @@ const addOrUpdateOneDocument = async (
 //   return documents;
 // };
 
-export const errorMessageHandeling = (res, code, message) => {
+const errorMessageHandeling = (res, code, message) => {
   const errorMessage = res.status(code).json(message);
   return errorMessage;
 };

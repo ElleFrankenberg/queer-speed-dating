@@ -1,0 +1,57 @@
+.authContainer {
+  background-color: var(--light-blue);
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 2;
+  justify-content: space-around;
+  border-radius: 6px;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.2);
+  padding: 3rem;
+  min-width: 50%;
+}
+
+.form {
+  width: 100%;
+  border-radius: 6px;
+  background-color: var(--white);
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.2);
+  padding: 3rem;
+  z-index: 2;
+}
+
+.form h1 {
+  text-align: center;
+  color: var(--dark-gray);
+  text-transform: uppercase;
+  margin-bottom: 1rem;
+}
+
+.control {
+  margin-bottom: 0.5rem;
+}
+
+.control label {
+  display: block;
+  color: var(--dark-gray);
+  text-transform: uppercase;
+  font-weight: bold;
+  margin-bottom: 0.5rem;
+}
+
+.control input {
+  font: inherit;
+  padding: 0.5rem 0.25rem;
+  border-radius: 4px;
+  border: none;
+  width: 100%;
+  background-color: #dcfff9;
+}
+
+.actions {
+  margin-top: 1.5rem;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}
