@@ -27,7 +27,7 @@ const handler = async (req, res) => {
       password.trim().length < 7
     ) {
       errorMessageHandeling(res, 422, {
-        message: "invalid input, password should also be at least 7 characters",
+        message: "invalid input, password should be at least 7 characters",
       });
       client.close();
       return;
@@ -60,7 +60,7 @@ const handler = async (req, res) => {
     } else {
       errorMessageHandeling(res, 422, {
         message:
-          "Collection already has 2 documents. Cannot insert a new document.",
+          "Collection already has 2 documents. Can not insert a new document.",
       });
       client.close();
       return;
