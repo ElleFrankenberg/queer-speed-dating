@@ -1,9 +1,11 @@
 import { useState, useRef, useContext, useEffect } from "react";
+import { signIn } from "next-auth/react";
 import styles from "../../styles/auth/AuthForm.module.css";
 import Button from "../ui/Button";
 import TextInput from "../ui/TextInput";
 import FormInputMessage from "../ui/messages/FormInputMessage";
 import NotificationContext from "@/store/notificationContext";
+import { useRouter } from "next/router";
 
 async function createUser(email, password) {
   const response = await fetch("/api/auth/signup", {
@@ -33,6 +35,8 @@ function AuthForm() {
   const passwordInputRef = useRef();
 
   const notificationCxt = useContext(NotificationContext);
+
+  const router = useRouter();
 
   useEffect(() => {
     if (isInvalid) {
@@ -88,7 +92,25 @@ function AuthForm() {
 
     if (isLogin) {
       //log in a user
+      setShowForm(false);
+
+      const result = await signIn("credentials", {
+        redirect: false,
+        email: enteredEmail,
+        password: enteredPassword,
+      });
+
+      console.log(result);
+      if (result.error) {
+        notificationCxt.showNotification({
+          message: result.error || "Sorry... Something went wrong",
+          status: "error",
+        });
+      } else {
+        router.push("/participants");
+      }
     } else {
+      //sign in a user
       setShowForm(false);
 
       notificationCxt.showNotification({

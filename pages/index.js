@@ -23,12 +23,12 @@ export default function Home() {
         width={1200}
         height={1200}
         alt="pride flag"
-      /> */}
-      {/* <div className={styles.btnContainer}>
+      />
+      <div className={styles.btnContainer}>
         <Button link="/participants">
           <span>All Participants</span>
         </Button>
-      </div>
+      </div> */}
       <div className={styles.welcomeContainer}>
         <div className={styles.welcomeTextContainer}>
           <h1 className={styles.welcomeText}>
@@ -37,8 +37,8 @@ export default function Home() {
             <span>speed dating</span>
           </h1>
         </div>
-        <ParticipantForm />
-      </div> */}
+        {/* <ParticipantForm /> */}
+      </div>
     </>
   );
 }

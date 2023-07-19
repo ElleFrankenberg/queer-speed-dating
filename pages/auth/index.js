@@ -4,7 +4,7 @@ import AuthForm from "@/components/inputs/AuthForm";
 function AuthPage() {
   return (
     <>
-      <Header />
+      <Header auth={true} />
       <AuthForm />
     </>
   );
