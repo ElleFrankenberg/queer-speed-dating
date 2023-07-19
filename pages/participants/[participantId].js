@@ -1,10 +1,30 @@
 import { MongoClient } from "mongodb";
+import { getSession } from "next-auth/react";
+import { useState, useEffect } from "react";
 import Header from "@/components/layout/Header";
 import ParticipantDetailsList from "@/components/participant/ParticipantDetailsList";
 import ParticipantLikesForm from "@/components/inputs/ParticipantLikesForm";
 import ParticipantMatchList from "@/components/participant/ParticipantMatchList";
 
 const participantPage = (props) => {
+  // Redirect away if NOT auth
+  const [isLoading, setIsLoading] = useState(true);
+  const [loadedSession, setLoadedSession] = useState();
+
+  useEffect(() => {
+    getSession().then((session) => {
+      if (!session) {
+        window.location.href = "/auth";
+      } else {
+        setIsLoading(false);
+      }
+    });
+  }, []);
+
+  if (isLoading) {
+    return <p className="center">Loading...</p>;
+  }
+
   const { participant, participants } = props;
 
   if (!participant) {

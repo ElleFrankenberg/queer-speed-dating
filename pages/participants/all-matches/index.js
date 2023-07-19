@@ -1,4 +1,5 @@
 import { MongoClient } from "mongodb";
+import { getSession } from "next-auth/react";
 import AllMatches from "@/components/matches/AllMatches";
 import Header from "@/components/layout/Header";
 
@@ -21,7 +22,18 @@ const matchesPage = (props) => {
   );
 };
 
-export async function getStaticProps() {
+export async function getServerSideProps(context) {
+  const session = await getSession({ req: context.req });
+
+  if (!session) {
+    return {
+      redirect: {
+        destination: "/auth",
+        permanent: false,
+      },
+    };
+  }
+
   try {
     const client = await MongoClient.connect(process.env.DB_URL);
 
@@ -42,7 +54,6 @@ export async function getStaticProps() {
       props: {
         participants: allParticipants,
       },
-      revalidate: 30,
     };
   } catch (error) {
     console.log(error);
@@ -50,7 +61,6 @@ export async function getStaticProps() {
       props: {
         participants: [],
       },
-      revalidate: 30,
     };
   }
 }

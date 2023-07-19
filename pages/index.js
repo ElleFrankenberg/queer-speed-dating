@@ -4,7 +4,7 @@ import Button from "@/components/ui/Button";
 
 import styles from "@/styles/Home.module.css";
 
-import ParticipantForm from "../components/inputs/ParticipantForm";
+import Welcome from "@/components/home/Welcome";
 import Header from "../components/layout/Header";
 
 export default function Home() {
@@ -17,28 +17,7 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <Header home={true} />
-      {/* <Image
-        className={styles.heroImage}
-        src="/assets/images/pride_flags.jpg"
-        width={1200}
-        height={1200}
-        alt="pride flag"
-      />
-      <div className={styles.btnContainer}>
-        <Button link="/participants">
-          <span>All Participants</span>
-        </Button>
-      </div> */}
-      <div className={styles.welcomeContainer}>
-        <div className={styles.welcomeTextContainer}>
-          <h1 className={styles.welcomeText}>
-            <span>Welcome to</span>
-            <span>Queer</span>
-            <span>speed dating</span>
-          </h1>
-        </div>
-        {/* <ParticipantForm /> */}
-      </div>
+      <Welcome />
     </>
   );
 }
