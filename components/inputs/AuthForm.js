@@ -100,14 +100,13 @@ function AuthForm() {
         password: enteredPassword,
       });
 
-      console.log(result);
       if (result.error) {
         notificationCxt.showNotification({
           message: result.error || "Sorry... Something went wrong",
           status: "error",
         });
       } else {
-        router.push("/participants");
+        router.replace("/participants");
       }
     } else {
       //sign in a user

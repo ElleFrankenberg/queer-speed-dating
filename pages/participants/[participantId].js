@@ -1,6 +1,7 @@
 import { MongoClient } from "mongodb";
 import { getSession } from "next-auth/react";
 import { useState, useEffect } from "react";
+import { useRouter } from "next/router";
 import Header from "@/components/layout/Header";
 import ParticipantDetailsList from "@/components/participant/ParticipantDetailsList";
 import ParticipantLikesForm from "@/components/inputs/ParticipantLikesForm";
@@ -9,25 +10,22 @@ import ParticipantMatchList from "@/components/participant/ParticipantMatchList"
 const participantPage = (props) => {
   // Redirect away if NOT auth
   const [isLoading, setIsLoading] = useState(true);
-  const [loadedSession, setLoadedSession] = useState();
+
+  const router = useRouter();
 
   useEffect(() => {
     getSession().then((session) => {
       if (!session) {
-        window.location.href = "/auth";
+        router.replace("/auth");
       } else {
         setIsLoading(false);
       }
     });
   }, []);
 
-  if (isLoading) {
-    return <p className="center">Loading...</p>;
-  }
-
   const { participant, participants } = props;
 
-  if (!participant) {
+  if (isLoading || !participant) {
     return (
       <div className="center">
         <p>Loading...</p>

@@ -46,8 +46,8 @@ export async function getServerSideProps(context) {
     return {
       props: {
         participants: allParticipants,
+        session: session,
       },
-      // revalidate: 30,
     };
   } catch (error) {
     console.log(error);
@@ -55,7 +55,6 @@ export async function getServerSideProps(context) {
       props: {
         participants: [],
       },
-      // revalidate: 30,
     };
   }
 }

@@ -53,6 +53,7 @@ export async function getServerSideProps(context) {
     return {
       props: {
         participants: allParticipants,
+        session: session,
       },
     };
   } catch (error) {
