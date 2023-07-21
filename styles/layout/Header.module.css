@@ -43,22 +43,20 @@
   padding-top: 1rem;
 }
 
-.actions button:last-child,
-.buttons div:last-child {
+.actions button:last-child {
   margin-left: 2rem;
 }
 
-.changePassword {
+.deleteAdmin {
   max-width: 30rem;
   padding-bottom: 1rem;
 }
 
-.textInput,
 .buttons {
+  display: flex;
   margin-top: 1rem;
 }
 
-.buttons {
-  display: flex;
-  padding-bottom: 1rem;
+.buttons div:last-child {
+  margin-left: 2rem;
 }

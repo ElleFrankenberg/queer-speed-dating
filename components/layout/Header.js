@@ -1,9 +1,10 @@
-import Link from "next/link";
-import Button from "@/components/ui/Button";
-import TextInput from "../ui/TextInput";
 import Image from "next/image";
 import { useSession, signOut } from "next-auth/react";
-import { useState } from "react";
+import { useState, useContext } from "react";
+import Link from "next/link";
+import Button from "@/components/ui/Button";
+import ChangePasswordForm from "../inputs/ChangePasswordForm";
+import NotificationContext from "@/store/notificationContext";
 
 import styles from "../../styles/layout/Header.module.css";
 
@@ -12,6 +13,8 @@ function Header(props) {
   const [deleteAccount, setDeleteAccount] = useState(false);
   const { data: session, status } = useSession();
   const loading = status === "loading";
+
+  const notificationCxt = useContext(NotificationContext);
 
   const logOutHandler = () => {
     signOut();
@@ -25,6 +28,42 @@ function Header(props) {
       setChangePassword(false);
       setDeleteAccount(!deleteAccount);
     }
+  };
+
+  const changePasswordHandler = (passwordData) => {
+    fetch("/api/admin/change-password", {
+      method: "PATCH",
+      body: JSON.stringify(passwordData),
+      headers: {
+        "Content-Type": "application/json",
+      },
+    })
+      .then((response) => {
+        if (response.ok) {
+          return response.json();
+        }
+
+        return response.json().then((data) => {
+          throw new Error(data.message || "something went wrong");
+        });
+      })
+      .then((data) => {
+        notificationCxt.showNotification({
+          message: "Your password has been changed",
+          status: "success",
+        });
+      })
+      .catch((error) => {
+        notificationCxt.showNotification({
+          message: error.message || "Sorry... Something went wrong",
+          status: "error",
+        });
+      });
+    setChangePassword(!changePassword);
+  };
+
+  const deleteAccountHandler = () => {
+    console.log("delete account");
   };
 
   return (
@@ -87,28 +126,16 @@ function Header(props) {
         </div>
       )}
       {session && changePassword && (
-        <div className={styles.changePassword}>
-          <div>
-            <TextInput text="old password" />
-          </div>
-          <div className={styles.textInput}>
-            <TextInput text="new password" />
-          </div>
-          <div className={styles.buttons}>
-            <Button>
-              <span>send</span>
-            </Button>
-          </div>
-        </div>
+        <ChangePasswordForm onChangePassword={changePasswordHandler} />
       )}
       {session && deleteAccount && (
-        <div className={styles.deleteAccount}>
+        <div className={styles.deleteAdmin}>
           <div>
             <p>Are you sure you want to delete your account?</p>
           </div>
           <div className={styles.buttons}>
             <div>
-              <Button>
+              <Button onClick={deleteAccountHandler}>
                 <span>yes</span>
               </Button>
             </div>
