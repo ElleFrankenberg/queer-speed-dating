@@ -1,11 +1,18 @@
+.welcome {
+  min-height: 80vh;
+}
+
 /* Tablet and Smaller Desktop */
 @media (min-width: 701px) and (max-width: 1120px) {
+  .welcome {
+    min-height: 80vh;
+  }
 }
 
 /* Desktop */
 @media screen and (min-width: 1121px) {
   .welcome {
-    height: 80vh;
     position: relative;
+    min-height: 80vh;
   }
 }

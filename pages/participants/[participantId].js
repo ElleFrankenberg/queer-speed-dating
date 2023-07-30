@@ -7,7 +7,7 @@ import ParticipantDetailsList from "@/components/participant/ParticipantDetailsL
 import ParticipantLikesForm from "@/components/inputs/ParticipantLikesForm";
 import ParticipantMatchList from "@/components/participant/ParticipantMatchList";
 
-const participantPage = (props) => {
+const ParticipantPage = (props) => {
   // Redirect away if NOT auth
   const [isLoading, setIsLoading] = useState(true);
 
@@ -21,7 +21,7 @@ const participantPage = (props) => {
         setIsLoading(false);
       }
     });
-  }, []);
+  }, [router]);
 
   const { participant, participants } = props;
 
@@ -130,4 +130,4 @@ export async function getStaticPaths() {
   }
 }
 
-export default participantPage;
+export default ParticipantPage;

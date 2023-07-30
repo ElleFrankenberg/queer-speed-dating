@@ -3,7 +3,7 @@ import { getSession } from "next-auth/react";
 import AllMatches from "@/components/matches/AllMatches";
 import Header from "@/components/layout/Header";
 
-const matchesPage = (props) => {
+const MatchesPage = (props) => {
   const { participants } = props;
 
   return (
@@ -64,4 +64,4 @@ export async function getServerSideProps(context) {
   }
 }
 
-export default matchesPage;
+export default MatchesPage;

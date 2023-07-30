@@ -28,7 +28,7 @@ const ParticipantLikesForm = (props) => {
     if (likesData.length > 0) {
       setShowForm(false);
     }
-  }, []);
+  }, [participant]);
 
   const handleCheckboxChange = (participantId, checkbox) => {
     setCheckboxes({

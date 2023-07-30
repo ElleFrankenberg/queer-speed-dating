@@ -3,7 +3,7 @@ import { getSession } from "next-auth/react";
 import ParticipantsList from "../../components/participants/ParticipantsList";
 import Header from "@/components/layout/Header";
 
-const participantsPage = (props) => {
+const ParticipantsPage = (props) => {
   const { participants } = props;
   return (
     <>
@@ -59,4 +59,4 @@ export async function getServerSideProps(context) {
   }
 }
 
-export default participantsPage;
+export default ParticipantsPage;
