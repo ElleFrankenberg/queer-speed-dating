@@ -2,19 +2,18 @@
   text-decoration: none;
   cursor: pointer;
   font: inherit;
-  background-color: #dafff7;
+  background-color: var(--pink);
   border: none;
-  border-radius: 6px;
-  color: #03be9f;
+  color: var(--purple);
   padding: 0.5rem 1.5rem;
   text-align: center;
-  box-shadow: 0 1px 6px rgba(0, 0, 0, 0.2);
+  box-shadow: var(--box-shadow);
   transition: all 0.3s;
   text-transform: uppercase;
 }
 
 .btn:hover,
 .btn:active {
-  background-color: #023c38;
-  color: #dafff7;
+  background-color: var(--dark-gray);
+  color: var(--light-blue);
 }

@@ -19,13 +19,12 @@ async function handler(req, res) {
   console.log(session);
 
   if (!session) {
-    res.status(401).json({ message: "Not authenticated!" });
+    errorMessageHandeling(res, 401, {
+      message: "Not authenticated!",
+    });
+
     return;
   }
-
-  const adminEmail = session.user.email;
-  const oldPassword = req.body.oldPassword;
-  const newPassword = req.body.newPassword;
 
   let client;
   try {
@@ -36,6 +35,10 @@ async function handler(req, res) {
     });
     return;
   }
+
+  const adminEmail = session.user.email;
+  const oldPassword = req.body.oldPassword;
+  const newPassword = req.body.newPassword;
 
   const adminCollection = client.db().collection("admin");
 

@@ -6,7 +6,7 @@ import {
   phoneNumberIsCorrect,
 } from "../../helpers/formUtil";
 import FormInputMessage from "../ui/messages/FormInputMessage";
-import styles from "@/styles/inputs/ParticipantRegistration.module.css";
+import styles from "@/styles/inputs/ParticipantForm.module.css";
 import NotificationContext from "@/store/notificationContext";
 
 const ParticipantForm = () => {
@@ -162,7 +162,7 @@ const ParticipantForm = () => {
             ref={formRef}
           >
             <div className={styles.headline}>
-              <h2>Register to get your seat!</h2>
+              <h2>Register to find your match!</h2>
             </div>
             <div className={styles.row}>
               <div className={styles.control}>

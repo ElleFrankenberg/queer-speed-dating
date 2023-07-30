@@ -1,15 +1,11 @@
-.welcome {
-  position: relative;
-  min-height: calc(100vh - 5rem);
+/* Tablet and Smaller Desktop */
+@media (min-width: 701px) and (max-width: 1120px) {
 }
 
-.heroImage {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: calc(100vh - 5rem);
-  object-fit: cover;
-  z-index: 1;
-  position: relative;
+/* Desktop */
+@media screen and (min-width: 1121px) {
+  .welcome {
+    height: 80vh;
+    position: relative;
+  }
 }

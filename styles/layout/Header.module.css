@@ -1,13 +1,11 @@
 .header {
   width: 100%;
-  background-color: bisque;
-  /* background-color: var(--light-blue); */
-  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.2);
-  padding: 0 1rem;
+  background-color: var(--purple);
+  box-shadow: var(--box-shadow);
+  padding: 0 var(--gap-small);
 }
 
 .logo {
-  font-family: "Lato", sans-serif;
   font-size: 1.5rem;
   color: var(--dark-gray);
   margin: 0;
@@ -59,4 +57,12 @@
 
 .buttons div:last-child {
   margin-left: 2rem;
+}
+
+/* Tablet and Smaller Desktop */
+@media (min-width: 701px) and (max-width: 1120px) {
+}
+
+/* Desktop */
+@media screen and (min-width: 1121px) {
 }

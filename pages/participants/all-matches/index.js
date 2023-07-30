@@ -6,19 +6,17 @@ import Header from "@/components/layout/Header";
 const matchesPage = (props) => {
   const { participants } = props;
 
-  if (participants.length > 0) {
-    return (
-      <>
-        <Header matches={true} />
-        <AllMatches participants={participants} />
-      </>
-    );
-  }
-
   return (
-    <div>
-      <h1>there is no participants yet</h1>
-    </div>
+    <>
+      <Header matches={true} />
+      {participants.lenght < 0 ? (
+        <AllMatches participants={participants} />
+      ) : (
+        <div className="center">
+          <p>Sorry, No matches yet</p>
+        </div>
+      )}
+    </>
   );
 };
 

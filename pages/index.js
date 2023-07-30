@@ -4,8 +4,9 @@ import Button from "@/components/ui/Button";
 
 import styles from "@/styles/Home.module.css";
 
-import Welcome from "@/components/home/Welcome";
 import Header from "../components/layout/Header";
+import Welcome from "@/components/home/Welcome";
+import Footer from "@/components/layout/Footer";
 
 export default function Home() {
   return (
@@ -18,6 +19,7 @@ export default function Home() {
       </Head>
       <Header home={true} />
       <Welcome />
+      <Footer />
     </>
   );
 }

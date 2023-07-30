@@ -1,6 +1,7 @@
 import Image from "next/image";
 import { useSession, signOut } from "next-auth/react";
 import { useState, useContext } from "react";
+import { useRouter } from "next/router";
 import Link from "next/link";
 import Button from "@/components/ui/Button";
 import ChangePasswordForm from "../inputs/ChangePasswordForm";
@@ -10,11 +11,12 @@ import styles from "../../styles/layout/Header.module.css";
 
 function Header(props) {
   const [changePassword, setChangePassword] = useState(false);
-  const [deleteAccount, setDeleteAccount] = useState(false);
+  const [deleteAdminAccount, setDeleteAdminAccount] = useState(false);
   const { data: session, status } = useSession();
   const loading = status === "loading";
 
   const notificationCxt = useContext(NotificationContext);
+  const router = useRouter();
 
   const logOutHandler = () => {
     signOut();
@@ -22,11 +24,11 @@ function Header(props) {
 
   const foldOutHandler = (type) => {
     if (type === "password") {
-      setDeleteAccount(false);
+      setDeleteAdminAccount(false);
       setChangePassword(!changePassword);
     } else {
       setChangePassword(false);
-      setDeleteAccount(!deleteAccount);
+      setDeleteAdminAccount(!deleteAdminAccount);
     }
   };
 
@@ -62,8 +64,37 @@ function Header(props) {
     setChangePassword(!changePassword);
   };
 
-  const deleteAccountHandler = () => {
-    console.log("delete account");
+  const deleteAdminAccountHandler = () => {
+    fetch("/api/admin/delete-admin", {
+      method: "DELETE",
+      body: JSON.stringify("delete"),
+      headers: {
+        "Content-Type": "application/json",
+      },
+    })
+      .then((response) => {
+        if (response.ok) {
+          return response.json();
+        }
+
+        return response.json().then((data) => {
+          throw new Error(data.message || "something went wrong");
+        });
+      })
+      .then((data) => {
+        notificationCxt.showNotification({
+          message: "Your account has been deleted",
+          status: "success",
+        });
+        signOut();
+        router.push("/");
+      })
+      .catch((error) => {
+        notificationCxt.showNotification({
+          message: error.message || "Sorry... Something went wrong",
+          status: "error",
+        });
+      });
   };
 
   return (
@@ -128,19 +159,21 @@ function Header(props) {
       {session && changePassword && (
         <ChangePasswordForm onChangePassword={changePasswordHandler} />
       )}
-      {session && deleteAccount && (
+      {session && deleteAdminAccount && (
         <div className={styles.deleteAdmin}>
           <div>
             <p>Are you sure you want to delete your account?</p>
           </div>
           <div className={styles.buttons}>
             <div>
-              <Button onClick={deleteAccountHandler}>
+              <Button onClick={deleteAdminAccountHandler}>
                 <span>yes</span>
               </Button>
             </div>
             <div>
-              <Button onClick={() => setDeleteAccount(!deleteAccount)}>
+              <Button
+                onClick={() => setDeleteAdminAccount(!deleteAdminAccount)}
+              >
                 <span>no</span>
               </Button>
             </div>

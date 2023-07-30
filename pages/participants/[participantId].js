@@ -25,6 +25,8 @@ const participantPage = (props) => {
 
   const { participant, participants } = props;
 
+  console.log(participants);
+
   if (isLoading || !participant) {
     return (
       <div className="center">
@@ -37,14 +39,22 @@ const participantPage = (props) => {
     <>
       <Header participant={true} />
       <ParticipantDetailsList participantDetails={participant} />
-      <ParticipantLikesForm
-        participants={participants}
-        participant={participant}
-      />
-      <ParticipantMatchList
-        participants={participants}
-        participant={participant}
-      />
+      {participants.lenght < 0 ? (
+        <>
+          <ParticipantLikesForm
+            participants={participants}
+            participant={participant}
+          />
+          <ParticipantMatchList
+            participants={participants}
+            participant={participant}
+          />
+        </>
+      ) : (
+        <div className="center">
+          <p>Sorry, there is no other participants found.</p>
+        </div>
+      )}
     </>
   );
 };

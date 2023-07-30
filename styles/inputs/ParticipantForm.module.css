@@ -1,0 +1,115 @@
+.welcomeContainer {
+  display: flex;
+  flex-direction: column;
+  padding: var(--gap-small);
+}
+
+.welcomeTextContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-bottom: var(--border-dark);
+  padding: 0 0 var(--gap-small) 0;
+}
+
+.welcomeText {
+  color: var(--dark-gray);
+  text-transform: uppercase;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.welcomeText span {
+  margin-bottom: var(--gap-mini);
+}
+
+.welcomeText span:nth-child(2) {
+  font-size: 5rem;
+}
+.welcomeText span:first-child,
+.welcomeText span:last-child {
+  font-size: 1.2rem;
+}
+
+.welcomeText span:last-child {
+  margin-bottom: 0;
+}
+
+.form {
+  margin-top: var(--gap-small);
+  background-color: var(--purple);
+  padding: var(--gap-small);
+}
+
+.honeyPot {
+  display: none;
+  visibility: hidden;
+}
+
+.headline {
+  text-align: center;
+  margin-bottom: var(--gap-small);
+  border-bottom: 1px solid var(--white);
+}
+
+.headline h2 {
+  font-size: 1.2rem;
+  color: var(--white);
+  text-transform: uppercase;
+  margin-bottom: var(--gap-small);
+  line-height: 1.5;
+}
+
+.row {
+  display: flex;
+  gap: var(--gap-small);
+  flex-wrap: wrap;
+  margin-bottom: 1rem;
+}
+
+.control {
+  flex: 1;
+  min-width: 10rem;
+}
+
+.controlBtn {
+  margin-top: 0.7rem;
+  display: flex;
+  align-items: center;
+}
+
+/* Tablet and Smaller Desktop */
+@media (min-width: 701px) and (max-width: 1120px) {
+}
+
+/* Desktop */
+@media screen and (min-width: 1121px) {
+  .welcomeContainer {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    flex-direction: row;
+    justify-content: center;
+    width: 100%;
+  }
+
+  .welcomeTextContainer {
+    border-bottom: none;
+    border-right: var(--border-dark);
+    margin-right: var(--gap-small);
+  }
+
+  .welcomeText {
+    padding-right: var(--gap-small);
+  }
+
+  .welcomeText span:nth-child(2) {
+    font-size: 7rem;
+  }
+  .welcomeText span:first-child,
+  .welcomeText span:last-child {
+    font-size: 2rem;
+  }
+}
