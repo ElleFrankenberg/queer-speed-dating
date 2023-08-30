@@ -110,19 +110,39 @@ function Header(props) {
           />
         </Link>
         <ul className={styles.navList}>
-          {session && (props.home || props.participant || props.matches) && (
-            <li>
-              <Button link="/participants">
-                <span>All Participants</span>
-              </Button>
-            </li>
+          {session &&
+            (props.page === "/" ||
+              props.page === "/participants/[participantId]") && (
+              <>
+                <li>
+                  <Button link="/participants">
+                    <span>Participants</span>
+                  </Button>
+                </li>
+                <li>
+                  <Button link="/participants/matching">
+                    <span>Matching</span>
+                  </Button>
+                </li>
+              </>
+            )}
+          {session && props.page === "/participants" && (
+            <>
+              <li>
+                <Button link="/participants/matching">
+                  <span>Matching</span>
+                </Button>
+              </li>
+            </>
           )}
-          {session && (props.participants || props.participant) && (
-            <li>
-              <Button link="/participants/all-matches">
-                <span>all matches</span>
-              </Button>
-            </li>
+          {session && props.page === "/participants/matching" && (
+            <>
+              <li>
+                <Button link="/participants">
+                  <span>All Participants</span>
+                </Button>
+              </li>
+            </>
           )}
           {session && (
             <li>
@@ -131,13 +151,14 @@ function Header(props) {
               </Button>
             </li>
           )}
-          {!session && !loading && (
-            <li>
-              <Button link="/auth">
-                <span>Login</span>
-              </Button>
-            </li>
-          )}
+          {props.page === "/auth" ||
+            (!session && !loading && (
+              <li>
+                <Button link="/auth">
+                  <span>Login</span>
+                </Button>
+              </li>
+            ))}
         </ul>
       </nav>
       {session && (
@@ -146,14 +167,18 @@ function Header(props) {
             <p>Logged in as:</p>
             <h2 className={styles.userEmail}>{session.user.email}</h2>
           </div>
-          <div className={styles.actions}>
-            <Button onClick={() => foldOutHandler("password")}>
-              <span>change password</span>
-            </Button>
-            <Button onClick={() => foldOutHandler("delete")}>
-              <span>delete account</span>
-            </Button>
-          </div>
+          <ul className={styles.actionList}>
+            <li>
+              <Button onClick={() => foldOutHandler("password")}>
+                <span>change password</span>
+              </Button>
+            </li>
+            <li>
+              <Button onClick={() => foldOutHandler("delete")}>
+                <span>delete account</span>
+              </Button>
+            </li>
+          </ul>
         </div>
       )}
       {session && changePassword && (

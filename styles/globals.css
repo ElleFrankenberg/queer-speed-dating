@@ -1,25 +1,20 @@
 :root {
   --max-width: 1100px;
   --border-radius: 12px;
-  --border-dark: 1px solid var(--dark-gray);
-  --box-shadow: 0 1px 4px rgba(0, 0, 0, 0.2);
+  --dark-gray: #333333;
+  --light-gray: #f6faf8;
+  --cerise: #dd1461;
+  --pink: #e2b0d9;
+  --blue: #144ddd;
+  --green: #b0e2cb;
+  --brown: #a85646;
+
   --gap-mini: 0.7rem;
-  --gap-small: 1.5rem;
+  --gap-small: 1rem;
+
   --font-mono: ui-monospace, Menlo, Monaco, "Cascadia Mono", "Segoe UI Mono",
     "Roboto Mono", "Oxygen Mono", "Ubuntu Monospace", "Source Code Pro",
     "Fira Mono", "Droid Sans Mono", "Courier New", monospace;
-  --red: #ff0018;
-  --orange: #ffa52c;
-  --yellow: #ffff41;
-  --green: #008018;
-  --blue: #0000f9;
-  --purple: #861f41;
-  --light-blue: #dcfff9;
-  --pink: #f9d1d9;
-  --white: #ffffff;
-  --black: #000000;
-  --dark-gray: #333333;
-  --light-gray: #cccccc;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -79,9 +74,9 @@ body {
   right: 0;
 }
 
-main {
+/* main {
   min-height: 100%;
-}
+} */
 
 a {
   color: inherit;

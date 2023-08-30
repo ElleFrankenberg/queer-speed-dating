@@ -16,7 +16,7 @@ const AllMatches = (props) => {
       setShowResults(true);
     };
     fetchData();
-  }, [participants, calculateMatches]);
+  }, [participants]);
 
   const calculateMatches = async () => {
     let newFriendMatches = new Set();
@@ -98,7 +98,7 @@ const AllMatches = (props) => {
           friendMatches={friendMatches}
         />
       ) : (
-        <div>Loading...</div>
+        <div>No match yet...</div>
       )}
     </>
   );

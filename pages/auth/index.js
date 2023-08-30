@@ -1,7 +1,8 @@
+import Head from "next/head";
 import { useEffect, useState } from "react";
 import { getSession } from "next-auth/react";
 import { useRouter } from "next/router";
-import Header from "@/components/layout/Header";
+
 import AuthForm from "@/components/inputs/AuthForm";
 
 function AuthPage() {
@@ -24,7 +25,14 @@ function AuthPage() {
 
   return (
     <>
-      <Header auth={true} />
+      <Head>
+        <title>Authentication</title>
+        <meta
+          name="description"
+          content="Loggin in or signing up as the administrator of the Queer Speed Dating App."
+        />
+        <link rel="icon" href="/favicon.ico" />
+      </Head>
       <AuthForm />
     </>
   );

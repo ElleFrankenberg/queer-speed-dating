@@ -1,3 +1,4 @@
+import Head from "next/head";
 import { MongoClient } from "mongodb";
 import { getSession } from "next-auth/react";
 import ParticipantsList from "../../components/participants/ParticipantsList";
@@ -7,7 +8,14 @@ const ParticipantsPage = (props) => {
   const { participants } = props;
   return (
     <>
-      <Header participants={true} />
+      <Head>
+        <title>All Participants</title>
+        <meta
+          name="description"
+          content="This page shows all participants in the database."
+        />
+        <link rel="icon" href="/favicon.ico" />
+      </Head>
       <ParticipantsList participants={participants} />
     </>
   );

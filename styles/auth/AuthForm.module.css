@@ -1,62 +1,63 @@
 .authContainer {
-  background-color: var(--light-blue);
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  z-index: 2;
-  justify-content: space-around;
-  border-radius: 6px;
-  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.2);
-  padding: 3rem;
-  min-width: 50%;
+  padding: var(--gap-small);
+  min-height: 75vh;
 }
 
 .form {
-  width: 100%;
-  border-radius: 6px;
-  background-color: var(--white);
-  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.2);
-  padding: 3rem;
-  z-index: 2;
+  margin-top: var(--gap-small);
+  background-color: var(--blue);
+  padding: var(--gap-small);
 }
 
-.form h1 {
+.headline {
   text-align: center;
-  color: var(--dark-gray);
+  margin-bottom: var(--gap-small);
+  border-bottom: 1px solid var(--white);
+}
+
+.headline h1 {
+  font-size: 1.2rem;
+  color: var(--white);
   text-transform: uppercase;
+  margin-bottom: var(--gap-small);
+}
+
+.row {
+  display: flex;
+  gap: var(--gap-small);
+  flex-wrap: wrap;
   margin-bottom: 1rem;
 }
 
 .control {
-  margin-bottom: 0.5rem;
+  flex: 1;
+  min-width: 10rem;
 }
 
-.control label {
-  display: block;
-  color: var(--dark-gray);
-  text-transform: uppercase;
-  font-weight: bold;
-  margin-bottom: 0.5rem;
-}
-
-.control input {
-  font: inherit;
-  padding: 0.5rem 0.25rem;
-  border-radius: 4px;
-  border: none;
-  width: 100%;
-  background-color: #dcfff9;
-}
-
-.actions {
+.actionList {
   margin-top: 1.5rem;
   display: flex;
-  flex-direction: row;
-  justify-content: space-around;
+  flex-direction: column;
+}
+.actionList li:last-child {
+  margin-top: var(--gap-small);
 }
 
 .honeyPot {
   display: none;
   visibility: hidden;
+}
+
+@media (min-width: 701px) {
+  .authContainer {
+    position: relative;
+  }
+
+  .form {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 50%;
+  }
 }

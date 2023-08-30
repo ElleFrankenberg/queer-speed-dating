@@ -138,39 +138,51 @@ function AuthForm() {
       {showForm && !notificationCxt.notification && (
         <section className={styles.authContainer}>
           <form onSubmit={submitHandler} className={styles.form}>
-            <h1>{isLogin ? "Login" : "Sign Up"}</h1>
-            <div className={styles.control}>
-              <input
-                className={styles.honeyPot}
-                type="text"
-                ref={honeyPotRef}
-              />
-              <TextInput
-                id="email"
-                type="email"
-                text="Email"
-                ref={emailInputRef}
-              />
+            <div className={styles.headline}>
+              <h1>{isLogin ? "Login" : "Sign Up"}</h1>
             </div>
-            <div className={styles.control}>
-              <TextInput
-                type="password"
-                id="password"
-                text="Password"
-                required
-                ref={passwordInputRef}
-              />
+            <div className={styles.row}>
+              <div className={styles.control}>
+                <input
+                  className={styles.honeyPot}
+                  type="text"
+                  ref={honeyPotRef}
+                />
+                <TextInput
+                  id="email"
+                  type="email"
+                  text="Email"
+                  ref={emailInputRef}
+                />
+              </div>
             </div>
-            <div className={styles.actions}>
-              <Button>{isLogin ? "Login" : "Create Account"}</Button>
-              <Button
-                type="button"
-                className={styles.toggle}
-                onClick={switchAuthModeHandler}
-              >
-                {isLogin ? "Create new account" : "Login with existing account"}
-              </Button>
+            <div className={styles.row}>
+              <div className={styles.control}>
+                <TextInput
+                  type="password"
+                  id="password"
+                  text="Password"
+                  required
+                  ref={passwordInputRef}
+                />
+              </div>
             </div>
+            <ul className={styles.actionList}>
+              <li>
+                <Button>{isLogin ? "Login" : "Create Account"}</Button>
+              </li>
+              <li>
+                <Button
+                  type="button"
+                  className={styles.toggle}
+                  onClick={switchAuthModeHandler}
+                >
+                  {isLogin
+                    ? "Create new account"
+                    : "Login whit existing account "}
+                </Button>
+              </li>
+            </ul>
             <div>
               {isInvalid && emailIsInvalid && (
                 <FormInputMessage text="Email is invalid" />

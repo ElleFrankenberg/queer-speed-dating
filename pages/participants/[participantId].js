@@ -1,8 +1,8 @@
+import Head from "next/head";
 import { MongoClient } from "mongodb";
 import { getSession } from "next-auth/react";
 import { useState, useEffect } from "react";
 import { useRouter } from "next/router";
-import Header from "@/components/layout/Header";
 import ParticipantDetailsList from "@/components/participant/ParticipantDetailsList";
 import ParticipantLikesForm from "@/components/inputs/ParticipantLikesForm";
 import ParticipantMatchList from "@/components/participant/ParticipantMatchList";
@@ -25,7 +25,7 @@ const ParticipantPage = (props) => {
 
   const { participant, participants } = props;
 
-  console.log(participants);
+  console.log(participant[0].firstName);
 
   if (isLoading || !participant) {
     return (
@@ -37,24 +37,29 @@ const ParticipantPage = (props) => {
 
   return (
     <>
-      <Header participant={true} />
+      <Head>
+        <title>{`${participant[0].firstName} ${participant[0].lastName}`}</title>
+        <meta
+          name="description"
+          content={`This page shows details about ${participant[0].firstName} ${participant[0].lastName}`}
+        />
+        <link rel="icon" href="/favicon.ico" />
+      </Head>
       <ParticipantDetailsList participantDetails={participant} />
-      {participants.lenght < 0 ? (
-        <>
-          <ParticipantLikesForm
-            participants={participants}
-            participant={participant}
-          />
-          <ParticipantMatchList
-            participants={participants}
-            participant={participant}
-          />
-        </>
+      {participants.length > 0 ? (
+        <ParticipantLikesForm
+          participants={participants}
+          participant={participant}
+        />
       ) : (
         <div className="center">
           <p>Sorry, there is no other participants found.</p>
         </div>
       )}
+      <ParticipantMatchList
+        participants={participants}
+        participant={participant}
+      />
     </>
   );
 };

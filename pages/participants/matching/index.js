@@ -1,15 +1,22 @@
+import Head from "next/head";
 import { MongoClient } from "mongodb";
 import { getSession } from "next-auth/react";
 import AllMatches from "@/components/matches/AllMatches";
-import Header from "@/components/layout/Header";
 
-const MatchesPage = (props) => {
+const MatchingPage = (props) => {
   const { participants } = props;
 
   return (
     <>
-      <Header matches={true} />
-      {participants.lenght < 0 ? (
+      <Head>
+        <title>All Matches</title>
+        <meta
+          name="description"
+          content="This page shows all the matches from the speed dating event."
+        />
+        <link rel="icon" href="/favicon.ico" />
+      </Head>
+      {participants.length > 0 ? (
         <AllMatches participants={participants} />
       ) : (
         <div className="center">
@@ -64,4 +71,4 @@ export async function getServerSideProps(context) {
   }
 }
 
-export default MatchesPage;
+export default MatchingPage;

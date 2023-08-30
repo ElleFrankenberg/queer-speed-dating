@@ -1,66 +1,102 @@
 .header {
   width: 100%;
-  background-color: var(--purple);
   box-shadow: var(--box-shadow);
-  padding: 0 var(--gap-small);
+  padding: var(--gap-small) var(--gap-mini) 0 var(--gap-mini);
+  background-color: var(--white);
 }
 
 .logo {
   font-size: 1.5rem;
   color: var(--dark-gray);
-  margin: 0;
 }
 
 .header .nav {
   display: flex;
-  justify-content: space-between;
-  align-items: center;
+  flex-direction: column;
 }
 
 .navList {
-  list-style: none;
-  margin: 0;
-  padding: 0;
   display: flex;
-  align-items: baseline;
+  flex-direction: column;
 }
 
 .navList li {
-  margin: 0 1rem;
+  margin-top: var(--gap-small);
+}
+
+.navList li:first-child {
+  margin-top: 0;
+}
+.navList li:last-child {
+  margin-bottom: var(--gap-small);
 }
 
 .user {
-  padding: 1rem 0;
+  padding-bottom: var(--gap-small);
+  padding-top: var(--gap-small);
+  border-top: var(--border-blue);
 }
 
 .userEmail {
-  margin-top: 0.5rem;
+  font-size: 1rem;
 }
 
-.actions {
-  padding-top: 1rem;
+.actionList {
+  margin-top: var(--gap-small);
 }
 
-.actions button:last-child {
-  margin-left: 2rem;
-}
-
-.deleteAdmin {
-  max-width: 30rem;
-  padding-bottom: 1rem;
-}
-
-.buttons {
-  display: flex;
-  margin-top: 1rem;
-}
-
-.buttons div:last-child {
-  margin-left: 2rem;
+.actionList li:last-child {
+  margin-top: var(--gap-small);
 }
 
 /* Tablet and Smaller Desktop */
-@media (min-width: 701px) and (max-width: 1120px) {
+@media (min-width: 701px) {
+  .header {
+    padding: var(--gap-small);
+  }
+
+  .header .nav {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .navList {
+    flex-direction: row;
+    border-bottom: none;
+    align-items: baseline;
+  }
+
+  .navList li:last-child {
+    margin-top: 0;
+    margin-bottom: 0;
+  }
+
+  .navList li {
+    margin-left: var(--gap-small);
+  }
+
+  .user {
+    border-top: var(--border-blue);
+    padding-top: var(--gap-small);
+    padding-bottom: 0;
+  }
+
+  .userEmail {
+    margin-top: 0.5rem;
+  }
+
+  .actionList {
+    padding-top: 0;
+    display: flex;
+    align-items: center;
+  }
+
+  .actionList li:last-child {
+    margin-top: 0;
+    margin-left: var(--gap-small);
+  }
 }
 
 /* Desktop */

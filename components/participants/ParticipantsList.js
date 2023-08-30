@@ -134,12 +134,14 @@ const ParticipantsList = (props) => {
           </>
         )}
         {participants.length > 0 && (
-          <Button
-            onClick={() => handleDelete("", "Delete all participants?")}
-            type="button"
-          >
-            <span>delete all</span>
-          </Button>
+          <div className={styles.deleteAllContainer}>
+            <Button
+              onClick={() => handleDelete("", "Delete all participants?")}
+              type="button"
+            >
+              <span>delete all</span>
+            </Button>
+          </div>
         )}
       </div>
     </div>

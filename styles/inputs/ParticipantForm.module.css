@@ -8,7 +8,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  border-bottom: var(--border-dark);
+  border-bottom: 1px solid var(--purple);
   padding: 0 0 var(--gap-small) 0;
 }
 
@@ -22,6 +22,7 @@
 
 .welcomeText span {
   margin-bottom: var(--gap-mini);
+  color: var(--purple);
 }
 
 .welcomeText span:nth-child(2) {
@@ -97,7 +98,7 @@
 
   .welcomeTextContainer {
     border-bottom: none;
-    border-right: var(--border-dark);
+    border-right: var(--border-purple);
     margin-right: var(--gap-small);
   }
 

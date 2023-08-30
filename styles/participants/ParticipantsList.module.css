@@ -1,20 +1,17 @@
 .participants {
   width: 100%;
-  min-height: 100vh;
-  background-color: #03be9f;
+  min-height: 70vh;
+  padding: var(--gap-small);
 }
 
 .participantListContainer {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  padding-top: 3rem;
-  padding-left: 2rem;
 }
 
 .participantList {
   width: 100%;
-  padding: 1rem 2rem 2rem 0;
 }
 
 .participantListItem {
@@ -23,5 +20,9 @@
   align-items: center;
   padding-bottom: 1rem;
   padding-top: 1rem;
-  border-bottom: 2px solid var(--dark-gray);
+  border-bottom: var(--border-green);
+}
+
+.deleteAllContainer {
+  margin-top: var(--gap-small);
 }
