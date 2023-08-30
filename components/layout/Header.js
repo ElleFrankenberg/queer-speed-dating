@@ -100,14 +100,14 @@ function Header(props) {
   return (
     <header className={styles.header}>
       <nav className={styles.nav}>
-        <Link href="/">
+        <Link href="/" className={styles.logo}>
           <Image
-            className={styles.heroImage}
-            src="/assets/images/queer-speed-dating-icon.png"
+            src="/assets/images/logo.png"
             width={70}
             height={70}
-            alt="icon"
+            alt="logotype"
           />
+          <h1 className={styles.title}>ueer speed dating</h1>
         </Link>
         <ul className={styles.navList}>
           {session &&
@@ -154,8 +154,8 @@ function Header(props) {
           {props.page === "/auth" ||
             (!session && !loading && (
               <li>
-                <Button link="/auth">
-                  <span>Login</span>
+                <Button link="/auth" color="pink">
+                  <span>Admin Login</span>
                 </Button>
               </li>
             ))}

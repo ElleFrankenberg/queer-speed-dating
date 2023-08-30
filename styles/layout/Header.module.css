@@ -1,11 +1,12 @@
 .header {
   width: 100%;
-  box-shadow: var(--box-shadow);
-  padding: var(--gap-small) var(--gap-mini) 0 var(--gap-mini);
-  background-color: var(--white);
+  border-bottom: var(--border-dark-gray);
+  padding: var(--gap-small);
 }
 
 .logo {
+  display: flex;
+  align-items: center;
   font-size: 1.5rem;
   color: var(--dark-gray);
 }
@@ -18,6 +19,7 @@
 .navList {
   display: flex;
   flex-direction: column;
+  margin-top: var(--gap-small);
 }
 
 .navList li {
@@ -52,7 +54,7 @@
 /* Tablet and Smaller Desktop */
 @media (min-width: 701px) {
   .header {
-    padding: var(--gap-small);
+    padding: var(--gap-small) 1.5rem var(--gap-small) var(--gap-small);
   }
 
   .header .nav {
@@ -66,6 +68,7 @@
     flex-direction: row;
     border-bottom: none;
     align-items: baseline;
+    margin-top: 0;
   }
 
   .navList li:last-child {

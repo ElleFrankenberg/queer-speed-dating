@@ -1,18 +1,21 @@
 .welcome {
-  min-height: 80vh;
+  min-height: 100vh;
+  display: grid;
+  grid-template-columns: 1fr;
 }
 
 /* Tablet and Smaller Desktop */
 @media (min-width: 701px) and (max-width: 1120px) {
   .welcome {
     min-height: 80vh;
+    grid-template-columns: repeat(3, 1fr);
   }
 }
 
 /* Desktop */
 @media screen and (min-width: 1121px) {
   .welcome {
-    position: relative;
     min-height: 80vh;
+    grid-template-columns: repeat(3, 1fr);
   }
 }

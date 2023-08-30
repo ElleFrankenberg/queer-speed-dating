@@ -12,6 +12,8 @@
   --gap-mini: 0.7rem;
   --gap-small: 1rem;
 
+  --border-dark-gray: 1px solid var(--dark-gray);
+
   --font-mono: ui-monospace, Menlo, Monaco, "Cascadia Mono", "Segoe UI Mono",
     "Roboto Mono", "Oxygen Mono", "Ubuntu Monospace", "Source Code Pro",
     "Fira Mono", "Droid Sans Mono", "Courier New", monospace;

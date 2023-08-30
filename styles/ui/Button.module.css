@@ -2,19 +2,29 @@
   text-decoration: none;
   cursor: pointer;
   font: inherit;
-  background-color: var(--white);
   border: none;
-  color: var(--black);
   padding: 0.5rem 1.5rem;
   text-align: center;
   box-shadow: var(--box-shadow);
   transition: all 0.3s;
   text-transform: uppercase;
   display: inline-block;
+  transform: skewX(10deg);
 }
 
-.btn:hover,
+.btn > span {
+  display: inline-block;
+  transform: skew(-10deg);
+}
+
+.pink {
+  background-color: var(--pink);
+  color: var(--dark-gray);
+  box-shadow: 5px 5px var(--cerise);
+}
+
+/* .btn:hover,
 .btn:active {
   background-color: var(--black);
   color: var(--white);
-}
+} */
