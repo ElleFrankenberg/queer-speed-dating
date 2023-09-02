@@ -251,23 +251,24 @@ function Header(props) {
             className={styles.deleteAdmin}
             ref={deleteAdminAccountFoldoutRef}
           >
-            <div>
+            <div className={styles.deleteMessage}>
               <p>Are you sure you want to delete your account?</p>
             </div>
-            <div className={styles.buttons}>
-              <div>
-                <Button onClick={deleteAdminAccountHandler}>
+            <ul className={styles.deleteActionList}>
+              <li>
+                <Button onClick={deleteAdminAccountHandler} color="green">
                   <span>yes</span>
                 </Button>
-              </div>
-              <div>
+              </li>
+              <li>
                 <Button
                   onClick={() => setDeleteAdminAccount(!deleteAdminAccount)}
+                  color="green"
                 >
                   <span>no</span>
                 </Button>
-              </div>
-            </div>
+              </li>
+            </ul>
           </div>
         </CSSTransition>
       )}

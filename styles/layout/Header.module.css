@@ -40,17 +40,33 @@
   padding-bottom: var(--gap-small);
 }
 
-.adminDetails p:nth-child(2) {
+.adminDetails {
   font-weight: bold;
+}
+
+.adminDetails p:nth-child(2) {
   margin-top: 0.5rem;
 }
 
-.actionList {
+.actionList,
+.deleteActionList {
   margin-top: var(--gap-small);
 }
 
 .actionList li:last-child {
   margin-top: var(--gap-small);
+}
+
+.deleteAdmin {
+  margin-top: var(--gap-small);
+}
+
+.deleteActionList {
+  display: flex;
+}
+
+.deleteActionList li:last-child {
+  margin-left: var(--gap-small);
 }
 
 /* Tablet and Smaller Desktop */
@@ -69,6 +85,7 @@
     margin-top: var(--gap-small);
     margin-right: var(--gap-small);
   }
+
   .navList li:last-child {
     margin-left: auto;
     margin-right: 0;
@@ -78,10 +95,12 @@
     display: flex;
     flex-direction: column;
     align-items: flex-end;
+    padding-right: 1.5rem;
   }
 
   .adminDetails {
     display: flex;
+    margin-bottom: var(--gap-small);
   }
 
   .adminDetails p:nth-child(2) {
@@ -91,6 +110,7 @@
 
   .actionList {
     display: flex;
+    margin-top: 0;
   }
 
   .actionList li:last-child {
@@ -101,9 +121,64 @@
   .changePasswordFormContainer {
     display: flex;
     justify-content: flex-end;
+    padding-right: var(--gap-small);
+  }
+
+  .deleteAdmin {
+    margin-top: 0;
+  }
+
+  .deleteMessage {
+    display: flex;
+    justify-content: flex-end;
+  }
+
+  .deleteActionList {
+    margin-top: var(--gap-small);
+    justify-content: flex-end;
+    padding-right: var(--gap-small);
   }
 }
 
 /* Desktop */
 @media screen and (min-width: 1121px) {
+  .logo {
+    font-size: 1.5vw;
+  }
+
+  .header .nav {
+    flex-direction: row;
+    justify-content: space-between;
+  }
+
+  .navList {
+    justify-content: flex-end;
+    align-items: center;
+  }
+
+  .admin {
+    margin-top: var(--gap-small);
+    flex-direction: row;
+    justify-content: flex-end;
+    align-items: center;
+  }
+
+  .adminDetails {
+    flex-direction: column;
+    margin-right: var(--gap-small);
+    margin-bottom: 0;
+  }
+
+  .adminDetails p:nth-child(1) {
+    margin-left: auto;
+  }
+
+  .adminDetails p:nth-child(2) {
+    margin-top: 0.5rem;
+    margin-left: 0;
+  }
+
+  .changePasswordFormContainer {
+    padding-right: var(--gap-small);
+  }
 }
