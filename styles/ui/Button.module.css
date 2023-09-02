@@ -22,6 +22,11 @@
   color: var(--dark-gray);
   box-shadow: 5px 5px var(--cerise);
 }
+.green {
+  background-color: var(--green);
+  color: var(--dark-gray);
+  box-shadow: 5px 5px var(--blue);
+}
 
 /* .btn:hover,
 .btn:active {

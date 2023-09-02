@@ -9,6 +9,9 @@ const Button = (props) => {
   if (color === "pink") {
     btnColor = styles.pink;
   }
+  if (color === "green") {
+    btnColor = styles.green;
+  }
 
   if (props.link) {
     return (

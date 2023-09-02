@@ -1,6 +1,8 @@
 import Image from "next/image";
+import { CSSTransition } from "react-transition-group";
 import { useSession, signOut } from "next-auth/react";
-import { useState, useContext } from "react";
+import { useState, useContext, useRef } from "react";
+import { Turn as Hamburger } from "hamburger-react";
 import { useRouter } from "next/router";
 import Link from "next/link";
 import Button from "@/components/ui/Button";
@@ -12,6 +14,13 @@ import styles from "../../styles/layout/Header.module.css";
 function Header(props) {
   const [changePassword, setChangePassword] = useState(false);
   const [deleteAdminAccount, setDeleteAdminAccount] = useState(false);
+  const [foldOutIsOpen, setFoldOutIsOpen] = useState(false);
+  const [hamburgerIsOpen, setHamburgerIsOpen] = useState(false);
+
+  const adminFoldoutRef = useRef();
+  const changePasswordFoldoutRef = useRef();
+  const deleteAdminAccountFoldoutRef = useRef();
+
   const { data: session, status } = useSession();
   const loading = status === "loading";
 
@@ -23,10 +32,17 @@ function Header(props) {
   };
 
   const foldOutHandler = (type) => {
+    if (type === "details") {
+      setChangePassword(false);
+      setDeleteAdminAccount(false);
+      setFoldOutIsOpen(!foldOutIsOpen);
+      setHamburgerIsOpen(!hamburgerIsOpen);
+    }
     if (type === "password") {
       setDeleteAdminAccount(false);
       setChangePassword(!changePassword);
-    } else {
+    }
+    if (type === "delete") {
       setChangePassword(false);
       setDeleteAdminAccount(!deleteAdminAccount);
     }
@@ -115,12 +131,12 @@ function Header(props) {
               props.page === "/participants/[participantId]") && (
               <>
                 <li>
-                  <Button link="/participants">
+                  <Button link="/participants" color="green">
                     <span>Participants</span>
                   </Button>
                 </li>
                 <li>
-                  <Button link="/participants/matching">
+                  <Button link="/participants/matching" color="green">
                     <span>Matching</span>
                   </Button>
                 </li>
@@ -129,7 +145,7 @@ function Header(props) {
           {session && props.page === "/participants" && (
             <>
               <li>
-                <Button link="/participants/matching">
+                <Button link="/participants/matching" color="green">
                   <span>Matching</span>
                 </Button>
               </li>
@@ -138,7 +154,7 @@ function Header(props) {
           {session && props.page === "/participants/matching" && (
             <>
               <li>
-                <Button link="/participants">
+                <Button link="/participants" color="green">
                   <span>All Participants</span>
                 </Button>
               </li>
@@ -146,7 +162,7 @@ function Header(props) {
           )}
           {session && (
             <li>
-              <Button onClick={logOutHandler}>
+              <Button onClick={logOutHandler} color="green">
                 <span>Logout</span>
               </Button>
             </li>
@@ -159,51 +175,101 @@ function Header(props) {
                 </Button>
               </li>
             ))}
+          {session && (
+            <li
+              className={styles.toggleContainer}
+              onClick={() => foldOutHandler("details")}
+            >
+              <p>Admin Details</p>
+              <Hamburger
+                color="#000000"
+                size={20}
+                toggled={hamburgerIsOpen}
+                toggle={setHamburgerIsOpen}
+                direction="right"
+              />
+            </li>
+          )}
         </ul>
       </nav>
       {session && (
-        <div className={styles.user}>
-          <div>
-            <p>Logged in as:</p>
-            <h2 className={styles.userEmail}>{session.user.email}</h2>
-          </div>
-          <ul className={styles.actionList}>
-            <li>
-              <Button onClick={() => foldOutHandler("password")}>
-                <span>change password</span>
-              </Button>
-            </li>
-            <li>
-              <Button onClick={() => foldOutHandler("delete")}>
-                <span>delete account</span>
-              </Button>
-            </li>
-          </ul>
-        </div>
-      )}
-      {session && changePassword && (
-        <ChangePasswordForm onChangePassword={changePasswordHandler} />
-      )}
-      {session && deleteAdminAccount && (
-        <div className={styles.deleteAdmin}>
-          <div>
-            <p>Are you sure you want to delete your account?</p>
-          </div>
-          <div className={styles.buttons}>
-            <div>
-              <Button onClick={deleteAdminAccountHandler}>
-                <span>yes</span>
-              </Button>
+        <CSSTransition
+          in={foldOutIsOpen}
+          nodeRef={adminFoldoutRef}
+          timeout={700}
+          classNames="foldout"
+          unmountOnExit
+        >
+          <div className={styles.admin} ref={adminFoldoutRef}>
+            <div className={styles.adminDetails}>
+              <p>Logged in as:</p>
+              <p className={styles.userEmail}>{session.user.email}</p>
             </div>
+            <ul className={styles.actionList}>
+              <li>
+                <Button
+                  onClick={() => foldOutHandler("password")}
+                  color="green"
+                >
+                  <span>change password</span>
+                </Button>
+              </li>
+              <li>
+                <Button onClick={() => foldOutHandler("delete")} color="green">
+                  <span>delete account</span>
+                </Button>
+              </li>
+            </ul>
+          </div>
+        </CSSTransition>
+      )}
+      {session && (
+        <CSSTransition
+          in={changePassword}
+          nodeRef={changePasswordFoldoutRef}
+          timeout={700}
+          classNames="foldout"
+          unmountOnExit
+        >
+          <div
+            ref={changePasswordFoldoutRef}
+            className={styles.changePasswordFormContainer}
+          >
+            <ChangePasswordForm onChangePassword={changePasswordHandler} />
+          </div>
+        </CSSTransition>
+      )}
+      {session && (
+        <CSSTransition
+          in={deleteAdminAccount}
+          nodeRef={deleteAdminAccountFoldoutRef}
+          timeout={700}
+          classNames="foldout"
+          unmountOnExit
+        >
+          <div
+            className={styles.deleteAdmin}
+            ref={deleteAdminAccountFoldoutRef}
+          >
             <div>
-              <Button
-                onClick={() => setDeleteAdminAccount(!deleteAdminAccount)}
-              >
-                <span>no</span>
-              </Button>
+              <p>Are you sure you want to delete your account?</p>
+            </div>
+            <div className={styles.buttons}>
+              <div>
+                <Button onClick={deleteAdminAccountHandler}>
+                  <span>yes</span>
+                </Button>
+              </div>
+              <div>
+                <Button
+                  onClick={() => setDeleteAdminAccount(!deleteAdminAccount)}
+                >
+                  <span>no</span>
+                </Button>
+              </div>
             </div>
           </div>
-        </div>
+        </CSSTransition>
       )}
     </header>
   );

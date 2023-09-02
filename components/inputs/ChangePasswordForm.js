@@ -96,7 +96,7 @@ const ChangePasswordForm = (props) => {
         )}
       </div>
       <div className={styles.action}>
-        <Button>
+        <Button color="green">
           <span>send</span>
         </Button>
       </div>

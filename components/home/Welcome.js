@@ -6,7 +6,7 @@ import styles from "../../styles/home/Welcome.module.css";
 const Welcome = () => {
   return (
     <section className={styles.welcome}>
-      <div>
+      <div className={styles.avatarImageContainer}>
         <Image
           src="/assets/images/characters_left.png"
           width={300}
@@ -14,7 +14,7 @@ const Welcome = () => {
           alt="characters"
         />
       </div>
-      <div>
+      <div className={styles.clipBoardImageContainer}>
         <Image
           src="/assets/images/Clipboard.png"
           width={300}
@@ -22,7 +22,7 @@ const Welcome = () => {
           alt="characters"
         />
       </div>
-      <div>
+      <div className={styles.avatarImageContainer}>
         <Image
           src="/assets/images/characters_right.png"
           width={300}

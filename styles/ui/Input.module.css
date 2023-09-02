@@ -9,9 +9,8 @@
 .label {
   font: inherit;
   display: block;
-  font-weight: bold;
   margin-bottom: var(--gap-mini);
-  color: var(--white);
+  color: var(--dark-gray);
   text-align: left;
   text-transform: uppercase;
 }
