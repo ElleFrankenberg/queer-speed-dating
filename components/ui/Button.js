@@ -12,6 +12,9 @@ const Button = (props) => {
   if (color === "green") {
     btnColor = styles.green;
   }
+  if (color === "white") {
+    btnColor = styles.white;
+  }
 
   if (props.link) {
     return (

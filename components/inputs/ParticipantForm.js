@@ -1,4 +1,5 @@
 import { useRef, useState, useEffect, useContext } from "react";
+import Image from "next/image";
 import TextInput from "../ui/TextInput";
 import Button from "../ui/Button";
 import {
@@ -152,7 +153,16 @@ const ParticipantForm = () => {
           <div className={styles.welcomeTextContainer}>
             <h1 className={styles.welcomeText}>
               <span>Welcome to</span>
-              <span>Queer</span>
+              <span>
+                <Image
+                  src="/assets/images/logo.png"
+                  width={70}
+                  height={70}
+                  alt="logotype"
+                  className={styles.logotype}
+                />
+                ueer
+              </span>
               <span>speed dating</span>
             </h1>
           </div>

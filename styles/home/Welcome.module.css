@@ -12,6 +12,7 @@
   padding: 1rem;
   width: 100%;
   height: 100%;
+  position: relative;
 }
 
 .avatarImageContainer,
@@ -19,7 +20,8 @@
   display: none;
 }
 
-.welcome div img {
+.avatarImage,
+.clipBoardImage {
   width: 100%;
   height: auto;
 }
@@ -43,7 +45,12 @@
     align-items: center;
     padding: 1rem;
     width: 100%;
-    height: 90%;
+    height: 100%;
+  }
+
+  .avatarImageContainer,
+  .avatarImageContainer img {
+    display: block;
   }
 
   .welcome div img {

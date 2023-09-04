@@ -12,6 +12,7 @@ const Welcome = () => {
           width={300}
           height={300}
           alt="characters"
+          className={styles.avatarImage}
         />
       </div>
       <div className={styles.clipBoardImageContainer}>
@@ -20,7 +21,9 @@ const Welcome = () => {
           width={300}
           height={300}
           alt="characters"
+          className={styles.clipBoardImage}
         />
+        <ParticipantForm />
       </div>
       <div className={styles.avatarImageContainer}>
         <Image
@@ -28,6 +31,7 @@ const Welcome = () => {
           width={300}
           height={300}
           alt="characters"
+          className={styles.avatarImage}
         />
       </div>
     </section>

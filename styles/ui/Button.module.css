@@ -27,6 +27,11 @@
   color: var(--dark-gray);
   box-shadow: 5px 5px var(--blue);
 }
+.white {
+  background-color: var(--white);
+  color: var(--dark-gray);
+  box-shadow: 5px 5px var(--dark-gray);
+}
 
 /* .btn:hover,
 .btn:active {
