@@ -172,7 +172,7 @@ const ParticipantForm = () => {
             ref={formRef}
           >
             <div className={styles.headline}>
-              <h2>Register to find your match!</h2>
+              <h2>Sign up here!</h2>
             </div>
             <div className={styles.row}>
               <div className={styles.control}>
@@ -216,7 +216,7 @@ const ParticipantForm = () => {
               </div>
             </div>
             <div className={styles.controlBtn}>
-              <Button>
+              <Button color="green">
                 <span>Register</span>
               </Button>
               {isInvalid && firstNameIsInvalid && (

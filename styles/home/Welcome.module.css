@@ -1,7 +1,7 @@
 .welcome {
-  /* height: 100vh; */
   display: grid;
   grid-template-columns: 1fr;
+  height: 100%;
 }
 
 .clipBoardImageContainer {
@@ -20,8 +20,12 @@
   display: none;
 }
 
-.avatarImage,
+
 .clipBoardImage {
+  width: 100%;
+  height: 100%;
+}
+.avatarImage {
   width: 100%;
   height: auto;
 }
