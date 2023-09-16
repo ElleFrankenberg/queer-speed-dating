@@ -16,11 +16,6 @@
 
 .headline {
   text-align: center;
-}
-
-.headline h1 {
-  font-size: 1.2rem;
-  color: var(--dark-gray);
   margin-bottom: var(--gap-small);
 }
 
@@ -28,7 +23,7 @@
   display: flex;
   gap: var(--gap-small);
   flex-wrap: wrap;
-  margin-bottom: 1rem;
+  margin-bottom: var(--gap-small);
 }
 
 .control {

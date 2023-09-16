@@ -180,14 +180,18 @@ function Header(props) {
               className={styles.toggleContainer}
               onClick={() => foldOutHandler("details")}
             >
-              <p>Admin Details</p>
-              <Hamburger
-                color="#000000"
-                size={20}
-                toggled={hamburgerIsOpen}
-                toggle={setHamburgerIsOpen}
-                direction="right"
-              />
+              <Button link="/auth" color="pink">
+                <span>Admin Details</span>
+                {/* <span>
+                  <Hamburger
+                    color="#000000"
+                    size={20}
+                    toggled={hamburgerIsOpen}
+                    toggle={setHamburgerIsOpen}
+                    direction="right"
+                  />
+                </span> */}
+              </Button>
             </li>
           )}
         </ul>
@@ -272,6 +276,12 @@ function Header(props) {
           </div>
         </CSSTransition>
       )}
+      <div className={styles.rainbow}>
+        <div className={`${styles.stripe} ${styles.pink}`}></div>
+        <div className={`${styles.stripe} ${styles.cerise}`}></div>
+        <div className={`${styles.stripe} ${styles.green}`}></div>
+        <div className={`${styles.stripe} ${styles.blue}`}></div>
+      </div>
     </header>
   );
 }

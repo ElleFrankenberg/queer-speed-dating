@@ -3,6 +3,35 @@
   width: 100%;
   border-bottom: var(--border-dark-gray);
   padding: var(--gap-small) var(--gap-medium) var(--gap-small) var(--gap-medium);
+  position: relative;
+}
+
+.rainbow {
+  width: 100px;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  right: 3rem;
+  z-index: 1;
+  display: flex;
+}
+
+.stripe {
+  width: 30px;
+  height: 100%;
+  transform: skewX(30deg);
+}
+.pink {
+  background-color: var(--pink);
+}
+.cerise {
+  background-color: var(--cerise);
+}
+.green {
+  background-color: var(--green);
+}
+.blue {
+  background-color: var(--blue);
 }
 
 .logo {
@@ -10,6 +39,7 @@
   align-items: center;
   font-size: 4.5vw;
   color: var(--dark-gray);
+  z-index: 2;
 }
 
 .header .nav {
@@ -20,6 +50,7 @@
 .navList {
   display: flex;
   flex-direction: column;
+  z-index: 2;
 }
 
 .navList li {
@@ -28,16 +59,16 @@
 
 .toggleContainer {
   display: flex;
-  justify-content: flex-end;
   align-items: center;
   cursor: pointer;
   text-transform: uppercase;
 }
 
 .admin {
-  border-top: var(--border-dark-gray);
   padding-top: var(--gap-small);
   padding-bottom: var(--gap-small);
+  position: inherit;
+  z-index: 2;
 }
 
 .adminDetails {
@@ -89,13 +120,14 @@
   .navList li:last-child {
     margin-left: auto;
     margin-right: 0;
+    padding-right: var(--gap-small);
   }
 
   .admin {
     display: flex;
     flex-direction: column;
     align-items: flex-end;
-    padding-right: 1.5rem;
+    padding-right: var(--gap-small);
   }
 
   .adminDetails {
@@ -121,11 +153,13 @@
   .changePasswordFormContainer {
     display: flex;
     justify-content: flex-end;
-    padding-right: var(--gap-small);
+    z-index: 2;
   }
 
   .deleteAdmin {
     margin-top: 0;
+    z-index: 2;
+    position: inherit;
   }
 
   .deleteMessage {
@@ -137,6 +171,7 @@
     margin-top: var(--gap-small);
     justify-content: flex-end;
     padding-right: var(--gap-small);
+    padding-bottom: 5px;
   }
 }
 
@@ -156,26 +191,8 @@
     align-items: center;
   }
 
-  .admin {
-    margin-top: var(--gap-small);
-    flex-direction: row;
-    justify-content: flex-end;
-    align-items: center;
-  }
-
-  .adminDetails {
-    flex-direction: column;
-    margin-right: var(--gap-small);
-    margin-bottom: 0;
-  }
-
   .adminDetails p:nth-child(1) {
     margin-left: auto;
-  }
-
-  .adminDetails p:nth-child(2) {
-    margin-top: 0.5rem;
-    margin-left: 0;
   }
 
   .changePasswordFormContainer {
