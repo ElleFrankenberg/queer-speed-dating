@@ -13,7 +13,6 @@
   align-items: center;
   color: white;
   padding: 3rem;
-  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.2);
   z-index: 1;
 }
 
@@ -36,11 +35,11 @@
 }
 
 .error {
-  background-color: var(--red);
+  background-color: var(--cerise);
 }
 
 .messageContainer {
-  margin-top: 1rem;
+  margin-top: 2rem;
   margin-bottom: 1rem;
 }
 
@@ -56,6 +55,6 @@
 
 .closeBtn {
   position: absolute;
-  right: 1rem;
+  right: 1.5rem;
   top: 1rem;
 }

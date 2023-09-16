@@ -1,8 +1,8 @@
 .header {
-  background-color: var(--white);
+  background-color: var(--light-gray);
   width: 100%;
   border-bottom: var(--border-dark-gray);
-  padding: var(--gap-small);
+  padding: var(--gap-small) var(--gap-medium) var(--gap-small) var(--gap-medium);
 }
 
 .logo {

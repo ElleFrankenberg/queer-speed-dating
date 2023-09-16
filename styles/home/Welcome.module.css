@@ -1,18 +1,9 @@
 .welcome {
-  display: grid;
-  grid-template-columns: 1fr;
-  height: 100%;
-}
-
-.clipBoardImageContainer {
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  padding: var(--gap-small) var(--gap-medium);
   align-items: center;
-  padding: 1rem;
-  width: 100%;
-  height: 100%;
-  position: relative;
+  justify-content: center;
 }
 
 .avatarImageContainer,
@@ -20,44 +11,20 @@
   display: none;
 }
 
-.clipBoardImage {
-  width: 100%;
-  height: 100%;
-}
-.avatarImage {
-  width: 100%;
-  height: auto;
-}
-
-/* Tablet and Smaller Desktop */
-@media (min-width: 701px) and (max-width: 1120px) {
-}
-
 /* Desktop */
 @media screen and (min-width: 1121px) {
   .welcome {
-    height: calc(100vh - 12rem);
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-  }
-
-  .welcome div {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    padding: 1rem;
-    width: 100%;
-    height: 100%;
   }
 
   .avatarImageContainer,
   .avatarImageContainer img {
     display: block;
   }
-
-  .welcome div img {
-    width: 80%;
-    height: auto;
+  .avatarImageContainer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
 }

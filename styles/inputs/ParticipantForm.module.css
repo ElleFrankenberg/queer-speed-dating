@@ -1,49 +1,95 @@
-.welcomeContainer {
+.formContainer {
   display: flex;
   flex-direction: column;
-  padding: var(--gap-small);
-  position: absolute;
-  width: 80%;
-  height: 70%;
-  margin-top: 1rem;
+  padding: var(--gap-medium) var(--gap-small);
+  border: 15px solid var(--brown);
+  position: relative;
+  margin-top: 5rem;
+  margin-bottom: 3rem;
+  max-width: 600px;
+  align-self: center;
 }
 
-/* .welcomeTextContainer {
-  padding: 0 0 var(--gap-small) 0;
-} */
+.corner {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  width: 40px;
+  height: 40px;
+  background-image: linear-gradient(-45deg, var(--brown) 50%, var(--green) 50%);
+}
 
-.welcomeText {
+.clamp {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translate(-50%, -70%);
+  border-bottom: 45px solid var(--dark-gray);
+  border-left: 10px solid transparent;
+  border-right: 10px solid transparent;
+  height: 0;
+  width: 100px;
+}
+
+.clamp::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translate(-50%, -60%);
+  width: 40px;
+  height: 40px;
+  background: var(--dark-gray);
+  border-radius: 50%;
+}
+.clamp::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translate(-50%, -80%);
+  width: 10px;
+  height: 10px;
+  background: var(--white);
+  border-radius: 50%;
+}
+
+.intro {
   display: flex;
-  color: var(--dark-gray);
+  align-items: center;
+  justify-content: center;
+}
+
+.welcomeTextContainer {
+  display: flex;
   flex-direction: column;
   align-items: center;
 }
-
-.welcomeText span {
-  font-size: 7vw;
+.welcomeTextContainer h1 {
+  color: var(--cerise);
+}
+.welcomeTextContainer h2 {
+  text-align: center;
+  margin-top: var(--gap-mini);
+  color: var(--cerise);
 }
 
-.logotype {
-  width: 11vw;
-  height: 11vw;
+.avatarImageContainer,
+.avatarImageContainer img {
+  display: none;
 }
 
-.welcomeText span:nth-child(2) {
+.formContainer {
+  width: 100%;
+}
+
+.form {
+  padding: var(--gap-medium) var(--gap-small) calc(var(--gap-medium) + 5px)
+    var(--gap-small);
   display: flex;
-  align-items: flex-end;
-  margin-bottom: 0.2rem;
-  margin-top: 0.2rem;
-}
-
-
-
-.welcomeText span:last-child {
-  margin-bottom: 0;
-}
-
- .form {
-  background-color: var(--purple);
-  padding: 0 var(--gap-small);
+  flex-direction: column;
+  justify-content: center;
+  width: 100%;
 }
 
 .honeyPot {
@@ -51,24 +97,10 @@
   visibility: hidden;
 }
 
-
-.headline {
-  text-align: center;
-  margin-bottom: var(--gap-small);
-  margin-top: var(--gap-small);
-}
-
-.headline h2 {
-  font-size: 5vw;
-  color: var(--dark-gray);
-  margin-bottom: var(--gap-small);
-  line-height: 1.5;
-}
-
 .row {
   display: flex;
   gap: var(--gap-small);
-  flex-wrap: wrap;
+  flex-direction: column;
   margin-bottom: 1rem;
 }
 
@@ -81,45 +113,43 @@
   margin-top: 0.7rem;
   display: flex;
   align-items: center;
-} 
-
-@media (min-width: 375px) and (max-width: 700px) {
-  .welcomeContainer {
-    background-color: rgb(160, 104, 32);
-  }
+  justify-content: center;
 }
 
-/* Tablet and Smaller Desktop */
-/* @media (min-width: 701px) and (max-width: 1120px) {
-} */
-
-/* Desktop */
-/* @media screen and (min-width: 1121px) {
-  .welcomeContainer {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    flex-direction: row;
-    justify-content: center;
+@media (min-width: 501px) and (max-width: 1120px) {
+  .intro {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
     width: 100%;
   }
 
-  .welcomeTextContainer {
-    border-bottom: none;
-    border-right: var(--border-purple);
-    margin-right: var(--gap-small);
+  .welcomeText span {
+    font-size: 1rem;
   }
 
-  .welcomeText {
-    padding-right: var(--gap-small);
+  .avatarImageContainer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
 
-  .welcomeText span:nth-child(2) {
-    font-size: 7rem;
+  .avatarImageContainer img {
+    display: block;
+    width: 50%;
+    height: auto;
   }
-  .welcomeText span:first-child,
-  .welcomeText span:last-child {
-    font-size: 2rem;
+}
+@media (min-width: 1121px) {
+  .formContainer h2 {
+    font-size: 1rem;
   }
-} */
+
+  .avatarImageContainer,
+  .avatarImageContainer img {
+    display: none;
+  }
+
+  .row {
+    flex-direction: row;
+  }
+}

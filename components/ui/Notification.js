@@ -41,7 +41,7 @@ function Notification(props) {
     <div className={activeClasses}>
       {status !== "pending" && (
         <div className={styles.closeBtn}>
-          <Button onClick={notificationCtx.hideNotification}>
+          <Button onClick={notificationCtx.hideNotification} color="white">
             <span>close</span>
           </Button>
         </div>
@@ -52,11 +52,14 @@ function Notification(props) {
       {status === "question" && (
         <div className={styles.buttonContainer}>
           <div className={styles.yesBtn}>
-            <Button onClick={() => handleDeleteTrue(id, firstName, lastName)}>
+            <Button
+              onClick={() => handleDeleteTrue(id, firstName, lastName)}
+              color="white"
+            >
               <span>yes</span>
             </Button>
           </div>
-          <Button onClick={handleDeleteFalse}>
+          <Button onClick={handleDeleteFalse} color="white">
             <span>no</span>
           </Button>
         </div>

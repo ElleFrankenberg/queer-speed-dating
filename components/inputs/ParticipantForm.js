@@ -149,31 +149,37 @@ const ParticipantForm = () => {
   return (
     <>
       {showForm && !notificationCxt.notification && (
-        <div className={styles.welcomeContainer}>
-          <div className={styles.welcomeTextContainer}>
-            <h1 className={styles.welcomeText}>
-              <span>Welcome to</span>
-              <span>
-                <Image
-                  src="/assets/images/logo.png"
-                  width={70}
-                  height={70}
-                  alt="logotype"
-                  className={styles.logotype}
-                />
-                ueer
-              </span>
-              <span>speed dating</span>
-            </h1>
+        <section className={styles.formContainer}>
+          <div className={styles.clamp}></div>
+          <div className={styles.intro}>
+            <div className={styles.avatarImageContainer}>
+              <Image
+                src="/assets/images/characters_left.png"
+                width={100}
+                height={100}
+                alt="characters"
+                className={styles.avatarImage}
+              />
+            </div>
+            <div className={styles.welcomeTextContainer}>
+              <h1>Welcome</h1>
+              <h2>Register to find your match!</h2>
+            </div>
+            <div className={styles.avatarImageContainer}>
+              <Image
+                src="/assets/images/characters_right.png"
+                width={100}
+                height={100}
+                alt="characters"
+                className={styles.avatarImage}
+              />
+            </div>
           </div>
           <form
             className={styles.form}
             onSubmit={registrationHandler}
             ref={formRef}
           >
-            <div className={styles.headline}>
-              <h2>Sign up here!</h2>
-            </div>
             <div className={styles.row}>
               <div className={styles.control}>
                 <input
@@ -233,7 +239,8 @@ const ParticipantForm = () => {
               )}
             </div>
           </form>
-        </div>
+          <div className={styles.corner}></div>
+        </section>
       )}
     </>
   );
