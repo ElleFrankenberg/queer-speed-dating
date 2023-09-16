@@ -112,8 +112,13 @@
 .controlBtn {
   margin-top: 0.7rem;
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
+}
+.controlBtn p {
+  margin-top: var(--gap-small);
+  color: var(--cerise);
 }
 
 @media (min-width: 501px) and (max-width: 1120px) {

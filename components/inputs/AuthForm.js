@@ -1,6 +1,6 @@
 import { useState, useRef, useContext, useEffect } from "react";
 import { signIn } from "next-auth/react";
-import styles from "../../styles/auth/AuthForm.module.css";
+import styles from "../../styles/inputs/AuthForm.module.css";
 import Button from "../ui/Button";
 import TextInput from "../ui/TextInput";
 import FormInputMessage from "../ui/messages/FormInputMessage";
@@ -138,9 +138,9 @@ function AuthForm() {
       {showForm && !notificationCxt.notification && (
         <section className={styles.authContainer}>
           <form onSubmit={submitHandler} className={styles.form}>
-            <div className={styles.headline}>
-              <h1>{isLogin ? "Login" : "Sign Up"}</h1>
-            </div>
+            <h1 className={styles.headline}>
+              {isLogin ? "Admin Login" : "Admin Sign Up"}
+            </h1>
             <div className={styles.row}>
               <div className={styles.control}>
                 <input
@@ -169,17 +169,20 @@ function AuthForm() {
             </div>
             <ul className={styles.actionList}>
               <li>
-                <Button>{isLogin ? "Login" : "Create Account"}</Button>
+                <Button color="pink">
+                  {isLogin ? "Login" : "Create Account"}
+                </Button>
               </li>
               <li>
                 <Button
                   type="button"
                   className={styles.toggle}
                   onClick={switchAuthModeHandler}
+                  color="pink"
                 >
                   {isLogin
                     ? "Create new account"
-                    : "Login whit existing account "}
+                    : "Login with existing account "}
                 </Button>
               </li>
             </ul>
