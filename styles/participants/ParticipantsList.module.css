@@ -1,28 +1,41 @@
 .participants {
   width: 100%;
-  min-height: 70vh;
   padding: var(--gap-small);
-}
-
-.participantListContainer {
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
+  align-items: center;
+  justify-content: center;
 }
 
 .participantList {
   width: 100%;
+  max-width: 50rem;
+}
+
+.headline {
+  background-color: var(--pink);
+  color: var(--dark-gray);
+  padding: var(--gap-small);
+  text-transform: uppercase;
 }
 
 .participantListItem {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding-bottom: 1rem;
-  padding-top: 1rem;
-  border-bottom: var(--border-green);
+  padding: var(--gap-small) var(--gap-small) calc(var(--gap-small) + 5px) 0;
+  border-bottom: var(--border-dark-gray);
+  color: var(--dark-gray);
 }
 
 .deleteAllContainer {
   margin-top: var(--gap-small);
+  display: flex;
+  justify-content: center;
+}
+
+@media screen and (min-width: 1121px) {
+  .participantList {
+    margin-top: 5rem;
+  }
 }

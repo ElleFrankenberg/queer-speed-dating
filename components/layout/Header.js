@@ -180,17 +180,8 @@ function Header(props) {
               className={styles.toggleContainer}
               onClick={() => foldOutHandler("details")}
             >
-              <Button link="/auth" color="pink">
+              <Button color="pink">
                 <span>Admin Details</span>
-                {/* <span>
-                  <Hamburger
-                    color="#000000"
-                    size={20}
-                    toggled={hamburgerIsOpen}
-                    toggle={setHamburgerIsOpen}
-                    direction="right"
-                  />
-                </span> */}
               </Button>
             </li>
           )}

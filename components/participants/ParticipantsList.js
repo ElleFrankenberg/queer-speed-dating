@@ -10,12 +10,6 @@ const ParticipantsList = (props) => {
 
   const notificationCxt = useContext(NotificationContext);
 
-  // const test = participants.map((p) => {
-  //   return p;
-  // });
-
-  // console.log("test", test);
-
   useEffect(() => {
     if (!notificationCxt.notification) {
       setShowParticipantList(true);
@@ -85,66 +79,67 @@ const ParticipantsList = (props) => {
   };
 
   return (
-    <div className={styles.participants}>
-      <div className={styles.participantListContainer}>
-        {showParticipantList && !notificationCxt.notification && (
-          <>
-            {participants.length > 0 ? (
-              <h1>All Participants</h1>
-            ) : (
-              <h1>No Participants yet</h1>
-            )}
-
-            <ul className={styles.participantList}>
-              {participants.map((participant) => (
-                <li key={participant.id} className={styles.participantListItem}>
-                  <Link href={`/participants/${participant.id}`}>
-                    <h3>{`${
-                      participant.firstName.charAt(0).toUpperCase() +
-                      participant.firstName.slice(1)
-                    } ${
-                      participant.lastName.charAt(0).toUpperCase() +
-                      participant.lastName.slice(1)
-                    }`}</h3>
-                  </Link>
-                  <Button
-                    onClick={() =>
-                      handleDelete(
-                        participant.id,
-                        `Delete ${
-                          participant.firstName.charAt(0).toUpperCase() +
-                          participant.firstName.slice(1)
-                        } ${
-                          participant.lastName.charAt(0).toUpperCase() +
-                          participant.lastName.slice(1)
-                        }?`,
+    <section className={styles.participants}>
+      {showParticipantList && !notificationCxt.notification && (
+        <>
+          <ul className={styles.participantList}>
+            <li className={styles.headline}>
+              {participants.length > 0 ? (
+                <h1>All Participants</h1>
+              ) : (
+                <h1>No Participants yet</h1>
+              )}
+            </li>
+            {participants.map((participant) => (
+              <li key={participant.id} className={styles.participantListItem}>
+                <Link href={`/participants/${participant.id}`}>
+                  <h3>{`${
+                    participant.firstName.charAt(0).toUpperCase() +
+                    participant.firstName.slice(1)
+                  } ${
+                    participant.lastName.charAt(0).toUpperCase() +
+                    participant.lastName.slice(1)
+                  }`}</h3>
+                </Link>
+                <Button
+                  onClick={() =>
+                    handleDelete(
+                      participant.id,
+                      `Delete ${
                         participant.firstName.charAt(0).toUpperCase() +
-                          participant.firstName.slice(1),
+                        participant.firstName.slice(1)
+                      } ${
                         participant.lastName.charAt(0).toUpperCase() +
-                          participant.lastName.slice(1)
-                      )
-                    }
-                    type="button"
-                  >
-                    <span>Delete</span>
-                  </Button>
-                </li>
-              ))}
-            </ul>
-          </>
-        )}
-        {participants.length > 0 && (
-          <div className={styles.deleteAllContainer}>
-            <Button
-              onClick={() => handleDelete("", "Delete all participants?")}
-              type="button"
-            >
-              <span>delete all</span>
-            </Button>
-          </div>
-        )}
-      </div>
-    </div>
+                        participant.lastName.slice(1)
+                      }?`,
+                      participant.firstName.charAt(0).toUpperCase() +
+                        participant.firstName.slice(1),
+                      participant.lastName.charAt(0).toUpperCase() +
+                        participant.lastName.slice(1)
+                    )
+                  }
+                  type="button"
+                  color="darkGray"
+                >
+                  <span>Delete</span>
+                </Button>
+              </li>
+            ))}
+            {participants.length > 0 && (
+              <li className={styles.deleteAllContainer}>
+                <Button
+                  onClick={() => handleDelete("", "Delete all participants?")}
+                  type="button"
+                  color="darkGray"
+                >
+                  <span>delete all</span>
+                </Button>
+              </li>
+            )}
+          </ul>
+        </>
+      )}
+    </section>
   );
 };
 export default ParticipantsList;

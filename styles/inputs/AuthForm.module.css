@@ -12,6 +12,7 @@
   padding: var(--gap-medium);
   width: 100%;
   border: 15px solid var(--pink);
+  max-width: 50rem;
 }
 
 .headline {

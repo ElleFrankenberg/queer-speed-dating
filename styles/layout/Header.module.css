@@ -11,7 +11,7 @@
   height: 100%;
   position: absolute;
   top: 0;
-  right: 3rem;
+  right: 6rem;
   z-index: 1;
   display: flex;
 }
@@ -90,6 +90,8 @@
 
 .deleteAdmin {
   margin-top: var(--gap-small);
+  z-index: 2;
+  position: inherit;
 }
 
 .deleteActionList {
@@ -98,6 +100,11 @@
 
 .deleteActionList li:last-child {
   margin-left: var(--gap-small);
+}
+
+.changePasswordFormContainer {
+  position: inherit;
+  z-index: 2;
 }
 
 /* Tablet and Smaller Desktop */
@@ -153,13 +160,10 @@
   .changePasswordFormContainer {
     display: flex;
     justify-content: flex-end;
-    z-index: 2;
   }
 
   .deleteAdmin {
     margin-top: 0;
-    z-index: 2;
-    position: inherit;
   }
 
   .deleteMessage {

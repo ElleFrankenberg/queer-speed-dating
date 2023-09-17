@@ -18,13 +18,15 @@
     grid-template-columns: repeat(3, 1fr);
   }
 
-  .avatarImageContainer,
-  .avatarImageContainer img {
-    display: block;
-  }
   .avatarImageContainer {
     display: flex;
     align-items: center;
     justify-content: center;
+    padding: var(--gap-medium);
+  }
+  .avatarImageContainer img {
+    display: block;
+    width: 100%;
+    height: auto;
   }
 }

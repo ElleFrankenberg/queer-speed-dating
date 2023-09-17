@@ -10,6 +10,8 @@
   text-transform: uppercase;
   display: inline-block;
   transform: skewX(10deg);
+  font-size: 0.8rem;
+  font-weight: bold;
 }
 
 .btn > span {
@@ -32,6 +34,11 @@
   background-color: var(--white);
   color: var(--dark-gray);
   box-shadow: 5px 5px var(--dark-gray);
+}
+.darkGray {
+  background-color: var(--dark-gray);
+  color: var(--white);
+  box-shadow: 5px 5px var(--cerise);
 }
 
 /* .btn:hover,
