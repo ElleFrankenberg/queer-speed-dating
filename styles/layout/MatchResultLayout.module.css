@@ -1,7 +1,7 @@
 .matchListContainer {
   color: var(--dark-gray);
   width: 100%;
-  max-width: 50rem;
+  max-width: var(--content-width);
 
   display: grid;
   grid-template-columns: repeat(2, 1fr);

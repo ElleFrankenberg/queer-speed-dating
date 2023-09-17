@@ -2,6 +2,7 @@
 
 :root {
   --max-width: 1470px;
+  --content-width: 60rem;
   --border-radius: 12px;
   --dark-gray: #333333;
   --light-gray: #f6faf8;

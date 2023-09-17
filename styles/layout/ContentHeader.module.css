@@ -1,0 +1,9 @@
+.contentHeader {
+  background-color: var(--pink);
+  color: var(--dark-gray);
+  padding: calc(var(--gap-small) + 5px) var(--gap-small) var(--gap-small)
+    var(--gap-small);
+  text-align: center;
+  width: 100%;
+  max-width: var(--content-width);
+}

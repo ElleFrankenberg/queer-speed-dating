@@ -1,6 +1,7 @@
 import { useState, useContext, useEffect } from "react";
 import Link from "next/link";
 import Button from "../ui/Button";
+import ContentHeader from "../layout/ContentHeader";
 import styles from "../../styles/participants/ParticipantsList.module.css";
 import NotificationContext from "@/store/notificationContext";
 
@@ -82,14 +83,14 @@ const ParticipantsList = (props) => {
     <section className={styles.participants}>
       {showParticipantList && !notificationCxt.notification && (
         <>
+          <ContentHeader
+            headline={
+              participants.length > 0
+                ? "All Participants"
+                : "No Participants yet"
+            }
+          />
           <ul className={styles.participantList}>
-            <li className={styles.headline}>
-              {participants.length > 0 ? (
-                <h1>All Participants</h1>
-              ) : (
-                <h1>No Participants yet</h1>
-              )}
-            </li>
             {participants.map((participant) => (
               <li key={participant.id} className={styles.participantListItem}>
                 <Link href={`/participants/${participant.id}`}>

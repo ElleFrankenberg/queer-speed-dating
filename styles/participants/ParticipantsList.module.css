@@ -9,15 +9,7 @@
 
 .participantList {
   width: 100%;
-  max-width: 50rem;
-}
-
-.headline {
-  background-color: var(--pink);
-  color: var(--dark-gray);
-  padding: calc(var(--gap-small) + 5px) var(--gap-small) var(--gap-small)
-    var(--gap-small);
-  text-align: center;
+  max-width: var(--content-width);
 }
 
 .participantListItem {
@@ -31,9 +23,10 @@
 }
 
 .deleteAllContainer {
-  margin-top: var(--gap-small);
+  padding: calc(var(--gap-small) + 5px) var(--gap-small)
+    calc(var(--gap-small) + 5px) 0;
   display: flex;
-  justify-content: center;
+  justify-content: flex-end;
 }
 
 @media screen and (min-width: 1121px) {

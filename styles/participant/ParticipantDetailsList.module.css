@@ -4,7 +4,7 @@
   padding: calc(var(--gap-small) + 5px) var(--gap-small) var(--gap-small)
     var(--gap-small);
   width: 100%;
-  max-width: 50rem;
+  max-width: var(--content-width);
   text-align: center;
 }
 

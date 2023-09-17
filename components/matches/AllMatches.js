@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import MatchResultLayout from "../layout/MatchResultLayout";
 
 import styles from "../../styles/matches/AllMatches.module.css";
+import ContentHeader from "../layout/ContentHeader";
 
 const AllMatches = (props) => {
   const { participants } = props;
@@ -94,16 +95,14 @@ const AllMatches = (props) => {
 
   return (
     <section className={styles.allMatches}>
-      <div className={styles.headline}>
-        {showResults ? <h1>All Matches</h1> : <h1>No Matches yet</h1>}
-      </div>
-      {showResults ? (
+      <ContentHeader
+        headline={participants.length < 0 ? "All Matches" : "No Matches yet"}
+      />
+      {showResults && (
         <MatchResultLayout
           loveMatches={loveMatches}
           friendMatches={friendMatches}
         />
-      ) : (
-        <div>No match yet...</div>
       )}
     </section>
   );

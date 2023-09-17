@@ -16,13 +16,7 @@ const MatchingPage = (props) => {
         />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      {participants.length > 0 ? (
-        <AllMatches participants={participants} />
-      ) : (
-        <div className="center">
-          <p>Sorry, No matches yet</p>
-        </div>
-      )}
+      <AllMatches participants={participants} />
     </>
   );
 };

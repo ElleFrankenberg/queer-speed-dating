@@ -13,7 +13,7 @@
     var(--gap-small);
   text-align: center;
   width: 100%;
-  max-width: 50rem;
+  max-width: var(--content-width);
 }
 
 @media screen and (min-width: 1121px) {

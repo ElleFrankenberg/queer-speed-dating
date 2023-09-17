@@ -3,6 +3,7 @@ import ParticipantDetailsList from "@/components/participant/ParticipantDetailsL
 import ParticipantLikesForm from "@/components/inputs/ParticipantLikesForm";
 import ParticipantMatchList from "@/components/participant/ParticipantMatchList";
 import NotificationContext from "@/store/notificationContext";
+import ContentHeader from "@/components/layout/ContentHeader";
 
 import styles from "@/styles/participant/Participant.module.css";
 
@@ -27,6 +28,7 @@ const Participant = ({ participant, participants }) => {
               participant={participant}
             />
           )}
+          <ContentHeader headline="Matches" />
           <ParticipantMatchList
             participants={participants}
             participant={participant}

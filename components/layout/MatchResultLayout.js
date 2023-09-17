@@ -4,11 +4,6 @@ const MatchResultLayout = (props) => {
   const { loveMatches, friendMatches } = props;
   return (
     <section className={styles.matchListContainer}>
-      {/* <div className={styles.matchListHeader}>
-        <h2 className={styles.love}>Love</h2>
-        <h2 className={styles.friends}>Friends</h2>
-      </div> */}
-
       <section className={styles.loveMatchList}>
         <h2 className={styles.love}>Love</h2>
         {loveMatches.map((loveMatch, i) => (
