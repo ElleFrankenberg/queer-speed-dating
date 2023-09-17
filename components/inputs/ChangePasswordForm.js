@@ -73,7 +73,7 @@ const ChangePasswordForm = (props) => {
         <TextInput
           id="old-password"
           type="text"
-          text="old password"
+          text="Old password"
           ref={oldPasswordInputRef}
         />
         {isInvalid && oldPasswordIsInvalid && (
@@ -86,7 +86,7 @@ const ChangePasswordForm = (props) => {
         <TextInput
           id="new-password"
           type="text"
-          text="new password"
+          text="New password"
           ref={newPasswordInputRef}
         />
         {isInvalid && newPasswordIsInvalid && (

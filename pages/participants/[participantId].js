@@ -3,9 +3,7 @@ import { MongoClient } from "mongodb";
 import { getSession } from "next-auth/react";
 import { useState, useEffect } from "react";
 import { useRouter } from "next/router";
-import ParticipantDetailsList from "@/components/participant/ParticipantDetailsList";
-import ParticipantLikesForm from "@/components/inputs/ParticipantLikesForm";
-import ParticipantMatchList from "@/components/participant/ParticipantMatchList";
+import Participant from "@/components/participant/Participant";
 
 const ParticipantPage = (props) => {
   // Redirect away if NOT auth
@@ -25,8 +23,6 @@ const ParticipantPage = (props) => {
 
   const { participant, participants } = props;
 
-  console.log(participant[0].firstName);
-
   if (isLoading || !participant) {
     return (
       <div className="center">
@@ -45,21 +41,7 @@ const ParticipantPage = (props) => {
         />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <ParticipantDetailsList participantDetails={participant} />
-      {participants.length > 0 ? (
-        <ParticipantLikesForm
-          participants={participants}
-          participant={participant}
-        />
-      ) : (
-        <div className="center">
-          <p>Sorry, there is no other participants found.</p>
-        </div>
-      )}
-      <ParticipantMatchList
-        participants={participants}
-        participant={participant}
-      />
+      <Participant participant={participant} participants={participants} />
     </>
   );
 };

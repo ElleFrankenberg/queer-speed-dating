@@ -101,38 +101,43 @@ const ParticipantLikesForm = (props) => {
           <h2 className={styles.love}>Love</h2>
           <h2 className={styles.friends}>Friends</h2>
         </div>
+
         <form className={styles.form} onSubmit={handleSubmitLikes}>
-          {participants.map((participant) => (
-            <div className={styles.participantItem} key={participant.id}>
-              <h3 className={styles.participantName}>
-                {participant.firstName.charAt(0).toUpperCase() +
-                  participant.firstName.slice(1)}{" "}
-                {participant.lastName.charAt(0).toUpperCase() +
-                  participant.lastName.slice(1)}
-              </h3>
-              <div className={styles.checkboxLove}>
-                <Checkbox
-                  id={`love-${participant.id}`}
-                  checked={checkboxes[participant.id]?.love}
-                  onChange={() => handleCheckboxChange(participant.id, "love")}
-                />
-              </div>
-              <div className={styles.checkboxFriends}>
-                <Checkbox
-                  id={`friends-${participant.id}`}
-                  checked={checkboxes[participant.id]?.friends}
-                  onChange={() =>
-                    handleCheckboxChange(participant.id, "friends")
-                  }
-                />
-              </div>
-            </div>
-          ))}
-          <div className={styles.btnContainer}>
-            <Button type="submit">
-              <span>Submit</span>
-            </Button>
-          </div>
+          <ul>
+            {participants.map((participant) => (
+              <li className={styles.participantItem} key={participant.id}>
+                <h3 className={styles.participantName}>
+                  {participant.firstName.charAt(0).toUpperCase() +
+                    participant.firstName.slice(1)}{" "}
+                  {participant.lastName.charAt(0).toUpperCase() +
+                    participant.lastName.slice(1)}
+                </h3>
+                <div className={styles.checkboxLove}>
+                  <Checkbox
+                    id={`love-${participant.id}`}
+                    checked={checkboxes[participant.id]?.love}
+                    onChange={() =>
+                      handleCheckboxChange(participant.id, "love")
+                    }
+                  />
+                </div>
+                <div className={styles.checkboxFriends}>
+                  <Checkbox
+                    id={`friends-${participant.id}`}
+                    checked={checkboxes[participant.id]?.friends}
+                    onChange={() =>
+                      handleCheckboxChange(participant.id, "friends")
+                    }
+                  />
+                </div>
+              </li>
+            ))}
+            <li className={styles.btnContainer}>
+              <Button type="submit">
+                <span>Submit</span>
+              </Button>
+            </li>
+          </ul>
         </form>
       </div>
     );

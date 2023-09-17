@@ -13,16 +13,3 @@
   color: var(--dark-gray);
   text-align: left;
 }
-
-@media (min-width: 375px) and (max-width: 500px) {
- 
-.input {
-    padding: 0.3rem 0.25rem;
-  }
-}
-@media (min-width: 501px)  {
- 
-.input {
-    padding: 0.5rem 0.25rem;
-  }
-}

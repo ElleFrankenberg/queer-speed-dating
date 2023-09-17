@@ -15,15 +15,17 @@
 .headline {
   background-color: var(--pink);
   color: var(--dark-gray);
-  padding: var(--gap-small);
-  text-transform: uppercase;
+  padding: calc(var(--gap-small) + 5px) var(--gap-small) var(--gap-small)
+    var(--gap-small);
+  text-align: center;
 }
 
 .participantListItem {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: var(--gap-small) var(--gap-small) calc(var(--gap-small) + 5px) 0;
+  padding: calc(var(--gap-small) + 5px) var(--gap-small)
+    calc(var(--gap-small) + 5px) 0;
   border-bottom: var(--border-dark-gray);
   color: var(--dark-gray);
 }
@@ -36,6 +38,6 @@
 
 @media screen and (min-width: 1121px) {
   .participantList {
-    margin-top: 5rem;
+    margin-top: 3rem;
   }
 }

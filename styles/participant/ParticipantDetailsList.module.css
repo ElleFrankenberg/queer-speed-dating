@@ -1,6 +1,11 @@
 .ParticipantDetailsList {
-  background-color: var(--yellow);
-  padding: 2rem;
+  background-color: var(--pink);
+  color: var(--dark-gray);
+  padding: calc(var(--gap-small) + 5px) var(--gap-small) var(--gap-small)
+    var(--gap-small);
+  width: 100%;
+  max-width: 50rem;
+  text-align: center;
 }
 
 .ParticipantDetailsList h1,

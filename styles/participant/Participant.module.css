@@ -1,0 +1,14 @@
+.participant {
+  width: 100%;
+  padding: var(--gap-small);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+@media screen and (min-width: 1121px) {
+  .participant {
+    margin-top: 3rem;
+  }
+}

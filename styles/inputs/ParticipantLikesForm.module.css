@@ -1,21 +1,49 @@
 .formContainer {
-  background-color: var(--pink);
+  background-color: var(--light-gray);
   color: var(--dark-gray);
-  padding: 2rem;
-}
-
-.form {
-  margin-top: 2rem;
+  padding-top: var(--gap-small);
+  padding-bottom: var(--gap-small);
+  width: 100%;
+  max-width: 50rem;
 }
 
 .formHeader,
 .participantItem {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: 70% 15% 15%;
 }
 
-.participantName {
+.formHeader h2 {
+  font-size: 1.2rem;
+  padding: var(--gap-small);
+}
+
+.formHeader h2:first-child {
+  font-size: 1.5rem;
+}
+
+.participantItem h3:first-child {
   font-size: 1rem;
+}
+
+.formHeader h2:first-child,
+.participantItem h3:first-child {
+  padding-left: 0;
+}
+
+.checkboxFriends,
+.checkboxLove,
+.participantItem h3 {
+  padding: var(--gap-small);
+}
+
+.love,
+.checkboxLove {
+  background-color: var(--cerise);
+}
+.friends,
+.checkboxFriends {
+  background-color: var(--green);
 }
 
 .love,
@@ -30,8 +58,9 @@
   text-align: center;
 }
 
-.participantItem {
-  margin-bottom: 1rem;
+.participantItem,
+.formHeader {
+  border-bottom: var(--border-dark-gray);
 }
 
 .btnContainer {

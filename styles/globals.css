@@ -1,3 +1,5 @@
+@import url("https://use.typekit.net/ekr2ysu.css");
+
 :root {
   --max-width: 1470px;
   --border-radius: 12px;
@@ -66,9 +68,12 @@ body {
   overflow-x: hidden;
   /* min-height: 100vh;
   min-width: 100vw; */
-  font-family: Arial, Helvetica, sans-serif;
   letter-spacing: 3px;
   font-size: 12px;
+  font-family: "p22-underground", sans-serif;
+  font-weight: 300;
+  font-style: normal;
+  line-height: 1;
 }
 
 #__next {
@@ -113,9 +118,11 @@ li {
 
 h1 {
   font-size: 2rem;
+  font-family: "p22-underground";
 }
 h2 {
   font-size: 0.8rem;
+  font-family: "p22-underground";
 }
 
 .center {
