@@ -3,28 +3,30 @@ import styles from "../../styles/layout/MatchResultLayout.module.css";
 const MatchResultLayout = (props) => {
   const { loveMatches, friendMatches } = props;
   return (
-    <div className={styles.matchListContainer}>
-      <div className={styles.matchListHeader}>
+    <section className={styles.matchListContainer}>
+      {/* <div className={styles.matchListHeader}>
         <h2 className={styles.love}>Love</h2>
         <h2 className={styles.friends}>Friends</h2>
-      </div>
-      <div className={styles.list}>
-        <div className={styles.loveMatchList}>
-          {loveMatches.map((loveMatch, i) => (
-            <h3 className={styles.matchName} key={i}>
-              {loveMatch}
-            </h3>
-          ))}
-        </div>
-        <div className={styles.friendMatchList}>
-          {friendMatches.map((friendMatch, i) => (
-            <h3 className={styles.matchName} key={i}>
-              {friendMatch}
-            </h3>
-          ))}
-        </div>
-      </div>
-    </div>
+      </div> */}
+
+      <section className={styles.loveMatchList}>
+        <h2 className={styles.love}>Love</h2>
+        {loveMatches.map((loveMatch, i) => (
+          <h3 className={styles.matchName} key={i}>
+            {loveMatch}
+          </h3>
+        ))}
+      </section>
+
+      <section className={styles.friendMatchList}>
+        <h2 className={styles.friends}>Friends</h2>
+        {friendMatches.map((friendMatch, i) => (
+          <h3 className={styles.matchName} key={i}>
+            {friendMatch}
+          </h3>
+        ))}
+      </section>
+    </section>
   );
 };
 

@@ -133,7 +133,7 @@ const ParticipantLikesForm = (props) => {
               </li>
             ))}
             <li className={styles.btnContainer}>
-              <Button type="submit">
+              <Button type="submit" color="green">
                 <span>Submit</span>
               </Button>
             </li>
@@ -146,9 +146,8 @@ const ParticipantLikesForm = (props) => {
   if (!showForm && !notificationCxt.notification) {
     return (
       <div className={styles.formIsFilledIn}>
-        <p>Likes are sent..</p>
         <div className={styles.btnContainer}>
-          <Button type="button" onClick={handleUpdateLikes}>
+          <Button type="button" onClick={handleUpdateLikes} color="green">
             <span>Update Likes</span>
           </Button>
         </div>

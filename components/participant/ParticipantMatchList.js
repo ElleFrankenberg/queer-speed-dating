@@ -18,14 +18,6 @@ const ParticipantMatchList = (props) => {
               const potentialMatchLikeDataKey = Object.keys(
                 potentialMatchLikeData
               )[0];
-
-              // console.log(
-              //   currentParticipantLikeData[currentParticipantlikeDataKey]
-              //     .friends,
-              //   "first",
-              //   potentialMatchLikeData[potentialMatchLikeDataKey].friends,
-              //   "second"
-              // );
               if (
                 currentParticipantlikeDataKey === potentialMatch.id &&
                 potentialMatchLikeDataKey === currentParticipant.id &&
@@ -66,15 +58,12 @@ const ParticipantMatchList = (props) => {
       });
     }
   });
-  // console.log(friendMatches, "friend matches");
 
   return (
-    <>
-      <MatchResultLayout
-        loveMatches={loveMatches}
-        friendMatches={friendMatches}
-      />
-    </>
+    <MatchResultLayout
+      loveMatches={loveMatches}
+      friendMatches={friendMatches}
+    />
   );
 };
 

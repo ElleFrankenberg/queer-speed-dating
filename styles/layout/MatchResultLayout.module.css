@@ -1,7 +1,27 @@
 .matchListContainer {
-  background-color: var(--yellow);
   color: var(--dark-gray);
-  padding: 2rem;
+  width: 100%;
+  max-width: 50rem;
+
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+}
+
+.loveMatchList {
+  background-color: var(--cerise);
+  padding-top: var(--gap-small);
+  padding-bottom: var(--gap-small);
+}
+
+.friendMatchList {
+  background-color: var(--green);
+  padding-top: var(--gap-small);
+  padding-bottom: var(--gap-small);
+}
+
+.love,
+.friends {
+  margin-bottom: var(--gap-small);
 }
 
 .matchListHeader,
@@ -17,7 +37,6 @@
   text-align: center;
   display: flex;
   flex-direction: column;
-  margin-bottom: 1rem;
 }
 
 .matchName {
