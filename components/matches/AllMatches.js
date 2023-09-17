@@ -1,6 +1,8 @@
 import { useState, useEffect } from "react";
 import MatchResultLayout from "../layout/MatchResultLayout";
 
+import styles from "../../styles/matches/AllMatches.module.css";
+
 const AllMatches = (props) => {
   const { participants } = props;
 
@@ -91,7 +93,10 @@ const AllMatches = (props) => {
   };
 
   return (
-    <>
+    <section className={styles.allMatches}>
+      <div className={styles.headline}>
+        {showResults ? <h1>All Matches</h1> : <h1>No Matches yet</h1>}
+      </div>
       {showResults ? (
         <MatchResultLayout
           loveMatches={loveMatches}
@@ -100,7 +105,7 @@ const AllMatches = (props) => {
       ) : (
         <div>No match yet...</div>
       )}
-    </>
+    </section>
   );
 };
 

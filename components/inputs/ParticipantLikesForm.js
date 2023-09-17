@@ -93,6 +93,18 @@ const ParticipantLikesForm = (props) => {
       });
   };
 
+  if (!showForm && !notificationCxt.notification) {
+    return (
+      <div className={styles.formIsFilledIn}>
+        <div className={styles.btnContainer}>
+          <Button type="button" onClick={handleUpdateLikes} color="green">
+            <span>Update Likes</span>
+          </Button>
+        </div>
+      </div>
+    );
+  }
+
   if (showForm && !notificationCxt.notification) {
     return (
       <div className={styles.formContainer}>
@@ -139,18 +151,6 @@ const ParticipantLikesForm = (props) => {
             </li>
           </ul>
         </form>
-      </div>
-    );
-  }
-
-  if (!showForm && !notificationCxt.notification) {
-    return (
-      <div className={styles.formIsFilledIn}>
-        <div className={styles.btnContainer}>
-          <Button type="button" onClick={handleUpdateLikes} color="green">
-            <span>Update Likes</span>
-          </Button>
-        </div>
       </div>
     );
   }

@@ -73,6 +73,7 @@
 
 .adminDetails {
   font-weight: bold;
+  color: var(--dark-gray);
 }
 
 .adminDetails p:nth-child(2) {
@@ -92,6 +93,7 @@
   margin-top: var(--gap-small);
   z-index: 2;
   position: inherit;
+  color: var(--dark-gray);
 }
 
 .deleteActionList {

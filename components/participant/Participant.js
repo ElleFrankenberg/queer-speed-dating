@@ -21,15 +21,11 @@ const Participant = ({ participant, participants }) => {
       {showParticipant && !notificationCxt.notification && (
         <>
           <ParticipantDetailsList participantDetails={participant} />
-          {participants.length > 0 ? (
+          {participants.length > 0 && (
             <ParticipantLikesForm
               participants={participants}
               participant={participant}
             />
-          ) : (
-            <div className="center">
-              <p>Sorry, there is no other participants found.</p>
-            </div>
           )}
           <ParticipantMatchList
             participants={participants}
