@@ -5,6 +5,7 @@
   width: 100%;
   background-color: transparent;
   border-bottom: 2px dotted var(--dark-gray);
+  color: var(--dark-gray);
 }
 
 .label {

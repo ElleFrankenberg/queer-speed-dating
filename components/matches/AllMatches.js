@@ -96,7 +96,7 @@ const AllMatches = (props) => {
   return (
     <section className={styles.allMatches}>
       <ContentHeader
-        headline={participants.length < 0 ? "All Matches" : "No Matches yet"}
+        headline={participants.length > 0 ? "All Matches" : "No Matches yet"}
       />
       {showResults && (
         <MatchResultLayout
