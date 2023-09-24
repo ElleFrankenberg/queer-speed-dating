@@ -94,13 +94,24 @@ const ParticipantsList = (props) => {
             {participants.map((participant) => (
               <li key={participant.id} className={styles.participantListItem}>
                 <Link href={`/participants/${participant.id}`}>
-                  <h3>{`${
-                    participant.firstName.charAt(0).toUpperCase() +
-                    participant.firstName.slice(1)
-                  } ${
-                    participant.lastName.charAt(0).toUpperCase() +
-                    participant.lastName.slice(1)
-                  }`}</h3>
+                  <h3>
+                    {participant.likesData ? (
+                      <span
+                        className={`${styles.indikator} ${styles.formIsFilledIn}`}
+                      ></span>
+                    ) : (
+                      <span
+                        className={`${styles.indikator} ${styles.formIsNotFilledIn}`}
+                      ></span>
+                    )}
+                    {`${
+                      participant.firstName.charAt(0).toUpperCase() +
+                      participant.firstName.slice(1)
+                    } ${
+                      participant.lastName.charAt(0).toUpperCase() +
+                      participant.lastName.slice(1)
+                    }`}
+                  </h3>
                 </Link>
                 <Button
                   onClick={() =>

@@ -1,4 +1,5 @@
 import { useState, useContext, useEffect } from "react";
+import { useRouter } from "next/router";
 import Checkbox from "../ui/Checkbox";
 import Button from "../ui/Button";
 import NotificationContext from "@/store/notificationContext";
@@ -9,6 +10,7 @@ const ParticipantLikesForm = (props) => {
   const [checkboxes, setCheckboxes] = useState({});
   const [showForm, setShowForm] = useState(true);
   const notificationCxt = useContext(NotificationContext);
+  const router = useRouter();
 
   const participantId = participant[0].id;
 
@@ -84,6 +86,7 @@ const ParticipantLikesForm = (props) => {
           message: "Likes are sent!",
           status: "success",
         });
+        router.push("/participants");
       })
       .catch((error) => {
         notificationCxt.showNotification({

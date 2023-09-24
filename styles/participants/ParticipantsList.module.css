@@ -22,6 +22,21 @@
   color: var(--dark-gray);
 }
 
+.indikator {
+  width: var(--gap-small);
+  height: var(--gap-small);
+  border-radius: 50%;
+  display: inline-block;
+  margin-right: var(--gap-mini);
+}
+
+.formIsFilledIn {
+  background-color: var(--green);
+}
+.formIsNotFilledIn {
+  background-color: var(--cerise);
+}
+
 .deleteAllContainer {
   padding: calc(var(--gap-small) + 5px) var(--gap-small)
     calc(var(--gap-small) + 5px) 0;
