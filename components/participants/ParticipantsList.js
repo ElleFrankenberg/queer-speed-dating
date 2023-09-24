@@ -1,4 +1,5 @@
 import { useState, useContext, useEffect } from "react";
+import { useRouter } from "next/router";
 import Link from "next/link";
 import Button from "../ui/Button";
 import ContentHeader from "../layout/ContentHeader";
@@ -8,6 +9,7 @@ import NotificationContext from "@/store/notificationContext";
 const ParticipantsList = (props) => {
   const { participants } = props;
   const [showParticipantList, setShowParticipantList] = useState(true);
+  const router = useRouter();
 
   const notificationCxt = useContext(NotificationContext);
 
@@ -70,6 +72,7 @@ const ParticipantsList = (props) => {
           status: "success",
         });
         setShowParticipantList(!showParticipantList);
+        id ? router.push("/participants") : router.push("/");
       })
       .catch((error) => {
         notificationCxt.showNotification({
