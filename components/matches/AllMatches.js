@@ -10,10 +10,17 @@ const AllMatches = (props) => {
   const [friendMatches, setFriendMatches] = useState([]);
   const [loveMatches, setLoveMatches] = useState([]);
   const [showResults, setShowResults] = useState(false);
+  const [allFormsFilledIn, setAllFormsFilledIn] = useState({
+    status: false,
+    message: "",
+  });
+
+  console.log(allFormsFilledIn);
 
   useEffect(() => {
     const fetchData = async () => {
       const matches = await calculateMatches();
+      if (!matches) return;
       setFriendMatches(matches.friendMatches);
       setLoveMatches(matches.loveMatches);
       setShowResults(true);
@@ -78,14 +85,25 @@ const AllMatches = (props) => {
                 }
               }
             } else {
-              console.log("one or more forms are not filled in");
+              return setAllFormsFilledIn({
+                status: false,
+                message: "One or more forms are not filled in yet.",
+              });
             }
           }
         }
       } else {
-        console.log("one or more forms are not filled in");
+        return setAllFormsFilledIn({
+          status: false,
+          message: "One or more forms are not filled in yet.",
+        });
       }
     }
+
+    setAllFormsFilledIn({
+      status: true,
+      message: "All Matches",
+    });
 
     return {
       friendMatches: Array.from(newFriendMatches),
@@ -96,7 +114,11 @@ const AllMatches = (props) => {
   return (
     <section className={styles.allMatches}>
       <ContentHeader
-        headline={participants.length > 0 ? "All Matches" : "No Matches yet"}
+        headline={
+          participants.length > 0
+            ? allFormsFilledIn.message
+            : "No participants yet"
+        }
       />
       {showResults && (
         <MatchResultLayout
