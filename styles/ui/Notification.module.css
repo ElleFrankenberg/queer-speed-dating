@@ -1,5 +1,5 @@
 .notification {
-  /* position: absolute;
+  position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
@@ -13,19 +13,19 @@
   align-items: center;
   color: white;
   padding: 3rem;
-  z-index: 1; */
-  position: absolute;
-  bottom: 5rem;
-  /* left: 50%; */
-  /* transform: translate(-50%, -50%); */
+  z-index: 1;
+  /* position: absolute;
+  bottom: 5rem; */
+  left: 50%;
+  transform: translate(-50%, -50%);
 
-  width: 100%;
+  width: 50%;
 
   display: flex;
   flex-direction: column;
   justify-content: space-between;
 
-  color: white;
+  color: var(--dark-gray);
   padding: var(--gap-small) var(--gap-medium);
   z-index: 2;
 }
@@ -33,7 +33,7 @@
 .notification h2 {
   margin: 0;
   font-size: 1.25rem;
-  color: white;
+  color: var(--dark-gray);
 }
 
 .question {
@@ -68,7 +68,7 @@
 }
 
 .closeBtn {
-  position: absolute;
-  right: 1.5rem;
-  top: 1rem;
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
 }

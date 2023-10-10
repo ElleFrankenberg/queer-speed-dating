@@ -1,15 +1,13 @@
 import styles from "../../styles/layout/Footer.module.css";
-import Button from "../ui/Button";
+import Link from "next/link";
 
 const Footer = () => {
   return (
     <footer className={styles.footer}>
-      <Button
-        link="https://github.com/ElleFrankenberg/queer-speed-dating"
-        color="white"
-      >
-        <span>Project Code</span>
-      </Button>
+      <Link href="https://github.com/ElleFrankenberg/queer-speed-dating">
+        Project Code
+      </Link>
+      <p>Design: August Floren</p>
     </footer>
   );
 };
