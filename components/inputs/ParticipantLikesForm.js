@@ -1,4 +1,5 @@
 import { useState, useContext, useEffect } from "react";
+import Image from "next/image";
 import { useRouter } from "next/router";
 import Checkbox from "../ui/Checkbox";
 import Button from "../ui/Button";
@@ -112,9 +113,29 @@ const ParticipantLikesForm = (props) => {
     return (
       <div className={styles.formContainer}>
         <div className={styles.formHeader}>
-          <h2 className={styles.participants}>Participants</h2>
-          <h2 className={styles.love}>Love</h2>
-          <h2 className={styles.friends}>Friends</h2>
+          <h2 className={styles.participantsHeadline}>Participants</h2>
+
+          <div className={styles.checkboxLabelLove}>
+            <h2 className={styles.loveLabel}>Love</h2>
+            <Image
+              src="/assets/images/heart.png"
+              width={30}
+              height={30}
+              alt="love"
+              className={styles.icon}
+            />
+          </div>
+
+          <div className={styles.checkboxLabelFriends}>
+            <h2 className={styles.friendsLabel}>Friends</h2>
+            <Image
+              src="/assets/images/HighFive.png"
+              width={30}
+              height={30}
+              alt="friends"
+              className={styles.icon}
+            />
+          </div>
         </div>
 
         <form className={styles.form} onSubmit={handleSubmitLikes}>

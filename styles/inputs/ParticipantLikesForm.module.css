@@ -12,49 +12,54 @@
   grid-template-columns: 70% 15% 15%;
 }
 
-.formHeader h2 {
-  font-size: 1.2rem;
+.icon {
+  display: block;
+}
+
+.loveLabel,
+.friendsLabel {
+  display: none;
+}
+
+.participantsHeadline {
+  font-size: 1.5rem;
+  display: flex;
+  align-items: center;
+}
+
+.checkboxLabelLove,
+.checkboxLabelFriends {
+  display: flex;
+  align-items: center;
+  justify-content: center;
   padding: var(--gap-small);
 }
 
-.formHeader h2:first-child {
-  font-size: 1.5rem;
+.checkboxLabelLove,
+.checkboxLove {
+  grid-column: 2/3;
+  text-align: center;
+}
+
+.checkboxLabelFriends,
+.checkboxFriends {
+  grid-column: 3/-1;
+  text-align: center;
 }
 
 .participantItem h3:first-child {
   font-size: 1rem;
 }
 
-.formHeader h2:first-child,
 .participantItem h3:first-child {
   padding-left: 0;
+  display: flex;
+  align-items: center;
 }
 
-.checkboxFriends,
 .checkboxLove,
-.participantItem h3 {
+.checkboxFriends {
   padding: var(--gap-small);
-}
-
-.love,
-.checkboxLove {
-  background-color: var(--cerise);
-}
-.friends,
-.checkboxFriends {
-  background-color: var(--green);
-}
-
-.love,
-.checkboxLove {
-  grid-column: 2/3;
-  text-align: center;
-}
-
-.friends,
-.checkboxFriends {
-  grid-column: 3/-1;
-  text-align: center;
 }
 
 .participantItem,
@@ -79,4 +84,26 @@
   color: var(--dark-gray);
   width: 100%;
   max-width: var(--content-width);
+}
+
+/* Tablet and Smaller Desktop */
+@media (min-width: 701px) {
+  .icon {
+    display: none;
+  }
+
+  .loveLabel,
+  .friendsLabel {
+    display: block;
+  }
+
+  .checkboxLabelLove,
+  .checkboxLove {
+    background-color: var(--cerise);
+  }
+
+  .checkboxLabelFriends,
+  .checkboxFriends {
+    background-color: var(--green);
+  }
 }

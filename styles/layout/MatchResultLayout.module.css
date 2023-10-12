@@ -4,24 +4,29 @@
   max-width: var(--content-width);
 
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  grid-template-columns: 1fr;
 }
 
-.loveMatchList {
-  background-color: var(--cerise);
-  padding-top: var(--gap-small);
-  padding-bottom: var(--gap-small);
-}
-
+.loveMatchList,
 .friendMatchList {
-  background-color: var(--green);
   padding-top: var(--gap-small);
   padding-bottom: var(--gap-small);
+}
+
+.label {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.icon {
+  display: block;
+  margin-bottom: var(--gap-small);
 }
 
 .love,
 .friends {
-  margin-bottom: var(--gap-small);
+  display: none;
 }
 
 .matchListHeader,
@@ -31,9 +36,7 @@
 }
 
 .loveMatchList,
-.love,
-.friendMatchList,
-.friends {
+.friendMatchList {
   text-align: center;
   display: flex;
   flex-direction: column;
@@ -41,4 +44,44 @@
 
 .matchName {
   margin-bottom: 1rem;
+}
+
+/* Tablet and Smaller Desktop */
+@media (min-width: 701px) {
+  .matchListContainer {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .icon {
+    display: none;
+  }
+
+  .love,
+  .friends {
+    display: block;
+    margin-bottom: var(--gap-small);
+  }
+
+  .loveMatchList {
+    background-color: var(--cerise);
+  }
+
+  .friendMatchList {
+    background-color: var(--green);
+  }
+  /* 
+  .loveLabel,
+  .friendsLabel {
+    display: block;
+  }
+
+  .checkboxLabelLove,
+  .checkboxLove {
+    background-color: var(--cerise);
+  }
+
+  .checkboxLabelFriends,
+  .checkboxFriends {
+    background-color: var(--green);
+  } */
 }
