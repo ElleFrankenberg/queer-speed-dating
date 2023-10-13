@@ -1,4 +1,5 @@
 import MatchResultLayout from "../layout/MatchResultLayout";
+import ContentHeader from "../layout/ContentHeader";
 
 const ParticipantMatchList = (props) => {
   const { participant, participants } = props;
@@ -48,10 +49,21 @@ const ParticipantMatchList = (props) => {
   });
 
   return (
-    <MatchResultLayout
-      loveMatches={loveMatches}
-      friendMatches={friendMatches}
-    />
+    <>
+      <ContentHeader
+        headline={
+          loveMatches.length > 0 || friendMatches.length > 0
+            ? "Matches"
+            : "No matches yet"
+        }
+      />
+      {loveMatches.length > 0 || friendMatches.length > 0 ? (
+        <MatchResultLayout
+          loveMatches={loveMatches}
+          friendMatches={friendMatches}
+        />
+      ) : null}
+    </>
   );
 };
 

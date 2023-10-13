@@ -5,7 +5,6 @@
     var(--gap-small);
   width: 100%;
   max-width: var(--content-width);
-  text-align: center;
 }
 
 .participantDetailsList h1 {

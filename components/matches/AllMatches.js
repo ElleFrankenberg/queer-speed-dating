@@ -120,7 +120,7 @@ const AllMatches = (props) => {
             : "No participants yet"
         }
       />
-      {showResults && (
+      {showResults && participants.length > 0 && (
         <MatchResultLayout
           loveMatches={loveMatches}
           friendMatches={friendMatches}

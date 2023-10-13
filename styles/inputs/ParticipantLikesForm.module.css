@@ -68,22 +68,24 @@
 }
 
 .btnContainer {
-  padding: calc(var(--gap-small) + 5px) var(--gap-small)
-    calc(var(--gap-small) + 5px) 0;
   display: flex;
   flex-direction: column;
   align-items: flex-end;
+  padding: calc(var(--gap-small) + 5px) calc(var(--gap-small) + 5px)
+    calc(var(--gap-small) + 5px) 0;
 }
 
 .formIsFilledIn {
   margin-bottom: var(--gap-small);
   display: flex;
   flex-direction: column;
-  align-items: center;
+  align-items: flex-start;
   background-color: var(--pink);
   color: var(--dark-gray);
   width: 100%;
   max-width: var(--content-width);
+  padding: calc(var(--gap-small) + 5px) var(--gap-small)
+    calc(var(--gap-small) + 5px) var(--gap-small);
 }
 
 /* Tablet and Smaller Desktop */

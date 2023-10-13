@@ -90,7 +90,7 @@ const ParticipantsList = (props) => {
             headline={
               participants.length > 0
                 ? "All Participants"
-                : "No Participants yet"
+                : "No participants yet"
             }
           />
           <ul className={styles.participantList}>

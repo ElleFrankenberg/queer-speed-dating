@@ -100,11 +100,9 @@ const ParticipantLikesForm = (props) => {
   if (!showForm && !notificationCxt.notification) {
     return (
       <div className={styles.formIsFilledIn}>
-        <div className={styles.btnContainer}>
-          <Button type="button" onClick={handleUpdateLikes} color="green">
-            <span>Update Likes</span>
-          </Button>
-        </div>
+        <Button type="button" onClick={handleUpdateLikes} color="green">
+          <span>Update Likes</span>
+        </Button>
       </div>
     );
   }
