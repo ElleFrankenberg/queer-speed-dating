@@ -2,31 +2,13 @@ import {
   containsOnlyLetters,
   phoneNumberIsCorrect,
 } from "../../helpers/formUtil";
-import { MongoClient, ObjectId } from "mongodb";
+import { ObjectId } from "mongodb";
 import { connectDatabase } from "../../helpers/db";
 
-// const connectDatabase = async () => {
-//   const client = await MongoClient.connect(process.env.DB_URL);
-//   return client;
-// };
-
-const insertDocument = async (client, collection, email, document) => {
+const insertDocument = async (client, collection, document) => {
   const db = client.db();
-
-  const existingParticipant = await db
-    .collection(collection)
-    .findOne({ email: email });
-
-  if (existingParticipant) {
-    errorMessageHandeling(res, 422, {
-      message: "Participant already exists",
-    });
-    client.close();
-    return;
-  } else {
-    const result = await db.collection(collection).insertOne(document);
-    return result;
-  }
+  const result = await db.collection(collection).insertOne(document);
+  return result;
 };
 
 const deleteAllDocuments = async (client, collection) => {
@@ -60,12 +42,6 @@ const addOrUpdateOneDocument = async (
   return result;
 };
 
-// export const getAllDocuments = async (client, collection) => {
-//   const db = client.db();
-//   const documents = await db.collection(collection).find().toArray();
-//   return documents;
-// };
-
 const errorMessageHandeling = (res, code, message) => {
   const errorMessage = res.status(code).json(message);
   return errorMessage;
@@ -77,7 +53,7 @@ const handler = async (req, res) => {
     client = await connectDatabase();
   } catch (error) {
     errorMessageHandeling(res, 500, {
-      message: "Connecting to the database faild",
+      message: "Connecting to the database faild.",
     });
     return;
   }
@@ -110,22 +86,42 @@ const handler = async (req, res) => {
     };
 
     let result;
+    const db = client.db();
+    const collectionLength = await db
+      .collection("participants")
+      .countDocuments();
 
-    try {
-      result = await insertDocument(
-        client,
-        "participants",
-        newParticipant.email,
-        newParticipant
-      );
-      newParticipant.id = result.insertedId.toString();
-      res
-        .status(201)
-        .json({ message: "Added participant", participant: newParticipant });
-    } catch (error) {
-      errorMessageHandeling(res, 500, {
-        message: "Inserting participant faild",
+    console.log(collectionLength, "collectionLength");
+    if (collectionLength < 100) {
+      try {
+        const existingParticipant = await db
+          .collection("participants")
+          .findOne({ email: email });
+
+        if (existingParticipant) {
+          errorMessageHandeling(res, 422, {
+            message: "Participant already exists.",
+          });
+          client.close();
+          return;
+        }
+
+        result = await insertDocument(client, "participants", newParticipant);
+        newParticipant.id = result.insertedId.toString();
+        res
+          .status(201)
+          .json({ message: "Added participant", participant: newParticipant });
+      } catch (error) {
+        errorMessageHandeling(res, 500, {
+          message: "Adding participant faild.",
+        });
+      }
+    } else {
+      errorMessageHandeling(res, 422, {
+        message: "Maximun number of participants reached.",
       });
+      client.close();
+      return;
     }
   }
 
@@ -149,17 +145,6 @@ const handler = async (req, res) => {
       });
     }
   }
-
-  // if (req.method === "GET") {
-  //   try {
-  //     const documents = await getAllDocuments(client, "participants");
-  //     res.status(200).json({ participants: documents });
-  //   } catch (error) {
-  //     errorMessageHandeling(res, 500, {
-  //       message: "Getting participants faild",
-  //     });
-  //   }
-  // }
 
   if (req.method === "DELETE") {
     const { participantId } = req.body;
