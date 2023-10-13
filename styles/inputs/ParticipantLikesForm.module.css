@@ -9,11 +9,7 @@
 .formHeader,
 .participantItem {
   display: grid;
-  grid-template-columns: 70% 15% 15%;
-}
-
-.icon {
-  display: block;
+  grid-template-columns: 1fr 20% 20%;
 }
 
 .loveLabel,
@@ -25,6 +21,10 @@
   font-size: 1.5rem;
   display: flex;
   align-items: center;
+}
+
+.participantName {
+  text-transform: capitalize;
 }
 
 .checkboxLabelLove,
@@ -88,22 +88,17 @@
 
 /* Tablet and Smaller Desktop */
 @media (min-width: 701px) {
-  .icon {
-    display: none;
-  }
-
   .loveLabel,
   .friendsLabel {
     display: block;
+    margin-right: var(--gap-mini);
   }
 
-  .checkboxLabelLove,
-  .checkboxLove {
-    background-color: var(--cerise);
+  .loveLabel {
+    color: var(--cerise);
   }
 
-  .checkboxLabelFriends,
-  .checkboxFriends {
-    background-color: var(--green);
+  .friendsLabel {
+    color: var(--blue);
   }
 }

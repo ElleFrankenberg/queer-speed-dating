@@ -37,13 +37,23 @@
 
 .loveMatchList,
 .friendMatchList {
-  text-align: center;
   display: flex;
   flex-direction: column;
 }
 
+.loveMatchList li,
+.friendMatchList li {
+  padding: var(--gap-small) var(--gap-small) var(--gap-small) 0;
+  border-bottom: var(--border-dark-gray);
+  color: var(--dark-gray);
+}
+.loveMatchList li:first-child,
+.friendMatchList li:first-child {
+  border-bottom: none;
+}
+
 .matchName {
-  margin-bottom: 1rem;
+  text-transform: capitalize;
 }
 
 /* Tablet and Smaller Desktop */
@@ -52,36 +62,21 @@
     grid-template-columns: repeat(2, 1fr);
   }
 
-  .icon {
-    display: none;
+  .loveMatchList {
+    margin-right: var(--gap-medium);
   }
 
   .love,
   .friends {
     display: block;
     margin-bottom: var(--gap-small);
+    margin-right: var(--gap-mini);
   }
 
-  .loveMatchList {
-    background-color: var(--cerise);
+  .love {
+    color: var(--cerise);
   }
-
-  .friendMatchList {
-    background-color: var(--green);
+  .friends {
+    color: var(--blue);
   }
-  /* 
-  .loveLabel,
-  .friendsLabel {
-    display: block;
-  }
-
-  .checkboxLabelLove,
-  .checkboxLove {
-    background-color: var(--cerise);
-  }
-
-  .checkboxLabelFriends,
-  .checkboxFriends {
-    background-color: var(--green);
-  } */
 }

@@ -143,10 +143,7 @@ const ParticipantLikesForm = (props) => {
             {participants.map((participant) => (
               <li className={styles.participantItem} key={participant.id}>
                 <h3 className={styles.participantName}>
-                  {participant.firstName.charAt(0).toUpperCase() +
-                    participant.firstName.slice(1)}{" "}
-                  {participant.lastName.charAt(0).toUpperCase() +
-                    participant.lastName.slice(1)}
+                  {participant.firstName} {participant.lastName}
                 </h3>
                 <div className={styles.checkboxLove}>
                   <Checkbox

@@ -97,7 +97,7 @@ const ParticipantsList = (props) => {
             {participants.map((participant) => (
               <li key={participant.id} className={styles.participantListItem}>
                 <Link href={`/participants/${participant.id}`}>
-                  <h3>
+                  <h3 className={styles.participantName}>
                     {participant.likesData ? (
                       <span
                         className={`${styles.indikator} ${styles.formIsFilledIn}`}
@@ -107,13 +107,7 @@ const ParticipantsList = (props) => {
                         className={`${styles.indikator} ${styles.formIsNotFilledIn}`}
                       ></span>
                     )}
-                    {`${
-                      participant.firstName.charAt(0).toUpperCase() +
-                      participant.firstName.slice(1)
-                    } ${
-                      participant.lastName.charAt(0).toUpperCase() +
-                      participant.lastName.slice(1)
-                    }`}
+                    {`${participant.firstName} ${participant.lastName}`}
                   </h3>
                 </Link>
                 <Button

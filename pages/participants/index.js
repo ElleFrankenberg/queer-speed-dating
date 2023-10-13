@@ -14,7 +14,7 @@ const ParticipantsPage = (props) => {
           name="description"
           content="This page shows all participants in the database."
         />
-        <link rel="icon" href="/favicon.ico" />
+        <link rel="icon" href="/assets/images/logo.png" />
       </Head>
       <ParticipantsList participants={participants} />
     </>

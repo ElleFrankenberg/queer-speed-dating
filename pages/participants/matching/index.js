@@ -14,7 +14,7 @@ const MatchingPage = (props) => {
           name="description"
           content="This page shows all the matches from the speed dating event."
         />
-        <link rel="icon" href="/favicon.ico" />
+        <link rel="icon" href="/assets/images/logo.png" />
       </Head>
       <AllMatches participants={participants} />
     </>

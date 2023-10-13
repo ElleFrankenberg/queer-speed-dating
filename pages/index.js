@@ -10,7 +10,7 @@ export default function Home() {
           name="description"
           content="This website serves as a helpful tool to quickly and easily match participants in speed dating."
         />
-        <link rel="icon" href="/favicon.ico" />
+        <link rel="icon" href="/assets/images/logo.png" />
       </Head>
       <Welcome />
     </>

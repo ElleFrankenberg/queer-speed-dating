@@ -5,8 +5,8 @@ const MatchResultLayout = (props) => {
   const { loveMatches, friendMatches } = props;
   return (
     <section className={styles.matchListContainer}>
-      <section className={styles.loveMatchList}>
-        <div className={styles.label}>
+      <ul className={styles.loveMatchList}>
+        <li className={styles.label}>
           <h2 className={styles.love}>Love</h2>
           <Image
             src="/assets/images/heart.png"
@@ -15,16 +15,16 @@ const MatchResultLayout = (props) => {
             alt="love"
             className={styles.icon}
           />
-        </div>
+        </li>
         {loveMatches.map((loveMatch, i) => (
-          <h3 className={styles.matchName} key={i}>
-            {loveMatch}
-          </h3>
+          <li className={styles.matchName} key={i}>
+            <h3>{loveMatch}</h3>
+          </li>
         ))}
-      </section>
+      </ul>
 
-      <section className={styles.friendMatchList}>
-        <div className={styles.label}>
+      <ul className={styles.friendMatchList}>
+        <li className={styles.label}>
           <h2 className={styles.friends}>Friends</h2>
           <Image
             src="/assets/images/HighFive.png"
@@ -33,13 +33,13 @@ const MatchResultLayout = (props) => {
             alt="friends"
             className={styles.icon}
           />
-        </div>
+        </li>
         {friendMatches.map((friendMatch, i) => (
-          <h3 className={styles.matchName} key={i}>
-            {friendMatch}
-          </h3>
+          <li className={styles.matchName} key={i}>
+            <h3>{friendMatch}</h3>
+          </li>
         ))}
-      </section>
+      </ul>
     </section>
   );
 };

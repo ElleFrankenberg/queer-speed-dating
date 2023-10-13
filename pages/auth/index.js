@@ -31,7 +31,7 @@ function AuthPage() {
           name="description"
           content="Loggin in or signing up as the administrator of the Queer Speed Dating App."
         />
-        <link rel="icon" href="/favicon.ico" />
+        <link rel="icon" href="/assets/images/logo.png" />
       </Head>
       <AuthForm />
     </>

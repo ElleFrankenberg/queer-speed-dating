@@ -1,4 +1,4 @@
-.ParticipantDetailsList {
+.participantDetailsList {
   background-color: var(--pink);
   color: var(--dark-gray);
   padding: calc(var(--gap-small) + 5px) var(--gap-small) var(--gap-small)
@@ -8,12 +8,20 @@
   text-align: center;
 }
 
-.ParticipantDetailsList h1,
-.ParticipantDetailsList p {
+.participantDetailsList h1 {
+  text-transform: capitalize;
+}
+
+.participantDetailsList li {
+  word-break: break-word;
+}
+
+.participantDetailsList h1,
+.participantDetailsList p {
   margin-bottom: 0.5rem;
   color: var(--dark-gray);
 }
 
-.ParticipantDetailsList p:last-child {
+.participantDetailsList p:last-child {
   margin-bottom: 0;
 }

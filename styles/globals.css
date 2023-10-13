@@ -92,9 +92,18 @@ h2 {
   font-size: 1.3rem;
   font-family: "p22-underground";
 }
+h3 {
+  font-size: 1rem;
+  font-family: "p22-underground";
+}
 
 .center {
   text-align: center;
+}
+
+input:-webkit-autofill,
+input:-webkit-autofill:focus {
+  transition: background-color 0s 600000s, color 0s 600000s;
 }
 
 /*------------------------------- foldout animation -----------------------------*/

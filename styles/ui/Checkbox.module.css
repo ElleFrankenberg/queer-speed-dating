@@ -83,7 +83,7 @@
 
 /* Tablet and Smaller Desktop */
 @media (min-width: 701px) {
-  .container {
+  /* .container {
     border: none;
-  }
+  } */
 }

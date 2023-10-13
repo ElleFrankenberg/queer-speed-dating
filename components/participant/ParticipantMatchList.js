@@ -25,13 +25,7 @@ const ParticipantMatchList = (props) => {
                   .friends &&
                 potentialMatchLikeData[potentialMatchLikeDataKey].friends
               ) {
-                const friendMatch = `${
-                  potentialMatch.firstName.charAt(0).toUpperCase() +
-                  potentialMatch.firstName.slice(1)
-                } ${
-                  potentialMatch.lastName.charAt(0).toUpperCase() +
-                  potentialMatch.lastName.slice(1)
-                }`;
+                const friendMatch = `${potentialMatch.firstName} ${potentialMatch.lastName}`;
                 friendMatches.push(friendMatch);
               }
 
@@ -42,13 +36,7 @@ const ParticipantMatchList = (props) => {
                   .love &&
                 potentialMatchLikeData[potentialMatchLikeDataKey].love
               ) {
-                const loveMatch = `${
-                  potentialMatch.firstName.charAt(0).toUpperCase() +
-                  potentialMatch.firstName.slice(1)
-                } ${
-                  potentialMatch.lastName.charAt(0).toUpperCase() +
-                  potentialMatch.lastName.slice(1)
-                }`;
+                const loveMatch = `${potentialMatch.firstName} ${potentialMatch.lastName}`;
 
                 loveMatches.push(loveMatch);
               }

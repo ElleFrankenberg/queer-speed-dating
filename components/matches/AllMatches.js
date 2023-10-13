@@ -59,7 +59,7 @@ const AllMatches = (props) => {
                 ) {
                   const matchOne = `${participantOne.firstName} ${participantOne.lastName}`;
                   const matchTwo = `${participantTwo.firstName} ${participantTwo.lastName}`;
-                  const match = [matchOne, matchTwo].sort().join(" / ");
+                  const match = [matchOne, matchTwo].sort().join(" & ");
 
                   // Check if the match already exists in the set
                   if (!newFriendMatches.has(match)) {
@@ -76,7 +76,7 @@ const AllMatches = (props) => {
                 ) {
                   const matchOne = `${participantOne.firstName} ${participantOne.lastName}`;
                   const matchTwo = `${participantTwo.firstName} ${participantTwo.lastName}`;
-                  const match = [matchOne, matchTwo].sort().join(" / ");
+                  const match = [matchOne, matchTwo].sort().join(" & ");
 
                   // Check if the match already exists in the set
                   if (!newLoveMatches.has(match)) {

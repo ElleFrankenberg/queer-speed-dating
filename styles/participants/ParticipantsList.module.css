@@ -22,6 +22,10 @@
   color: var(--dark-gray);
 }
 
+.participantName {
+  text-transform: capitalize;
+}
+
 .indikator {
   width: var(--gap-small);
   height: var(--gap-small);

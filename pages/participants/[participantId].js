@@ -39,7 +39,7 @@ const ParticipantPage = (props) => {
           name="description"
           content={`This page shows details about ${participant[0].firstName} ${participant[0].lastName}`}
         />
-        <link rel="icon" href="/favicon.ico" />
+        <link rel="icon" href="/assets/images/logo.png" />
       </Head>
       <Participant participant={participant} participants={participants} />
     </>
