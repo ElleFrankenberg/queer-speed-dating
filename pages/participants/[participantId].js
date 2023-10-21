@@ -84,7 +84,7 @@ export async function getStaticProps(context) {
         participant: participant,
         participants: filteredParticipants,
       },
-      revalidate: 30,
+      revalidate: 5,
     };
   } catch (error) {
     console.log(error);
@@ -92,7 +92,7 @@ export async function getStaticProps(context) {
       props: {
         participants: [],
       },
-      revalidate: 30,
+      revalidate: 5,
     };
   }
 }
