@@ -7,15 +7,13 @@ Participants at the event enter their personal details in the participant form o
 
 Subsequently, the organizers create an account or sign in to the application to access its matchmaking functionality. On each participant's page, the organizer fills out the participant's "likes" form according to the submitted preferences. When all participants' "likes" forms are completed, the organizers receive lists of all love and friend matches from that event. These matches are listed with separate lists for love matches and friend matches on the "All Matches" page. And also on each participant's individual page, displaying that particular participant's matches.
 
-- Technological stack:
+Technological stack:
 
-* Next.js
-* React
-* MongoDB database
-* NextAuth.js
+- Next.js
+- React
+- MongoDB database
+- NextAuth.js
 
-## View it live
-
-(https://queer-speed-dating.vercel.app/)
+[View it live](https://queer-speed-dating.vercel.app/)
 
 Illustations made by [August Florén](https://augustfloren.myportfolio.com/)
