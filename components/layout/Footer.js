@@ -7,7 +7,7 @@ const Footer = () => {
       <Link href="https://github.com/ElleFrankenberg/queer-speed-dating">
         Project Code
       </Link>
-      <p>Design: August Floren</p>
+      <p>Design: August Florén</p>
     </footer>
   );
 };
