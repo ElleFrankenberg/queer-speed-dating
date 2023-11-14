@@ -32,7 +32,7 @@ const addOrUpdateOneDocument = async (
 ) => {
   const db = client.db();
   const id = new ObjectId(participantId);
-  console.log(id);
+
   const filter = { _id: id };
   const update = { $set: { likesData: likesData } };
   const options = { returnOriginal: false };
@@ -91,7 +91,6 @@ const handler = async (req, res) => {
       .collection("participants")
       .countDocuments();
 
-    console.log(collectionLength, "collectionLength");
     if (collectionLength < 100) {
       try {
         const existingParticipant = await db

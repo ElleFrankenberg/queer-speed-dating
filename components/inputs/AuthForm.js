@@ -6,6 +6,7 @@ import TextInput from "../ui/TextInput";
 import FormInputMessage from "../ui/messages/FormInputMessage";
 import NotificationContext from "@/store/notificationContext";
 import { useRouter } from "next/router";
+import { CircularProgress } from "@mui/material";
 
 async function createUser(email, password) {
   const response = await fetch("/api/auth/signup", {
@@ -131,6 +132,14 @@ function AuthForm() {
         });
       }
     }
+  }
+
+  if (!showForm && !notificationCxt.notification) {
+    return (
+      <section className="progress-container">
+        <CircularProgress />
+      </section>
+    );
   }
 
   return (

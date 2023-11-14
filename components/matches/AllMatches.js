@@ -15,8 +15,6 @@ const AllMatches = (props) => {
     message: "",
   });
 
-  console.log(allFormsFilledIn);
-
   useEffect(() => {
     const fetchData = async () => {
       const matches = await calculateMatches();

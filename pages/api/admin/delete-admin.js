@@ -15,8 +15,6 @@ const handler = async (req, res) => {
 
   const session = await getServerSession(req, res, authOptions);
 
-  console.log(session);
-
   if (!session) {
     errorMessageHandeling(res, 401, {
       message: "Not authenticated!",

@@ -24,6 +24,8 @@ const ParticipantPage = (props) => {
 
   const { participant, participants } = props;
 
+  console.log(participant);
+
   if (isLoading || !participant) {
     return (
       <section className="progress-container">
