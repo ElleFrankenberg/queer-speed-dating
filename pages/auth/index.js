@@ -2,6 +2,7 @@ import Head from "next/head";
 import { useEffect, useState } from "react";
 import { getSession } from "next-auth/react";
 import { useRouter } from "next/router";
+import { CircularProgress } from "@mui/material";
 
 import AuthForm from "@/components/inputs/AuthForm";
 
@@ -20,7 +21,11 @@ function AuthPage() {
   }, [router]);
 
   if (isLoading) {
-    return <p className="center">Loading...</p>;
+    return (
+      <section className="progress-container">
+        <CircularProgress />
+      </section>
+    );
   }
 
   return (

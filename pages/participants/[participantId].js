@@ -3,6 +3,7 @@ import { MongoClient } from "mongodb";
 import { getSession } from "next-auth/react";
 import { useState, useEffect } from "react";
 import { useRouter } from "next/router";
+import { CircularProgress } from "@mui/material";
 import Participant from "@/components/participant/Participant";
 
 const ParticipantPage = (props) => {
@@ -25,16 +26,20 @@ const ParticipantPage = (props) => {
 
   if (isLoading || !participant) {
     return (
-      <div className="center">
-        <p>Loading...</p>
-      </div>
+      <section className="progress-container">
+        <CircularProgress />
+      </section>
     );
   }
 
   return (
     <>
       <Head>
-        <title>{`${participant[0].firstName} ${participant[0].lastName}`}</title>
+        <title>
+          {participant[0]
+            ? `${participant[0].firstName} ${participant[0].lastName}`
+            : "participant"}
+        </title>
         <meta
           name="description"
           content={`This page shows details about ${participant[0].firstName} ${participant[0].lastName}`}

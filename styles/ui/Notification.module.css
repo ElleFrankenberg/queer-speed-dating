@@ -11,11 +11,9 @@
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
-  color: white;
+
   padding: 3rem;
   z-index: 1;
-  /* position: absolute;
-  bottom: 5rem; */
   left: 50%;
   transform: translate(-50%, -50%);
 
@@ -25,7 +23,6 @@
   flex-direction: column;
   justify-content: space-between;
 
-  color: var(--dark-gray);
   padding: var(--gap-small) var(--gap-medium);
   z-index: 2;
 }
@@ -33,23 +30,26 @@
 .notification h2 {
   margin: 0;
   font-size: 1.25rem;
-  color: var(--dark-gray);
 }
 
 .question {
   background-color: var(--pink);
+  color: var(--dark-gray);
 }
 
 .pending {
   background-color: var(--blue);
+  color: var(--light-gray);
 }
 
 .success {
   background-color: var(--green);
+  color: var(--dark-gray);
 }
 
 .error {
   background-color: var(--cerise);
+  color: var(--light-gray);
 }
 
 .messageContainer {
