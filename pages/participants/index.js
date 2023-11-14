@@ -2,7 +2,6 @@ import Head from "next/head";
 import { MongoClient } from "mongodb";
 import { getSession } from "next-auth/react";
 import ParticipantsList from "../../components/participants/ParticipantsList";
-import Header from "@/components/layout/Header";
 
 const ParticipantsPage = (props) => {
   const { participants } = props;
