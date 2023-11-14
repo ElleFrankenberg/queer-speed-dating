@@ -10,13 +10,12 @@ const ParticipantLikesForm = (props) => {
   const { participants, participant } = props;
   const [checkboxes, setCheckboxes] = useState({});
   const [showForm, setShowForm] = useState(true);
-  const [likesAreSent, setLikesAreSent] = useState(false);
+
   const notificationCxt = useContext(NotificationContext);
   const router = useRouter();
 
   const participantId = participant[0].id;
   console.log(showForm, "showForm");
-
   useState(() => {
     const checkboxesData = participants.reduce((result, participant) => {
       result[participant.id] = {
@@ -29,8 +28,8 @@ const ParticipantLikesForm = (props) => {
   }, [participants]);
 
   useEffect(() => {
-    // const likesData = participant[0].likesData ?? [];
-    if (likesAreSent) {
+    const likesData = participant[0].likesData ?? [];
+    if (likesData.length > 0) {
       setShowForm(false);
     }
   }, []);
@@ -89,7 +88,6 @@ const ParticipantLikesForm = (props) => {
           message: "Likes are sent!",
           status: "success",
         });
-        setLikesAreSent(true);
         router.push("/participants");
       })
       .catch((error) => {
