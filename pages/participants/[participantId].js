@@ -24,7 +24,7 @@ const ParticipantPage = (props) => {
 
   const { participant, participants } = props;
 
-  console.log(participant);
+  console.log(participants, "participants");
 
   if (isLoading || !participant) {
     return (
