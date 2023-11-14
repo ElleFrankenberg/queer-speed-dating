@@ -90,6 +90,8 @@ export async function getStaticProps(context) {
         };
       });
 
+    console.log(filteredParticipants, "filteredParticipants");
+
     client.close();
     return {
       props: {
