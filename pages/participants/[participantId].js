@@ -24,6 +24,7 @@ const ParticipantPage = (props) => {
 
   const { participant, participants } = props;
 
+  console.log(participant, "participant");
   console.log(participants, "participants");
 
   if (isLoading || !participant) {
@@ -44,7 +45,11 @@ const ParticipantPage = (props) => {
         </title>
         <meta
           name="description"
-          content={`This page shows details about ${participant[0].firstName} ${participant[0].lastName}`}
+          content={
+            participant[0]
+              ? `This page shows details about ${participant[0].firstName} ${participant[0].lastName}`
+              : "participant details"
+          }
         />
         <link rel="icon" href="/assets/images/logo.png" />
       </Head>
