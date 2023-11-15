@@ -24,9 +24,6 @@ const ParticipantPage = (props) => {
 
   const { participant, participants } = props;
 
-  console.log(participant, "participant");
-  console.log(participants, "participants");
-
   if (isLoading || !participant) {
     return (
       <section className="progress-container">
@@ -102,22 +99,17 @@ export async function getServerSideProps(context) {
         };
       });
 
-    console.log(filteredParticipants, "filteredParticipants");
-
     client.close();
     return {
       props: {
         participant: participant,
         participants: filteredParticipants,
-        session: session,
       },
     };
   } catch (error) {
-    console.log(error);
     return {
       props: {
         participants: [],
-        session: session,
       },
     };
   }
